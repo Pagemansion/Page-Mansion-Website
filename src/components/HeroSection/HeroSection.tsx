@@ -36,7 +36,7 @@ export default function HeroSection() {
             innovative and quality services deliveries.
           </p>
           <Link href="/properties">
-          <div className="mt-20">
+          <div className="mt-24">
             <PropertySearch />
             </div>
             {/* <div className="bg-white inline-flex gap-2 items-center p-2 rounded-3xl">
