@@ -20,6 +20,7 @@ import { ServicesSection } from '@/components/PageComponents/Home/ServicesSectio
 import { ContactSection } from '@/components/PageComponents/Home/ContactSection'
 import BlogSection from '@/components/PageComponents/Home/BlogSection'
 import { FaqSection } from '@/components/PageComponents/Home/FaqSection'
+import PropertyShowcase from '@/components/utilities/property-showcase'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -88,6 +89,7 @@ export default async function Page({ params: paramsPromise }: Args) {
     <HeroSection />
     <PartnersSection />
     <PropertiesSection />
+    <PropertyShowcase />
     <AboutSection />
     <ServicesSection />
     <ContactSection />

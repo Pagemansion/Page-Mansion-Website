@@ -60,24 +60,38 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   })
 
   return (
-    <div className="pt-24 pb-24">
-      <PageClient />
-      <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none text-center">
-          <h1 className="mb-8 lg:mb-16">Search</h1>
+    <>
+      <section
+        className="relative w-full h-64 flex items-center justify-center text-center"
+        style={{
+          backgroundImage: "url('/assets/banner.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black opacity-50 z-10" />
+        {/* <h1 className="relative z-20 text-white text-5xl font-bold mt-20">Our Properties</h1> */}
+      </section>
+      <div className="pt-24 pb-24">
+        <PageClient />
+        <div className="container mb-16">
+          <div className="prose dark:prose-invert max-w-none text-center">
+            <h1 className="mb-8 lg:mb-16">Search</h1>
 
-          <div className="max-w-[50rem] mx-auto">
-            <Search />
+            <div className="max-w-[50rem] mx-auto">
+              <Search />
+            </div>
           </div>
         </div>
-      </div>
 
-      {posts.totalDocs > 0 ? (
-        <CollectionArchive posts={posts.docs as CardPostData[]} />
-      ) : (
-        <div className="container">No results found.</div>
-      )}
-    </div>
+        {posts.totalDocs > 0 ? (
+          <CollectionArchive posts={posts.docs as CardPostData[]} />
+        ) : (
+          <div className="container">No results found.</div>
+        )}
+      </div>
+    </>
   )
 }
 

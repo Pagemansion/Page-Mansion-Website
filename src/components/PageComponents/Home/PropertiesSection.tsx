@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const PropertiesData = [
@@ -95,6 +96,7 @@ export const PropertiesSection = () => {
               </div>
             ))}
           </div>
+          <Link href="/properties">
           <div className="flex justify-center my-4">
             <button className="flex gap-2 items-center px-5 py-2 border border-[#194754] text-[#194754] rounded-full font-semibold hover:bg-[#194754] hover:text-white transition-colors group">
               <span>View More</span>
@@ -111,6 +113,7 @@ export const PropertiesSection = () => {
               </span>
             </button>
           </div>
+          </Link>
         </div>
       </div>
     </>

@@ -8,6 +8,7 @@ import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { CMSLink } from '@/components/Link'
 import { Logo } from '@/components/Logo/Logo'
 import Image from 'next/image'
+import { Input } from '@/components/ui/input'
 
 export async function Footer() {
   const footerData: Footer = await getCachedGlobal('footer', 1)()
@@ -36,6 +37,12 @@ export async function Footer() {
             <div>
               <h3 className="font-bold text-lg">Are you looking for a home?</h3>
             </div>
+            <div className="flex w-full max-w-sm  items-center gap-2  my-4">
+              <Input type="email" placeholder="Enter Email Address" />
+          <button type="submit" className="py-2 px-4 rounded-xl bg-black text-white">
+                Send
+              </button>
+            </div>
           </div>
           <div className="flex gap-11 text-black mr-20">
             <div>
@@ -50,9 +57,8 @@ export async function Footer() {
               <h3 className="font-bold text-lg">Service</h3>
               <p className="my-2">Property Management</p>
               <p className="my-2">Property Valuation</p>
-              <p className="my-2">Short Term</p>
-              <p className="my-2">New Projects</p>
-              <p className="my-2">List Your Property</p>
+              <p className="my-2">Property Exchange</p>
+              <p className="my-2">Legal Agreements</p>
             </div>
             <div>
               <h3 className="font-bold text-lg">Quick Links</h3>
