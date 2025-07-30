@@ -69,7 +69,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
             Our Properties
           </Link>
 
-          <Link href="/about-us" className={linkClasses}>
+          <Link href="/about" className={linkClasses}>
             {' '}
             {/* Updated to /about-us */}
             About Us
@@ -87,7 +87,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         </div>
 
         <div className="flex gap-4 items-center">
-          <button className="p-2 rounded-full bg-[#194754] text-white hover:text-gray-200 transition-colors duration-300">
+          <button className="p-2 rounded-full bg-[#194754] hover:bg-black text-white hover:text-gray-200 transition-colors duration-300">
             <Link href="/search" className="">
               <span className="sr-only">Search</span>
               <svg
@@ -106,7 +106,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               </svg>
             </Link>
           </button>
-          <button className="py-2 px-4 rounded-3xl bg-[#194754] text-white text-lg hover:text-gray-200 transition-colors duration-300">
+          <button className="py-2 px-4 rounded-3xl bg-[#194754] hover:bg-black text-white text-lg hover:text-gray-200 transition-colors duration-300">
             <Link href="" className="flex items-center gap-2">
               <span>Book a Visit</span>
               <span>

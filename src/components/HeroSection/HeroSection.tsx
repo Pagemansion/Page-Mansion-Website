@@ -1,8 +1,6 @@
 // src/components/HeroSection/HeroSection.tsx
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
 import PropertySearch from '../utilities/property-search'
 
 export default function HeroSection() {

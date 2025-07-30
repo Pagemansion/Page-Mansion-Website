@@ -36,7 +36,7 @@ export default function PropertySearch() {
           <label className="text-sm font-medium text-white">Location</label>
           <Select>
             <SelectTrigger className="w-full bg-transparent">
-              <SelectValue placeholder="Property Type" />
+              <SelectValue placeholder="Cities" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="new-york">New York</SelectItem>
@@ -54,7 +54,7 @@ export default function PropertySearch() {
           <label className="text-sm font-medium text-white">Sort</label>
           <Select>
             <SelectTrigger className="w-full bg-transparent">
-              <SelectValue placeholder="Property Type" />
+              <SelectValue placeholder="Sort Type" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="price-low-high">Price: Low to High</SelectItem>

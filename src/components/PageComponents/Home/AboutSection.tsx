@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export const AboutSection = () => {
@@ -34,6 +35,7 @@ export const AboutSection = () => {
                 legacies for our clients in excellence services.
               </p>
               <div className=" my-4">
+                <Link href="/about">
                 <button className="flex gap-2 items-center px-5 py-2 border border-[#194754] text-[#194754] rounded-full font-semibold hover:bg-[#194754] hover:text-white transition-colors group">
                   <span>View More</span>
                   <span>
@@ -48,6 +50,7 @@ export const AboutSection = () => {
                     </svg>
                   </span>
                 </button>
+                </Link>
               </div>
             </div>
           </div>
