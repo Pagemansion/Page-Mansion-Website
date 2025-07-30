@@ -16,70 +16,81 @@ interface HeaderClientProps {
 
 export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
   /* Storing the value in a useState to avoid hydration errors */
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [theme, setTheme] = useState<string | null>(null)
   const { headerTheme, setHeaderTheme } = useHeaderTheme()
   const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
-      if(window.scrollY > 50){
-        setIsScrolled(true);
+      if (window.scrollY > 50) {
+        setIsScrolled(true)
       } else {
-        setIsScrolled(false);
+        setIsScrolled(false)
       }
-    };
+    }
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const headerClasses = `fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-white shadow-lg py-3' : 'bg-transparent py-5'} `
 
-  const linkClasses = `hover:text-black transition-colors duration-300 text-lg font-medium ${isScrolled ? 'text-black font-semibold': 'text-white'}`;
+  const getLinkClasses = (href: string) => {
+    const isActive = pathname === href
+    const baseClasses = `hover:text-black transition-colors duration-300 text-lg font-medium`
+    const activeClasses = isActive
+      ? isScrolled
+        ? 'text-[#E7C873] font-bold'
+        : 'text-black font-bold'
+      : ''
+    const scrollClasses = isScrolled ? 'text-black font-semibold' : 'text-white'
+
+    return `${baseClasses} ${isActive ? activeClasses : scrollClasses}`
+  }
 
   return (
     <header className={headerClasses}>
       <div className="container  rounded-[40px] mx-auto px-4 py-2 flex justify-between items-center">
         <Link href="/" className="flex items-center">
-        {isScrolled ? (
-          <Image
-            src="/assets/page-mansion.png" 
-            alt="Page Mansion Real Estate"
-            width={100} 
-            height={45}
-            priority 
-          /> ) : (
-          <Image
-            src="/assets/page-mansion-white.png"
-            alt="Page Mansion Real Estate"
-            width={100} 
-            height={45}
-            priority
-          />
-        )
-        }
+          {isScrolled ? (
+            <Image
+              src="/assets/page-mansion.png"
+              alt="Page Mansion Real Estate"
+              width={100}
+              height={45}
+              priority
+            />
+          ) : (
+            <Image
+              src="/assets/page-mansion-white.png"
+              alt="Page Mansion Real Estate"
+              width={100}
+              height={45}
+              priority
+            />
+          )}
         </Link>
         <div className="hidden md:flex space-x-8">
-          <Link href="/properties" className={linkClasses}>
+          <Link href="/properties" className={getLinkClasses('/properties')}>
             Our Properties
           </Link>
 
-          <Link href="/about" className={linkClasses}>
+          <Link href="/about" className={getLinkClasses('/about')}>
             {' '}
             {/* Updated to /about-us */}
             About Us
           </Link>
-          <Link href="/blog" className={linkClasses}>
+          <Link href="/blog" className={getLinkClasses('/blog')}>
             {' '}
             {/* Updated to /contact */}
             Blog
           </Link>
-          <Link href="/contact" className={linkClasses}>
+          <Link href="/contact" className={getLinkClasses('/contact')}>
             {' '}
             {/* Updated to /contact */}
             Contact

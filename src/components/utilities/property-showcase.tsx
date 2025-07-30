@@ -68,7 +68,15 @@ export default function PropertyShowcase() {
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-black/20 transition-opacity duration-300 group-hover:bg-black/30" />
+            <div
+              className="absolute inset-0 transition-opacity duration-300"
+              style={{
+                backgroundColor:
+                  hoveredProperty === properties[0].id
+                    ? 'rgba(231, 200, 115, 0.3)'
+                    : 'rgba(231, 200, 115, 0.2)',
+              }}
+            />
 
             {/* View Details Button */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -107,10 +115,13 @@ export default function PropertyShowcase() {
             {/* Hover Overlay */}
             <div
               className={`
-              absolute inset-0 bg-black/40 flex items-center justify-center
+              absolute inset-0 flex items-center justify-center
               transition-opacity duration-300
               ${hoveredProperty === properties[1].id ? 'opacity-100' : 'opacity-0'}
             `}
+              style={{
+                backgroundColor: 'rgba(231, 200, 115, 0.85)',
+              }}
             >
               <button className="bg-white text-gray-900 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition-colors">
                 View Details
@@ -142,7 +153,7 @@ export default function PropertyShowcase() {
               {/* Hover Overlay */}
               <div
                 className={`
-                absolute inset-0 bg-black/40 flex items-center justify-center
+                absolute inset-0 bg-[#E7C873]/60 flex items-center justify-center
                 transition-opacity duration-300
                 ${hoveredProperty === property.id ? 'opacity-100' : 'opacity-0'}
               `}
