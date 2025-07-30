@@ -31,7 +31,11 @@ export const ThemeSelector: React.FC = () => {
   React.useEffect(() => {
     const preference = window.localStorage.getItem(themeLocalStorageKey)
     setValue(preference ?? 'light')
-  }, [])
+    // Always set theme to light by default, regardless of system preference
+    if (!preference) {
+      setTheme('light')
+    }
+  }, [setTheme])
 
   return (
     <Select onValueChange={onThemeChange} value={value}>
