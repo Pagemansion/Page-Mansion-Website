@@ -190,7 +190,7 @@ export default function PropertiesPage() {
                   </ul>
                   <div className="flex justify-center my-4">
                     <button
-                      className="flex gap-2 items-center px-5 py-2 text-[#194754] font-semibold hover:text-black transition-colors group"
+                      className="flex gap-2 items-center px-5 py-2 text-black font-semibold hover:text-[#194754] transition-colors group"
                       aria-label={`View details of ${property.name}`}
                     >
                       <span>View Details</span>
@@ -200,7 +200,7 @@ export default function PropertiesPage() {
                           viewBox="0 0 24 24"
                           width="18"
                           height="18"
-                          className="fill-[#194754] group-hover:fill-black transition-colors group-hover:animate-spin-once"
+                          className="fill-black group-hover:fill-[#194754] transition-colors group-hover:animate-spin-once"
                         >
                           <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
                         </svg>
