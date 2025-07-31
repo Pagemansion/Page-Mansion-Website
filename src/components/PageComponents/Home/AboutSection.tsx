@@ -36,20 +36,20 @@ export const AboutSection = () => {
               </p>
               <div className=" my-4">
                 <Link href="/about">
-                <button className="flex gap-2 items-center px-5 py-2 border border-[#194754] text-[#194754] rounded-full font-semibold hover:bg-[#194754] hover:text-white transition-colors group">
-                  <span>View More</span>
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="18"
-                      height="18"
-                      className="fill-[#194754] group-hover:fill-white transition-colors"
-                    >
-                      <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path>
-                    </svg>
-                  </span>
-                </button>
+                  <button className="flex gap-2 items-center px-5 py-2 border border-[#194754] text-[#194754] rounded-full font-semibold hover:bg-[#194754] hover:text-white transition-colors group">
+                    <span>View More</span>
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        className="fill-[#194754] group-hover:fill-white transition-colors"
+                      >
+                        <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path>
+                      </svg>
+                    </span>
+                  </button>
                 </Link>
               </div>
             </div>
@@ -72,10 +72,46 @@ export const AboutSection = () => {
                   <path d="M21 19H23V21H1V19H3V4C3 3.44772 3.44772 3 4 3H14C14.5523 3 15 3.44772 15 4V19H17V9H20C20.5523 9 21 9.44772 21 10V19ZM7 11V13H11V11H7ZM7 7V9H11V7H7Z"></path>
                 </svg>
               </span>
-              <h3 className="text-xl font-semibold my-2">Trusted Agents</h3>
+              <h3 className="text-xl font-semibold my-2">Trusted Real Estate Developers</h3>
               <p>
-                Our team consists of highly experienced and trustworthy agents dedicated to guiding
-                you through every step of your real estate journey.
+                With a proven track record in delivering high-quality, secure, and affordable
+                properties, Page Mansion is a name clients rely on.
+              </p>
+            </div>
+            <div className="p-3">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                >
+                  <path d="M20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM7 6V10H11V6H7ZM7 12V14H17V12H7ZM7 16V18H17V16H7ZM13 7V9H17V7H13Z"></path>
+                </svg>
+              </span>
+              <h3 className="text-black text-xl font-semibold my-2">Verified Documentation</h3>
+              <p className="text-black">
+                We guarantee transparency with clearly defined land titles and official approvals
+                from relevant authorities.
+              </p>
+            </div>
+            <div className="p-3">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                >
+                  <path d="M22.0049 5.99979H15.0049C11.6912 5.99979 9.00488 8.68608 9.00488 11.9998C9.00488 15.3135 11.6912 17.9998 15.0049 17.9998H22.0049V19.9998C22.0049 20.5521 21.5572 20.9998 21.0049 20.9998H3.00488C2.4526 20.9998 2.00488 20.5521 2.00488 19.9998V3.99979C2.00488 3.4475 2.4526 2.99979 3.00488 2.99979H21.0049C21.5572 2.99979 22.0049 3.4475 22.0049 3.99979V5.99979ZM15.0049 7.99979H23.0049V15.9998H15.0049C12.7957 15.9998 11.0049 14.2089 11.0049 11.9998C11.0049 9.79065 12.7957 7.99979 15.0049 7.99979ZM15.0049 10.9998V12.9998H18.0049V10.9998H15.0049Z"></path>
+                </svg>
+              </span>
+              <h3 className="text-black text-xl font-semibold my-2">Flexible Payment Plans</h3>
+              <p className="text-black">
+                Spread your payments in manageable installments that align with your financial
+                capacity.
               </p>
             </div>
             <div className="p-3">
@@ -90,10 +126,12 @@ export const AboutSection = () => {
                   <path d="M3.90145 17.8636L7.81249 13.9526L10.6409 16.781L15.212 12.2099L17.0049 14.0028V9.00281H12.0049L13.7978 10.7957L10.6409 13.9526L7.81249 11.1241L2.86662 16.07C2.31276 14.8274 2.00488 13.4511 2.00488 12.0028C2.00488 6.47996 6.48204 2.00281 12.0049 2.00281C17.5277 2.00281 22.0049 6.47996 22.0049 12.0028C22.0049 17.5257 17.5277 22.0028 12.0049 22.0028C8.67116 22.0028 5.71844 20.3715 3.90145 17.8636Z"></path>
                 </svg>
               </span>
-              <h3 className="text-black text-xl font-semibold my-2">Secure Investments</h3>
+              <h3 className="text-black text-xl font-semibold my-2">
+                Strategic & Secure Land Locations
+              </h3>
               <p className="text-black">
-                We prioritize the safety of your investments by ensuring all transactions are
-                transparent, legally compliant, and backed by thorough due diligence.
+                All our estates are located in government-approved, non-disputed areas with verified
+                titles and secure environments ideal for living or investment.
               </p>
             </div>
             <div className="p-3">
@@ -110,10 +148,11 @@ export const AboutSection = () => {
               </span>
               <h3 className="text-xl font-semibold my-2">Prime Locations</h3>
               <p>
-                We offer properties in highly sought-after and strategic locations, ensuring maximum
-                value and convenience for our clients.
+                Our developments are situated in fast-growing, strategic areas with access to major
+                roadways, schools, and commercial hubs.
               </p>
             </div>
+            
             <div className="p-3">
               <span>
                 <svg
@@ -123,13 +162,13 @@ export const AboutSection = () => {
                   height="32"
                   fill="currentColor"
                 >
-                  <path d="M6 10V20H19V10H6ZM18 8H20C20.5523 8 21 8.44772 21 9V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V9C3 8.44772 3.44772 8 4 8H6V7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7V8ZM16 8V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V8H16ZM7 11H9V13H7V11ZM7 14H9V16H7V14ZM7 17H9V19H7V17Z"></path>
+                  <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM11 15V17H13V15H11ZM13 13.3551C14.4457 12.9248 15.5 11.5855 15.5 10C15.5 8.067 13.933 6.5 12 6.5C10.302 6.5 8.88637 7.70919 8.56731 9.31346L10.5288 9.70577C10.6656 9.01823 11.2723 8.5 12 8.5C12.8284 8.5 13.5 9.17157 13.5 10C13.5 10.8284 12.8284 11.5 12 11.5C11.4477 11.5 11 11.9477 11 12.5V14H13V13.3551Z"></path>
                 </svg>
               </span>
-              <h3 className="text-black text-xl font-semibold my-2">Security</h3>
+              <h3 className="text-black text-xl font-semibold my-2">Professional Support Team</h3>
               <p className="text-black">
-                We implement robust security measures across all our properties, ensuring a safe and
-                secure environment for residents and investors.
+                From your first inquiry to final allocation, our dedicated support staff is with you
+                every step of the way.
               </p>
             </div>
           </div>
