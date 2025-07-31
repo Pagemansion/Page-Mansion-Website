@@ -1,6 +1,8 @@
 'use client'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { motion } from 'motion/react'
+import { FadeIn, SlideInLeft, SlideInRight, StaggerContainer } from '../../ui/animated'
 
 const servicesData = [
   {
@@ -110,53 +112,93 @@ export const ServicesSection = () => {
   return (
     <>
       <div className="">
-        <div className="py-11 container">
-          <span className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold">
-            OUR SERVICES
-          </span>
-        </div>
-        <div className="py-11 container mx-auto  rounded-xl">
-          <h3 className="font-bold text-center text-black text-3xl my-4">
-            Highlights of Our Real-Estate Expertise
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className="flex flex-col gap-3">
-              {servicesData.map((service) => (
-                <div
-                  key={service.id}
-                  className={`
-            rounded-xl cursor-pointer overflow-hidden
-            transition-all duration-500 ease-in-out
-            ${hoveredCard === service.id ? 'bg-[#E7C873] shadow-lg' : 'bg-[#f5f6fa] shadow-sm'}
-          `}
-                  onMouseEnter={() => setHoveredCard(service.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  {/* Always visible content - Icon and Title */}
-                  <div className="p-6">
-                    <span className="inline-block text-gray-700 mb-3">{service.icon}</span>
-                    <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
-                  </div>
+        <FadeIn>
+          <div className="py-11 container">
+            <motion.span
+              className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              OUR SERVICES
+            </motion.span>
+          </div>
+        </FadeIn>
 
-                  {/* Description that slides in on hover */}
-                  <div
+        <div className="py-11 container mx-auto rounded-xl">
+          <motion.h3
+            className="font-bold text-center text-black text-3xl my-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Highlights of Our Real-Estate Expertise
+          </motion.h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <SlideInLeft>
+              <StaggerContainer className="flex flex-col gap-3">
+                {servicesData.map((service) => (
+                  <motion.div
+                    key={service.id}
                     className={`
-              px-6 overflow-hidden transition-all duration-500 ease-in-out
-              ${
-                hoveredCard === service.id
-                  ? 'max-h-32 pb-6 opacity-100 translate-y-0'
-                  : 'max-h-0 pb-0 opacity-0 translate-y-2'
-              }
-            `}
+                      rounded-xl cursor-pointer overflow-hidden
+                      transition-all duration-500 ease-in-out
+                      ${hoveredCard === service.id ? 'bg-[#E7C873] shadow-lg' : 'bg-[#f5f6fa] shadow-sm'}
+                    `}
+                    onMouseEnter={() => setHoveredCard(service.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    variants={{
+                      hidden: { opacity: 0, x: -30 },
+                      visible: { opacity: 1, x: 0 },
+                    }}
+                    whileHover={{
+                      scale: 1.02,
+                      transition: { duration: 0.3 },
+                    }}
                   >
-                    <p className="text-black leading-relaxed">{service.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div>
-              <Image src="/assets/about-banner.png" alt="" width={500} height={500} className="" />
-            </div>
+                    {/* Always visible content - Icon and Title */}
+                    <div className="p-6">
+                      <motion.span
+                        className="inline-block text-gray-700 mb-3"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        {service.icon}
+                      </motion.span>
+                      <h3 className="text-xl font-semibold text-gray-900">{service.title}</h3>
+                    </div>
+
+                    {/* Description that slides in on hover */}
+                    <motion.div
+                      className="px-6 overflow-hidden"
+                      initial={{ maxHeight: 0, opacity: 0 }}
+                      animate={{
+                        maxHeight: hoveredCard === service.id ? 128 : 0,
+                        opacity: hoveredCard === service.id ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    >
+                      <p className="text-black leading-relaxed pb-6">{service.description}</p>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </StaggerContainer>
+            </SlideInLeft>
+
+            <SlideInRight>
+              <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
+                <Image
+                  src="/assets/about-banner.png"
+                  alt=""
+                  width={500}
+                  height={500}
+                  className=""
+                />
+              </motion.div>
+            </SlideInRight>
           </div>
         </div>
       </div>
