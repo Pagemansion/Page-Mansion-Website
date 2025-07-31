@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useTransform, useScrollYProgress, animate } from 'motion/react'
+import { motion, Variants, useTransform, useScroll, animate } from 'motion/react'
 import { ReactNode, useState, useEffect } from 'react'
 
 // Fade in animation variants
@@ -68,12 +68,12 @@ export const staggerContainerVariants = {
 }
 
 // Hover animation variants
-export const hoverVariants = {
+export const hoverVariants : Variants = {
   hover: {
     scale: 1.05,
     transition: {
       duration: 0.3,
-      ease: 'easeOut',
+      ease: 'easeInOut',
     },
   },
   tap: {
@@ -225,7 +225,7 @@ export const ParallaxScroll = ({
   speed?: number
   className?: string
 }) => {
-  const { scrollYProgress } = useScrollYProgress()
+  const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -100 * speed])
   
   return (
