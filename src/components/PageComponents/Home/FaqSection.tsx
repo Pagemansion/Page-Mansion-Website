@@ -76,45 +76,43 @@ export const FaqSection = () => {
           <h2 className="text-3xl text-center font-bold py-8">Frequently Asked Questions</h2>
 
           {questions.map((question, index) => (
-            <div
-              key={index}
-              className="w-full flex gap-2 justify-between items-center bg-white rounded-3xl shadow-2xl  my-4"
-            >
-              <div className="w-[80%] py-4 px-4">
-                <div>
+            <div key={index} className="w-full  bg-white rounded-3xl shadow-2xl  my-4">
+              <div className="w-full py-4 px-4">
+                <div className="flex gap-2 items-center justify-between">
                   <p className="text-lg font-semibold">{question.title}</p>
-                  {showItems[index] && (
-                    <>
-                      <hr className="my-2" />
-                      <p className="text-black">{question.content}</p>
-                    </>
-                  )}
+                  <div className="my-4 pr-6">
+                    <button onClick={() => toggleShowItem(index)}>
+                      {showItems[index] ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="32"
+                          height="32"
+                          fill="currentColor"
+                        >
+                          <path d="M12 11.8284L9.17154 14.6569L7.75732 13.2426L12 9L16.2426 13.2426L14.8284 14.6569L12 11.8284Z"></path>
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="32"
+                          height="32"
+                          fill="currentColor"
+                        >
+                          <path d="M12 15.0006L7.75732 10.758L9.17154 9.34375L12 12.1722L14.8284 9.34375L16.2426 10.758L12 15.0006Z"></path>
+                        </svg>
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="my-4 pr-6">
-                <button onClick={() => toggleShowItem(index)}>
-                  {showItems[index] ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="32"
-                      height="32"
-                      fill="currentColor"
-                    >
-                      <path d="M12 11.8284L9.17154 14.6569L7.75732 13.2426L12 9L16.2426 13.2426L14.8284 14.6569L12 11.8284Z"></path>
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="32"
-                      height="32"
-                      fill="currentColor"
-                    >
-                      <path d="M12 15.0006L7.75732 10.758L9.17154 9.34375L12 12.1722L14.8284 9.34375L16.2426 10.758L12 15.0006Z"></path>
-                    </svg>
-                  )}
-                </button>
+                {showItems[index] && (
+                  <>
+                    <div className="bg-[#F4F4F4] p-3 rounded-xl">
+                      <p className="text-black">{question.content}</p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           ))}

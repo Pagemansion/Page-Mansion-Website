@@ -11,13 +11,13 @@ import {
 
 export default function PropertySearch() {
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="w-full max-w-4xl bg-white rounded-xl mx-auto p-4">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         {/* Looking For */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-white">Looking For</label>
+          <label className="text-sm font-medium text-black">Looking For</label>
           <Select>
-            <SelectTrigger className="w-full bg-transparent">
+            <SelectTrigger className="w-full bg-transparent text-black border border-black">
               <SelectValue placeholder="Property Type" />
             </SelectTrigger>
             <SelectContent>
@@ -33,9 +33,9 @@ export default function PropertySearch() {
 
         {/* Location */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-white">Location</label>
+          <label className="text-sm font-medium text-black">Location</label>
           <Select>
-            <SelectTrigger className="w-full bg-transparent">
+            <SelectTrigger className="w-full bg-transparent text-black border border-black">
               <SelectValue placeholder="Cities" />
             </SelectTrigger>
             <SelectContent>
@@ -51,9 +51,9 @@ export default function PropertySearch() {
 
         {/* Sort */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-white">Sort</label>
+          <label className="text-sm font-medium text-black">Sort</label>
           <Select>
-            <SelectTrigger className="w-full bg-transparent">
+            <SelectTrigger className="w-full bg-transparent text-black border border-black">
               <SelectValue placeholder="Sort Type" />
             </SelectTrigger>
             <SelectContent>
@@ -71,7 +71,7 @@ export default function PropertySearch() {
         <div className="space-y-2">
           <div className="h-5"></div> {/* Spacer to align with other fields */}
           <Button
-            className="w-full bg-[#194754] hover:bg-teal-800 text-white"
+            className="w-full bg-[#194754] hover:bg-black text-white"
             onClick={() => {
               // Handle search functionality here
               console.log('Search clicked')

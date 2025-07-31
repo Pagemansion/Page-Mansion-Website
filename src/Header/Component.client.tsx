@@ -48,7 +48,9 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         ? 'text-[#E7C873] font-bold'
         : 'text-black font-bold'
       : ''
-    const scrollClasses = isScrolled ? 'text-black font-semibold' : 'text-white'
+    const scrollClasses = isScrolled
+      ? 'text-black hover:text-[#E7C873] font-semibold'
+      : 'text-white'
 
     return `${baseClasses} ${isActive ? activeClasses : scrollClasses}`
   }
