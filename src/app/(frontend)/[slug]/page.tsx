@@ -21,6 +21,7 @@ import { ContactSection } from '@/components/PageComponents/Home/ContactSection'
 import BlogSection from '@/components/PageComponents/Home/BlogSection'
 import { FaqSection } from '@/components/PageComponents/Home/FaqSection'
 import PropertyShowcase from '@/components/utilities/property-showcase'
+import { PageTransition } from '@/components/ui/PageTransition'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -75,27 +76,19 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
 
   return (
-    // <article className="pt-16 pb-24">
-    //   <PageClient />
-    //   {/* Allows redirects for valid pages too */}
-    //   <PayloadRedirects disableNotFound url={url} />
-
-    //   {draft && <LivePreviewListener />}
-
-    //   <RenderHero {...hero} />
-    //   <RenderBlocks blocks={layout} />
-    // </article>
-    <>
-    <HeroSection />
-    <PartnersSection />
-    <PropertiesSection />
-    <PropertyShowcase />
-    <AboutSection />
-    <ServicesSection />
-    <ContactSection />
-    <BlogSection />
-    <FaqSection />
-    </>
+    <PageTransition>
+      <>
+        <HeroSection />
+        <PartnersSection />
+        <PropertiesSection />
+        <PropertyShowcase />
+        <AboutSection />
+        <ServicesSection />
+        <ContactSection />
+        <BlogSection />
+        <FaqSection />
+      </>
+    </PageTransition>
   )
 }
 

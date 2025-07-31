@@ -1,5 +1,7 @@
 'use client'
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
+import { FadeIn, StaggerContainer } from '../../ui/animated'
 
  const questions = [
    {
@@ -22,16 +24,16 @@ Note: Page Mansion Ltd shall not accept any responsibility for any liability tha
    },
    {
      title: 'Can I make payments to an agent?',
-     content: `No. Page Mansion does not authorize payments through third-party agents. For security reasons, payments should never be made to agents. Always pay into the company’s official account.`,
+     content: `No. Page Mansion does not authorize payments through third-party agents. For security reasons, payments should never be made to agents. Always pay into the company's official account.`,
    },
    {
      title: 'When should I pay for the Survey and Title Deeds?',
-     content: `It’s advisable to pay for these immediately after purchase to avoid a possible increase in fees (up to 5% of the current property value).
+     content: `It's advisable to pay for these immediately after purchase to avoid a possible increase in fees (up to 5% of the current property value).
 `,
    },
    {
      title: 'What documents do I receive after initial payment?',
-     content: `After your first payment, you’ll receive an official Offer Letter and an Updated Payment Statement.`,
+     content: `After your first payment, you'll receive an official Offer Letter and an Updated Payment Statement.`,
    },
    {
      title: 'How is land or plot allocated after payment?',
@@ -43,7 +45,7 @@ Note: Page Mansion Ltd shall not accept any responsibility for any liability tha
    },
    {
      title: 'Can I resell my property? ',
-     content: `Yes, a fully paid-up subscriber is permitted to resell with Page Mansion’s management approval. The buyer’s details must be submitted for proper documentation.
+     content: `Yes, a fully paid-up subscriber is permitted to resell with Page Mansion's management approval. The buyer's details must be submitted for proper documentation.
 `,
    },
    {
@@ -51,7 +53,7 @@ Note: Page Mansion Ltd shall not accept any responsibility for any liability tha
      content: `Yes. All architectural drawings must first be approved by Page Mansion Management and then submitted to the Abuja State Government. A soil test is also required before construction.`,
    },
    {
-     title: ' What is the refund policy if I can’t continue payment?',
+     title: ` What is the refund policy if I can't continue payment?`,
      content: `Refunds may be granted with a 25% administrative fee deducted from the full property price. If less than 25% has been paid, no refund applies. Refunds are processed within 90 days after submitting a formal discontinuation letter.`,
    },
  ]
@@ -67,13 +69,30 @@ export const FaqSection = () => {
   return (
     <>
       <div className="mb-20">
-        <div className="py-11 container mx-auto">
-          <span className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold">
-            FAQs
-          </span>
-        </div>
+        <FadeIn>
+          <div className="py-11 container mx-auto">
+            <motion.span
+              className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              FAQs
+            </motion.span>
+          </div>
+        </FadeIn>
+
         <div className="py-11 container mx-auto bg-[#F4F4F4] rounded-xl">
-          <h2 className="text-3xl text-center font-bold py-8">Frequently Asked Questions</h2>
+          <motion.h2
+            className="text-3xl text-center font-bold py-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Frequently Asked Questions
+          </motion.h2>
 
           {questions.map((question, index) => (
             <div key={index} className="w-full  bg-white rounded-3xl shadow-2xl  my-4">
