@@ -18,6 +18,7 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import FloatingActionButton from '@/components/ui/floating-action-button'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -42,6 +43,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
           <Header />
           {children}
+          <FloatingActionButton />
+
           <Footer />
         </Providers>
       </body>

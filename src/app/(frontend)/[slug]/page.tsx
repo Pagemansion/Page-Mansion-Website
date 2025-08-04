@@ -22,6 +22,7 @@ import BlogSection from '@/components/PageComponents/Home/BlogSection'
 import { FaqSection } from '@/components/PageComponents/Home/FaqSection'
 import PropertyShowcase from '@/components/utilities/property-showcase'
 import { PageTransition } from '@/components/ui/PageTransition'
+import FloatingActionButton from '@/components/ui/floating-action-button'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
