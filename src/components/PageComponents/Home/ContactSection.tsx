@@ -14,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea'
 import React from 'react'
 import { motion } from 'motion/react'
 import { FadeIn, SlideInRight, ScaleUp } from '../../ui/animated'
+import { PhoneInput } from '@/components/ui/phone-input'
 
 export const ContactSection = () => {
   return (
@@ -115,13 +116,22 @@ export const ContactSection = () => {
                     </Select>
                   </motion.div>
                 </motion.div>
-
                 <motion.div
                   className="my-4"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  <PhoneInput />
+                </motion.div>
+
+                <motion.div
+                  className="my-4"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
                 >
                   <motion.div whileFocus={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
                     <Textarea placeholder="Type your message here." />
@@ -133,7 +143,7 @@ export const ContactSection = () => {
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.9 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
                 >
                   <motion.button
                     className="bg-black text-white px-6 py-2 rounded-3xl font-semibold"

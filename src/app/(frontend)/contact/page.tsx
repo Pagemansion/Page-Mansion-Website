@@ -1,5 +1,7 @@
+"use client"
 import { FaqSection } from '@/components/PageComponents/Home/FaqSection'
 import { Input } from '@/components/ui/input'
+import { PhoneInput } from '@/components/ui/phone-input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import React from 'react'
@@ -62,6 +64,10 @@ export default function ContactPage() {
                     </SelectContent>
                   </Select>
                 </div>
+                <div className="my-4">
+                  <PhoneInput />
+                </div>
+
                 <div className="my-4">
                   <Textarea placeholder="Type your message here." />
                 </div>
