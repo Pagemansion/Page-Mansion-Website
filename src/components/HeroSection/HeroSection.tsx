@@ -6,8 +6,12 @@ import Link from 'next/link'
 import PropertySearch from '../utilities/property-search'
 import { motion } from 'motion/react'
 import { FadeIn, SlideInLeft, SlideInRight, Floating, Pulse } from '../ui/animated'
+import { useMediaQuery } from '@/hooks/use-media-query'
 
 export default function HeroSection() {
+     const isMobile = useMediaQuery('(max-width: 640px)')
+      const isTablet = useMediaQuery('(min-width: 641px) and (max-width: 1024px)')
+      const isDesktop = useMediaQuery('(min-width: 1025px)')
   return (
     <>
       <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
@@ -35,77 +39,201 @@ export default function HeroSection() {
         />
 
         {/* Text Content */}
-        <div className="relative text-white z-20 p-8 max-w-6xl mx-auto mt-24">
-          <FadeIn delay={0.2}>
-            <motion.h1
-              className="text-6xl md:text-5xl font-bold leading-tight mb-6 font-urbanist"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
-            >
-              Leading the infrastructural pathway to exceptional quality
-            </motion.h1>
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <motion.p
-              className="text-xl md:text-2xl mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
-            >
-              To serve in the capacity of leading infrastructural developments in Nigeria through
-              our innovative and quality services deliveries.
-            </motion.p>
-          </FadeIn>
-
-          <Link href="/properties">
-            <FadeIn delay={0.6}>
-              <motion.div
-                className="mt-20"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
+        {isDesktop && (
+          <div className="relative text-white z-20 p-8 max-w-6xl mx-auto mt-24">
+            <FadeIn delay={0.2}>
+              <motion.h1
+                className="text-6xl md:text-5xl font-bold leading-tight mb-6 font-urbanist"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
               >
-                <PropertySearch />
-              </motion.div>
+                Leading the infrastructural pathway to exceptional quality
+              </motion.h1>
             </FadeIn>
-          </Link>
 
-          {/* Floating decorative elements */}
-          <Floating>
-            <motion.div
-              className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-          </Floating>
+            <FadeIn delay={0.4}>
+              <motion.p
+                className="text-xl md:text-2xl mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+              >
+                To serve in the capacity of leading infrastructural developments in Nigeria through
+                our innovative and quality services deliveries.
+              </motion.p>
+            </FadeIn>
 
-          <Floating>
-            <motion.div
-              className="absolute top-40 right-20 w-6 h-6 bg-[#E7C873] rounded-full opacity-30"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-            />
-          </Floating>
+            <Link href="/properties">
+              <FadeIn delay={0.6}>
+                <motion.div
+                  className="mt-20"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <PropertySearch />
+                </motion.div>
+              </FadeIn>
+            </Link>
 
-          <Floating>
-            <motion.div
-              className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-40"
-              animate={{
-                scale: [1, 1.8, 1],
-                opacity: [0.4, 0.8, 0.4],
-              }}
-              transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-            />
-          </Floating>
-        </div>
+            {/* Floating decorative elements */}
+            <Floating>
+              <motion.div
+                className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.2, 0.5, 0.2],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+            </Floating>
+
+            <Floating>
+              <motion.div
+                className="absolute top-40 right-20 w-6 h-6 bg-[#E7C873] rounded-full opacity-30"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+              />
+            </Floating>
+
+            <Floating>
+              <motion.div
+                className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-40"
+                animate={{
+                  scale: [1, 1.8, 1],
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+              />
+            </Floating>
+          </div>
+        )}
+        {/* Tablet view */}
+        {isTablet && (
+          <div className="relative text-white z-20 p-8 w-full mx-auto mt-[100px]">
+            <FadeIn delay={0.2}>
+              <motion.h1
+                className="text-5xl font-bold leading-tight mb-6 font-urbanist"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+              >
+                Leading the infrastructural pathway to exceptional quality
+              </motion.h1>
+            </FadeIn>
+
+            <FadeIn delay={0.4}>
+              <motion.p
+                className="text-xl  mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+              >
+                To serve in the capacity of leading infrastructural developments in Nigeria through
+                our innovative and quality services deliveries.
+              </motion.p>
+            </FadeIn>
+
+            {/* Floating decorative elements */}
+            <Floating>
+              <motion.div
+                className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.2, 0.5, 0.2],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+            </Floating>
+
+            <Floating>
+              <motion.div
+                className="absolute top-40 right-20 w-6 h-6 bg-[#E7C873] rounded-full opacity-30"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+              />
+            </Floating>
+
+            <Floating>
+              <motion.div
+                className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-40"
+                animate={{
+                  scale: [1, 1.8, 1],
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+              />
+            </Floating>
+          </div>
+        )}
+        {/* mobile view */}
+        {isMobile && (
+          <div className="relative text-white z-20 p-8 w-full mx-auto mt-[100px]">
+            <FadeIn delay={0.2}>
+              <motion.h1
+                className="text-5xl font-bold leading-tight mb-6 font-urbanist"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+              >
+                Leading the infrastructural pathway to exceptional quality
+              </motion.h1>
+            </FadeIn>
+
+            <FadeIn delay={0.4}>
+              <motion.p
+                className="text-xl  mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+              >
+                To serve in the capacity of leading infrastructural developments in Nigeria through
+                our innovative and quality services deliveries.
+              </motion.p>
+            </FadeIn>
+
+            {/* Floating decorative elements */}
+            <Floating>
+              <motion.div
+                className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.2, 0.5, 0.2],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+            </Floating>
+
+            <Floating>
+              <motion.div
+                className="absolute top-40 right-20 w-6 h-6 bg-[#E7C873] rounded-full opacity-30"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+              />
+            </Floating>
+
+            <Floating>
+              <motion.div
+                className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-40"
+                animate={{
+                  scale: [1, 1.8, 1],
+                  opacity: [0.4, 0.8, 0.4],
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+              />
+            </Floating>
+          </div>
+        )}
       </section>
     </>
   )

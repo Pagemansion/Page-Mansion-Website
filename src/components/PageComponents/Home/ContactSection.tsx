@@ -64,7 +64,7 @@ export const ContactSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                  Reach out to Us
+                  Talk to Us
                 </motion.h3>
 
                 <motion.div
@@ -106,11 +106,10 @@ export const ContactSection = () => {
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Fruits</SelectLabel>
-                          <SelectItem value="apple">Apple</SelectItem>
-                          <SelectItem value="banana">Banana</SelectItem>
-                          <SelectItem value="blueberry">Blueberry</SelectItem>
-                          <SelectItem value="grapes">Grapes</SelectItem>
-                          <SelectItem value="pineapple">Pineapple</SelectItem>
+                          <SelectItem value="beach-valley">Beach Valley</SelectItem>
+                          <SelectItem value="penthouse">Penthouse Suite</SelectItem>
+                          <SelectItem value="country-cottage">Country Cottage</SelectItem>
+                          <SelectItem value="luxury-villa">Luxury Villa</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
