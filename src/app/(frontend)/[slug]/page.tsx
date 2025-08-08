@@ -76,6 +76,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
 
+
   return (
     <PageTransition>
       <>
