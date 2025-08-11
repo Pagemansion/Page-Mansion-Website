@@ -62,13 +62,16 @@ export async function GET(request: NextRequest) {
       page: parseInt(searchParams.get('page') || '1'),
     })
 
+    const currentPage = page || 1
+    const totalPagesCount = totalPages || 1
+
     return NextResponse.json({
       docs: properties,
       totalDocs,
-      page,
-      totalPages,
-      hasNextPage: page < totalPages,
-      hasPrevPage: page > 1,
+      page: currentPage,
+      totalPages: totalPagesCount,
+      hasNextPage: currentPage < totalPagesCount,
+      hasPrevPage: currentPage > 1,
     })
   } catch (error) {
     console.error('Error fetching properties:', error)
