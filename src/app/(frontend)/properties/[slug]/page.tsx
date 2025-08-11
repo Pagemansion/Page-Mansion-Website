@@ -4,15 +4,15 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Property, Media } from '@/payload-types'
 import { Media as MediaComponent } from '@/components/Media'
-import { RichText } from '@/components/RichText'
+import RichText from '@/components/RichText'
 import { generateMeta } from '@/utilities/generateMeta'
 
 export const dynamic = 'force-dynamic'
 
 interface PropertyPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 async function getProperty(slug: string): Promise<Property | null> {
@@ -35,7 +35,8 @@ async function getProperty(slug: string): Promise<Property | null> {
 }
 
 export async function generateMetadata({ params }: PropertyPageProps) {
-  const property = await getProperty(params.slug)
+  const { slug } = await params
+  const property = await getProperty(slug)
 
   if (!property) {
     return {}
@@ -49,7 +50,8 @@ export async function generateMetadata({ params }: PropertyPageProps) {
 }
 
 export default async function PropertyPage({ params }: PropertyPageProps) {
-  const property = await getProperty(params.slug)
+  const { slug } = await params
+  const property = await getProperty(slug)
 
   if (!property) {
     notFound()
