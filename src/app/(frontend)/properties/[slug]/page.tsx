@@ -216,7 +216,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
               <div className="mt-6">
                 <h2 className="text-xl font-semibold mb-4">Description</h2>
                 <div className="prose max-w-none">
-                  <RichText content={description} />
+                  <RichText data={description} />
                 </div>
               </div>
 
