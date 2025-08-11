@@ -39,12 +39,12 @@ export default function PropertySearch() {
               <SelectValue placeholder="Cities" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="new-york">New York</SelectItem>
-              <SelectItem value="los-angeles">Los Angeles</SelectItem>
-              <SelectItem value="chicago">Chicago</SelectItem>
-              <SelectItem value="houston">Houston</SelectItem>
-              <SelectItem value="phoenix">Phoenix</SelectItem>
-              <SelectItem value="philadelphia">Philadelphia</SelectItem>
+              <SelectItem value="abuja">Abuja</SelectItem>
+              <SelectItem value="lagos">Lagos</SelectItem>
+              <SelectItem value="port-harcourt">Port-Harcourt</SelectItem>
+              <SelectItem value="delta">Delta</SelectItem>
+              <SelectItem value="nassarawa">Nassarawa</SelectItem>
+              <SelectItem value="kaduna">Kaduna</SelectItem>
             </SelectContent>
           </Select>
         </div>

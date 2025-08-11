@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     pages: Page;
     posts: Post;
+    properties: Property;
     media: Media;
     categories: Category;
     users: User;
@@ -85,6 +86,7 @@ export interface Config {
   collectionsSelect: {
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
+    properties: PropertiesSelect<false> | PropertiesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -736,6 +738,121 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties".
+ */
+export interface Property {
+  id: string;
+  /**
+   * Property title/name
+   */
+  title: string;
+  /**
+   * Property price
+   */
+  price: number;
+  currency?: ('USD' | 'EUR' | 'GBP' | 'NGN') | null;
+  propertyType: 'house' | 'apartment' | 'condo' | 'townhouse' | 'villa' | 'land' | 'commercial';
+  status: 'available' | 'sold' | 'pending' | 'off-market';
+  /**
+   * Number of bedrooms
+   */
+  bedrooms?: number | null;
+  /**
+   * Number of bathrooms
+   */
+  bathrooms?: number | null;
+  /**
+   * Property area in sq ft
+   */
+  area?: number | null;
+  location: {
+    address: string;
+    city: string;
+    state: string;
+    zipCode?: string | null;
+    /**
+     * GPS Latitude
+     */
+    latitude?: number | null;
+    /**
+     * GPS Longitude
+     */
+    longitude?: number | null;
+  };
+  /**
+   * Property images - first image will be used as the main image
+   */
+  images: {
+    image: string | Media;
+    /**
+     * Optional image caption
+     */
+    caption?: string | null;
+    id?: string | null;
+  }[];
+  /**
+   * Detailed property description
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Property features (e.g., Swimming Pool, Garage, Garden)
+   */
+  features?:
+    | {
+        feature: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Neighborhood amenities (e.g., Schools, Shopping Centers)
+   */
+  amenities?:
+    | {
+        amenity: string;
+        id?: string | null;
+      }[]
+    | null;
+  agent: {
+    name: string;
+    email: string;
+    phone?: string | null;
+    photo?: (string | null) | Media;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * Feature this property on homepage
+   */
+  featured?: boolean | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -914,6 +1031,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'posts';
         value: string | Post;
+      } | null)
+    | ({
+        relationTo: 'properties';
+        value: string | Property;
       } | null)
     | ({
         relationTo: 'media';
@@ -1149,6 +1270,72 @@ export interface PostsSelect<T extends boolean = true> {
         id?: T;
         name?: T;
       };
+  slug?: T;
+  slugLock?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties_select".
+ */
+export interface PropertiesSelect<T extends boolean = true> {
+  title?: T;
+  price?: T;
+  currency?: T;
+  propertyType?: T;
+  status?: T;
+  bedrooms?: T;
+  bathrooms?: T;
+  area?: T;
+  location?:
+    | T
+    | {
+        address?: T;
+        city?: T;
+        state?: T;
+        zipCode?: T;
+        latitude?: T;
+        longitude?: T;
+      };
+  images?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  description?: T;
+  features?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
+  amenities?:
+    | T
+    | {
+        amenity?: T;
+        id?: T;
+      };
+  agent?:
+    | T
+    | {
+        name?: T;
+        email?: T;
+        phone?: T;
+        photo?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  featured?: T;
   slug?: T;
   slugLock?: T;
   updatedAt?: T;
@@ -1666,6 +1853,10 @@ export interface TaskSchedulePublish {
       | ({
           relationTo: 'posts';
           value: string | Post;
+        } | null)
+      | ({
+          relationTo: 'properties';
+          value: string | Property;
         } | null);
     global?: string | null;
     user?: (string | null) | User;
