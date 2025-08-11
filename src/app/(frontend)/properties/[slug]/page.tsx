@@ -161,7 +161,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl font-bold text-blue-600">{formatPrice(price, currency)}</p>
+                  <p className="text-3xl font-bold text-blue-600">
+                    {formatPrice(price, currency || 'USD')}
+                  </p>
                   <p className="text-sm text-gray-500 capitalize">{propertyType}</p>
                 </div>
               </div>
