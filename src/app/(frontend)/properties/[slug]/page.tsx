@@ -43,9 +43,7 @@ export async function generateMetadata({ params }: PropertyPageProps) {
   }
 
   return generateMeta({
-    title: property.meta?.title || property.title,
-    description: property.meta?.description,
-    image: property.meta?.image,
+    doc: property,
   })
 }
 
