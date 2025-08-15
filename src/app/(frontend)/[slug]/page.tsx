@@ -6,6 +6,7 @@ import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
 import { homeStatic } from '@/endpoints/seed/home-static'
+import { Post } from '@/payload-types'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
@@ -74,6 +75,29 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
+  // Fetch posts for the homepage blog section
+  let posts: Post[] = []
+  if (slug === 'home') {
+    try {
+      const payload = await getPayload({ config: configPromise })
+      const postsResult = await payload.find({
+        collection: 'posts',
+        depth: 2,
+        limit: 3,
+        overrideAccess: false,
+        sort: '-publishedAt',
+        where: {
+          _status: {
+            equals: 'published',
+          },
+        },
+      })
+      posts = postsResult.docs || []
+    } catch (error) {
+      console.error('Error fetching posts for homepage:', error)
+    }
+  }
+
   const { hero, layout } = page
 
   return (
@@ -86,7 +110,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         <AboutSection />
         <ServicesSection />
         <ContactSection />
-        <BlogSection />
+        <BlogSection initialPosts={posts} />
         <FaqSection />
       </>
     </PageTransition>
