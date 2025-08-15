@@ -73,6 +73,7 @@ export const ContactForm: React.FC = () => {
   }
 
   return (
+    <>
     <div className="max-w-md mx-auto">
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -160,5 +161,6 @@ export const ContactForm: React.FC = () => {
         </form>
       </FormProvider>
     </div>
+    </>
   )
 }
