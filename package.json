@@ -28,6 +28,7 @@
     "@payloadcms/next": "3.48.0",
     "@payloadcms/payload-cloud": "3.48.0",
     "@payloadcms/plugin-form-builder": "3.48.0",
+    "@payloadcms/plugin-cloud-storage": "3.48.0",
     "@payloadcms/plugin-nested-docs": "3.48.0",
     "@payloadcms/plugin-redirects": "3.48.0",
     "@payloadcms/plugin-search": "3.48.0",

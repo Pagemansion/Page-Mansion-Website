@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Property, Media } from '@/payload-types'
 import { Media as MediaComponent } from '@/components/Media'
-import { motion } from 'motion/react'
+import { motion } from 'framer-motion'
 
 interface PropertyCardProps {
   property: Property
@@ -93,11 +93,13 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
 
       <motion.div
         className="p-4 bg-[#E7C873] rounded-2xl"
-        style={{
-          boxShadow: '0 4px 32px 0 rgba(220, 220, 220, 0.5)',
-          backdropFilter: 'blur(2px)',
-          WebkitBackdropFilter: 'blur(2px)',
-        }}
+        style={
+          {
+            boxShadow: '0 4px 32px 0 rgba(220, 220, 220, 0.5)',
+            backdropFilter: 'blur(2px)',
+            WebkitBackdropFilter: 'blur(2px)',
+          } as React.CSSProperties
+        }
         whileHover={{
           boxShadow: '0 8px 40px 0 rgba(220, 220, 220, 0.7)',
           transition: { duration: 0.3 },
