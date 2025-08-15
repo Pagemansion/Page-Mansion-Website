@@ -1,5 +1,8 @@
 // storage-adapter-import-placeholder
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
+// import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob' // Temporarily disabled
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -20,6 +23,28 @@ import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// Validate Vercel Blob token format
+const validateBlobToken = (token?: string): boolean => {
+  if (!token) return false
+  return token.startsWith('vercel_blob_rw_') && token.length > 20
+}
+
+// Log storage configuration for debugging
+const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+const isBlobEnabled = validateBlobToken(blobToken)
+
+if (blobToken && !isBlobEnabled) {
+  console.warn(
+    '⚠️  Invalid Vercel Blob token format. Expected: vercel_blob_rw_<store_id>_<random_string>',
+  )
+}
+
+console.log('🗄️  Storage Configuration:', {
+  blobEnabled: isBlobEnabled,
+  hasToken: !!blobToken,
+  tokenPrefix: blobToken?.substring(0, 15) + '...' || 'none',
+})
 
 export default buildConfig({
   admin: {
@@ -69,8 +94,16 @@ export default buildConfig({
   plugins: [
     ...plugins,
     // storage-adapter-placeholder
+    // Temporarily disable Vercel Blob storage to fix upload handlers error
+    vercelBlobStorage({
+      enabled: isBlobEnabled,
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
   ],
-  secret: process.env.PAYLOAD_SECRET,
+  secret: process.env.PAYLOAD_SECRET || 'fallback-secret-key-for-development',
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
