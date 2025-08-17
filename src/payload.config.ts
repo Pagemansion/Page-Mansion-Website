@@ -11,6 +11,7 @@ import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
+import { Properties } from './collections/Properties'
 import { Users } from './collections/Users'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
@@ -20,6 +21,28 @@ import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// Validate Vercel Blob token format
+const validateBlobToken = (token?: string): boolean => {
+  if (!token) return false
+  return token.startsWith('vercel_blob_rw_') && token.length > 20
+}
+
+// Log storage configuration for debugging
+const blobToken = process.env.BLOB_READ_WRITE_TOKEN
+const isBlobEnabled = validateBlobToken(blobToken)
+
+if (blobToken && !isBlobEnabled) {
+  console.warn(
+    '⚠️  Invalid Vercel Blob token format. Expected: vercel_blob_rw_<store_id>_<random_string>',
+  )
+}
+
+console.log('🗄️  Storage Configuration:', {
+  blobEnabled: isBlobEnabled,
+  hasToken: !!blobToken,
+  tokenPrefix: blobToken?.substring(0, 15) + '...' || 'none',
+})
 
 export default buildConfig({
   admin: {
@@ -63,7 +86,7 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Media, Categories, Users],
+  collections: [Pages, Posts, Properties, Media, Categories, Users],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [
@@ -78,7 +101,7 @@ export default buildConfig({
       token: process.env.BLOB_READ_WRITE_TOKEN,
     }),
   ],
-  secret: process.env.PAYLOAD_SECRET,
+  secret: process.env.PAYLOAD_SECRET || 'fallback-secret-key-for-development',
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

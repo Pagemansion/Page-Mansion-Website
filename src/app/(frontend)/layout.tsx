@@ -8,7 +8,7 @@ import React from 'react'
 
 const UrbanistFont = Urbanist({ subsets: ['latin'], variable: '--font-urbanist' })
 
-import { AdminBar } from '@/components/AdminBar'
+// import { AdminBar } from '@/components/AdminBar' // Temporarily disabled to fix upload handlers error
 import { Footer } from '@/Footer/Component'
 import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
@@ -18,6 +18,7 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import FloatingActionButton from '@/components/ui/floating-action-button'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -34,14 +35,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
+          {/* AdminBar temporarily disabled to fix upload handlers error */}
+          {/* {(process.env.NODE_ENV === 'development' || isEnabled) && (
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled,
+              }}
+            />
+          )} */}
 
           <Header />
           {children}
+          <FloatingActionButton />
+
           <Footer />
         </Providers>
       </body>
