@@ -1,6 +1,6 @@
 // storage-adapter-import-placeholder
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import  { vercelBlobStorage }  from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 import sharp from 'sharp' // sharp-import
 import path from 'path'
@@ -21,28 +21,6 @@ import { getServerSideURL } from './utilities/getURL'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
-// Validate Vercel Blob token format
-const validateBlobToken = (token?: string): boolean => {
-  if (!token) return false
-  return token.startsWith('vercel_blob_rw_') && token.length > 20
-}
-
-// Log storage configuration for debugging
-const blobToken = process.env.BLOB_READ_WRITE_TOKEN
-const isBlobEnabled = validateBlobToken(blobToken)
-
-if (blobToken && !isBlobEnabled) {
-  console.warn(
-    '⚠️  Invalid Vercel Blob token format. Expected: vercel_blob_rw_<store_id>_<random_string>',
-  )
-}
-
-console.log('🗄️  Storage Configuration:', {
-  blobEnabled: isBlobEnabled,
-  hasToken: !!blobToken,
-  tokenPrefix: blobToken?.substring(0, 15) + '...' || 'none',
-})
 
 export default buildConfig({
   admin: {
@@ -91,14 +69,13 @@ export default buildConfig({
   globals: [Header, Footer],
   plugins: [
     ...plugins,
-    // storage-adapter-placeholder
+    // Vercel Blob Storage configuration - temporarily disabled for testing
     vercelBlobStorage({
-      enabled: true,
+      enabled: process.env.BLOB_READ_WRITE_TOKEN ? true : false,
       collections: {
-        // If you have another collection that supports uploads, you can add it below
         media: true,
       },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.VERCEL_READ_WRITE_TOKEN || '',
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || 'fallback-secret-key-for-development',
