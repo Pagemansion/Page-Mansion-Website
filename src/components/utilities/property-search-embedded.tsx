@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -16,16 +17,40 @@ export interface SearchFilters {
   sortBy?: string
 }
 
-interface PropertySearchProps {
+interface PropertySearchEmbeddedProps {
   onSearch?: (filters: SearchFilters) => void
-  loading?: boolean
+  redirectToSearchPage?: boolean
+  className?: string
 }
 
-export default function PropertySearch({ onSearch, loading = false }: PropertySearchProps) {
+export default function PropertySearchEmbedded({
+  onSearch,
+  redirectToSearchPage = true,
+  className = '',
+}: PropertySearchEmbeddedProps) {
   const [filters, setFilters] = useState<SearchFilters>({})
+  const router = useRouter()
 
   const handleSearch = () => {
-    if (onSearch) {
+    if (redirectToSearchPage) {
+      // Build query string and redirect to search page
+      const params = new URLSearchParams()
+
+      if (filters.propertyType) {
+        params.append('type', filters.propertyType)
+      }
+
+      if (filters.location) {
+        params.append('location', filters.location)
+      }
+
+      if (filters.sortBy) {
+        params.append('sort', filters.sortBy)
+      }
+
+      const queryString = params.toString()
+      router.push(`/properties${queryString ? `?${queryString}` : ''}`)
+    } else if (onSearch) {
       onSearch(filters)
     }
   }
@@ -37,15 +62,8 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
     }))
   }
 
-  const clearFilters = () => {
-    setFilters({})
-    if (onSearch) {
-      onSearch({})
-    }
-  }
-
   return (
-    <div className="w-full max-w-4xl bg-white rounded-xl mx-auto p-4">
+    <div className={`w-full bg-white rounded-xl p-4 shadow-lg ${className}`}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
         {/* Looking For */}
         <div className="space-y-2">
@@ -54,7 +72,7 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
             value={filters.propertyType || ''}
             onValueChange={(value) => handleFilterChange('propertyType', value)}
           >
-            <SelectTrigger className="w-full bg-transparent text-black border border-black">
+            <SelectTrigger className="w-full bg-transparent text-black border border-gray-300 focus:border-[#194754]">
               <SelectValue placeholder="Property Type" />
             </SelectTrigger>
             <SelectContent>
@@ -76,7 +94,7 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
             value={filters.location || ''}
             onValueChange={(value) => handleFilterChange('location', value)}
           >
-            <SelectTrigger className="w-full bg-transparent text-black border border-black">
+            <SelectTrigger className="w-full bg-transparent text-black border border-gray-300 focus:border-[#194754]">
               <SelectValue placeholder="Cities" />
             </SelectTrigger>
             <SelectContent>
@@ -92,23 +110,23 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
           </Select>
         </div>
 
-        {/* Sort */}
+        {/* Price Range */}
         <div className="space-y-2">
-          <label className="text-sm font-medium text-black">Sort</label>
+          <label className="text-sm font-medium text-black">Price Range</label>
           <Select
             value={filters.sortBy || ''}
             onValueChange={(value) => handleFilterChange('sortBy', value)}
           >
-            <SelectTrigger className="w-full bg-transparent text-black border border-black">
-              <SelectValue placeholder="Sort Type" />
+            <SelectTrigger className="w-full bg-transparent text-black border border-gray-300 focus:border-[#194754]">
+              <SelectValue placeholder="Any Price" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="price-asc">Price: Low to High</SelectItem>
-              <SelectItem value="price-desc">Price: High to Low</SelectItem>
-              <SelectItem value="createdAt-desc">Newest First</SelectItem>
-              <SelectItem value="createdAt-asc">Oldest First</SelectItem>
-              <SelectItem value="area-desc">Size: Large to Small</SelectItem>
-              <SelectItem value="area-asc">Size: Small to Large</SelectItem>
+              <SelectItem value="price-asc">Low to High</SelectItem>
+              <SelectItem value="price-desc">High to Low</SelectItem>
+              <SelectItem value="under-50m">Under ₦50M</SelectItem>
+              <SelectItem value="50m-100m">₦50M - ₦100M</SelectItem>
+              <SelectItem value="100m-200m">₦100M - ₦200M</SelectItem>
+              <SelectItem value="over-200m">Over ₦200M</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -116,25 +134,12 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
         {/* Search Button */}
         <div className="space-y-2">
           <div className="h-5"></div> {/* Spacer to align with other fields */}
-          <div className="flex gap-2">
-            <Button
-              className="flex-1 bg-[#194754] hover:bg-black text-white"
-              onClick={handleSearch}
-              disabled={loading}
-            >
-              {loading ? 'Searching...' : 'Filter'}
-            </Button>
-            {(filters.propertyType || filters.location || filters.sortBy) && (
-              <Button
-                variant="outline"
-                className="px-3 border-[#194754] text-[#194754] hover:bg-[#194754] hover:text-white"
-                onClick={clearFilters}
-                disabled={loading}
-              >
-                Clear
-              </Button>
-            )}
-          </div>
+          <Button
+            className="w-full bg-[#194754] hover:bg-black text-white font-semibold py-3"
+            onClick={handleSearch}
+          >
+            Search Properties
+          </Button>
         </div>
       </div>
     </div>

@@ -1,78 +1,56 @@
-import { getPayload } from 'payload'
-import config from '@/payload.config'
 import { NextRequest, NextResponse } from 'next/server'
+import { getPayload } from 'payload'
+import config from '@payload-config'
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url)
-    const featured = searchParams.get('featured')
-    const limit = parseInt(searchParams.get('limit') || '10')
-    const propertyType = searchParams.get('propertyType')
-    const status = searchParams.get('status')
-    const minPrice = searchParams.get('minPrice')
-    const maxPrice = searchParams.get('maxPrice')
-
     const payload = await getPayload({ config })
+    const { searchParams } = new URL(request.url)
 
-    // Build where conditions
-    const whereConditions: any = {
+    // Extract query parameters
+    const propertyType = searchParams.get('propertyType')
+    const location = searchParams.get('location')
+    const sort = searchParams.get('sort') || '-createdAt'
+    const limit = parseInt(searchParams.get('limit') || '12')
+    const page = parseInt(searchParams.get('page') || '1')
+    const featured = searchParams.get('featured')
+
+    // Build where clause
+    const where: any = {
       _status: {
         equals: 'published',
       },
     }
 
-    if (featured === 'true') {
-      whereConditions.featured = {
-        equals: true,
-      }
-    }
-
     if (propertyType) {
-      whereConditions.propertyType = {
+      where.propertyType = {
         equals: propertyType,
       }
     }
 
-    if (status) {
-      whereConditions.status = {
-        equals: status,
+    if (location) {
+      where['location.city'] = {
+        contains: location,
       }
     }
 
-    if (minPrice || maxPrice) {
-      whereConditions.price = {}
-      if (minPrice) {
-        whereConditions.price.greater_than_equal = parseInt(minPrice)
-      }
-      if (maxPrice) {
-        whereConditions.price.less_than_equal = parseInt(maxPrice)
+    if (featured === 'true') {
+      where.featured = {
+        equals: true,
       }
     }
 
-    const {
-      docs: properties,
-      totalDocs,
-      page,
-      totalPages,
-    } = await payload.find({
+    // Fetch properties
+    const properties = await payload.find({
       collection: 'properties',
-      where: whereConditions,
-      sort: '-publishedAt',
+      where,
+      sort,
       limit,
-      page: parseInt(searchParams.get('page') || '1'),
+      page,
+      depth: 2, // Include related data like images
     })
 
-    const currentPage = page || 1
-    const totalPagesCount = totalPages || 1
-
-    return NextResponse.json({
-      docs: properties,
-      totalDocs,
-      page: currentPage,
-      totalPages: totalPagesCount,
-      hasNextPage: currentPage < totalPagesCount,
-      hasPrevPage: currentPage > 1,
-    })
+    return NextResponse.json(properties)
   } catch (error) {
     console.error('Error fetching properties:', error)
     return NextResponse.json({ error: 'Failed to fetch properties' }, { status: 500 })
