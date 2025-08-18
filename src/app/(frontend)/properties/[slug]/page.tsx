@@ -101,23 +101,49 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Hero Page */}
+      <section
+        className="relative w-full h-64 flex items-center justify-center text-center"
+        style={{
+          backgroundImage: "url('/assets/banner.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black opacity-50 z-10" />
+        <h1 className="relative z-20 text-white text-5xl font-bold mt-20">Property</h1>
+      </section>
+      <div className="py-11 container mx-auto">
+        <span className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold">
+          PROPERTY
+        </span>
+      </div>
+      {/* Introductory Section */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Welcome to Your Dream Property</h2>
+          <p className="text-gray-600">
+            Explore the details of this stunning property, featuring modern amenities, a prime
+            location, and everything you need to call it home.
+          </p>
+        </div>
+      </section>
       {/* Hero Section with Image Gallery */}
-      <div className="relative">
+      <div className="relative container mx-auto">
         {images && images.length > 0 && (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 h-96 lg:h-[500px]">
-            <div className="lg:col-span-3">
-              <MediaComponent
-                resource={images[0].image as Media}
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
+          <div className="relative h-screen">
+            <MediaComponent
+              resource={images[0].image as Media}
+              className="w-full h-full object-cover"
+            />
             {images.length > 1 && (
-              <div className="hidden lg:grid grid-rows-2 gap-2">
-                {images.slice(1, 3).map((img, index) => (
+              <div className="absolute bottom-4 left-4 flex space-x-2">
+                {images.slice(1, 4).map((img, index) => (
                   <MediaComponent
                     key={index}
                     resource={img.image as Media}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-16 h-16 object-cover rounded-lg border border-white"
                   />
                 ))}
               </div>
@@ -126,7 +152,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
         )}
 
         {/* Status Badge */}
-        <div className="absolute top-4 left-4">
+        {/* <div className="absolute top-4 left-4">
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(status)}`}>
             {status.charAt(0).toUpperCase() + status.slice(1)}
           </span>
@@ -138,7 +164,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
               Featured
             </span>
           </div>
-        )}
+        )} */}
       </div>
 
       <div className="container mx-auto px-4 py-8">
@@ -161,7 +187,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl font-bold text-blue-600">
+                  <p className="text-3xl font-bold text-[#194754]">
                     {formatPrice(price, currency || 'USD')}
                   </p>
                   <p className="text-sm text-gray-500 capitalize">{propertyType}</p>
@@ -315,7 +341,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                     </a>
                   )}
                 </div>
-                <button className="w-full mt-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+                <button className="w-full mt-4 bg-[#194754] text-white py-2 px-4 rounded-md hover:bg-black transition-colors">
                   Contact Agent
                 </button>
               </div>
