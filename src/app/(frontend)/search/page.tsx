@@ -4,6 +4,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 import { UniversalSearchPage } from '@/components/UniversalSearchPage'
+import { Post, Property, Page } from '@/payload-types'
 
 type Args = {
   searchParams: Promise<{
@@ -22,7 +23,11 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
   const payload = await getPayload({ config: configPromise })
 
   // Initialize empty results
-  let searchResults = {
+  let searchResults: {
+    posts: { docs: Post[]; totalDocs: number }
+    properties: { docs: Property[]; totalDocs: number }
+    pages: { docs: Page[]; totalDocs: number }
+  } = {
     posts: { docs: [], totalDocs: 0 },
     properties: { docs: [], totalDocs: 0 },
     pages: { docs: [], totalDocs: 0 },
