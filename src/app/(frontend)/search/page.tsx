@@ -22,7 +22,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
   const payload = await getPayload({ config: configPromise })
 
-  // Initialize empty results
+  // Initialize empty results with proper typing
   let searchResults: {
     posts: { docs: Post[]; totalDocs: number }
     properties: { docs: Property[]; totalDocs: number }
