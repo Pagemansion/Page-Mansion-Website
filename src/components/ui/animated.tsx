@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, Variants, useTransform, useScroll, animate } from 'motion/react'
+import { motion, useTransform, useScroll, animate } from 'motion/react'
 import { ReactNode, useState, useEffect } from 'react'
 
 // Fade in animation variants
@@ -11,7 +11,7 @@ export const fadeInVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      easing: 'ease-out',
     },
   },
 }
@@ -24,7 +24,7 @@ export const slideInLeftVariants = {
     x: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
+      easing: 'ease-out',
     },
   },
 }
@@ -37,7 +37,7 @@ export const slideInRightVariants = {
     x: 0,
     transition: {
       duration: 0.8,
-      ease: 'easeOut',
+      easing: 'ease-out',
     },
   },
 }
@@ -50,7 +50,7 @@ export const scaleUpVariants = {
     scale: 1,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      easing: 'ease-out',
     },
   },
 }
@@ -68,12 +68,12 @@ export const staggerContainerVariants = {
 }
 
 // Hover animation variants
-export const hoverVariants : Variants = {
+export const hoverVariants = {
   hover: {
     scale: 1.05,
     transition: {
       duration: 0.3,
-      ease: 'easeInOut',
+      easing: 'ease-in-out',
     },
   },
   tap: {
@@ -92,7 +92,7 @@ export const parallaxVariants = {
     y: 0,
     transition: {
       duration: 1,
-      ease: 'easeOut',
+      easing: 'ease-out',
     },
   },
 }
@@ -113,7 +113,7 @@ export const FadeIn = ({
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-100px' }}
-    transition={{ duration, delay, ease: 'easeOut' }}
+    transition={{ duration, delay, easing: 'ease-out' }}
     className={className}
   >
     {children}
@@ -130,15 +130,15 @@ export const SlideInLeft = ({
   delay?: number
   className?: string
 }) => (
-    <motion.div
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.8, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: '-100px' }}
+    transition={{ duration: 0.8, delay, easing: 'ease-out' }}
+    className={className}
+  >
+    {children}
+  </motion.div>
 )
 
 // Slide in from right
@@ -151,15 +151,15 @@ export const SlideInRight = ({
   delay?: number
   className?: string
 }) => (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.8, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+  <motion.div
+    initial={{ opacity: 0, x: 50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: '-100px' }}
+    transition={{ duration: 0.8, delay, easing: 'ease-out' }}
+    className={className}
+  >
+    {children}
+  </motion.div>
 )
 
 // Scale up animation
@@ -176,7 +176,7 @@ export const ScaleUp = ({
     initial={{ opacity: 0, scale: 0.8 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, margin: '-100px' }}
-    transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+    transition={{ duration: 0.6, delay, easing: 'ease-out' }}
     className={className}
   >
     {children}
@@ -227,12 +227,9 @@ export const ParallaxScroll = ({
 }) => {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -100 * speed])
-  
+
   return (
-    <motion.div
-      style={{ y }}
-      className={className}
-    >
+    <motion.div style={{ y }} className={className}>
       {children}
     </motion.div>
   )
@@ -272,7 +269,7 @@ export const Floating = ({
 }) => (
   <motion.div
     animate={{ y: [-10, 10, -10] }}
-    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+    transition={{ duration: 3, repeat: Infinity, easing: 'ease-in-out' }}
     className={className}
   >
     {children}
@@ -289,7 +286,7 @@ export const Pulse = ({
 }) => (
   <motion.div
     animate={{ scale: [1, 1.05, 1] }}
-    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+    transition={{ duration: 2, repeat: Infinity, easing: 'ease-in-out' }}
     className={className}
   >
     {children}
@@ -306,7 +303,7 @@ export const Bounce = ({
 }) => (
   <motion.div
     animate={{ y: [0, -10, 0] }}
-    transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+    transition={{ duration: 1, repeat: Infinity, easing: 'ease-in-out' }}
     className={className}
   >
     {children}
@@ -323,7 +320,7 @@ export const Rotate = ({
 }) => (
   <motion.div
     animate={{ rotate: [0, 360] }}
-    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+    transition={{ duration: 20, repeat: Infinity, easing: 'linear' }}
     className={className}
   >
     {children}

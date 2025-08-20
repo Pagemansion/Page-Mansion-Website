@@ -1,11 +1,14 @@
+'use'
 import React from 'react'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Property, Media } from '@/payload-types'
 import { Media as MediaComponent } from '@/components/Media'
+import { MediaGallery } from '@/components/Property/MediaGallery'
 import RichText from '@/components/RichText'
 import { generateMeta } from '@/utilities/generateMeta'
+import PropertyInterestForm from '@/components/Property/PropertyInterestForm'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,6 +17,8 @@ interface PropertyPageProps {
     slug: string
   }>
 }
+
+// form is handled client-side in PropertyInterestForm
 
 async function getProperty(slug: string): Promise<Property | null> {
   const payload = await getPayload({ config })
@@ -99,6 +104,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
     }
   }
 
+  // Note: client-side form rendered below
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Page */}
@@ -129,27 +136,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           </p>
         </div>
       </section>
-      {/* Hero Section with Image Gallery */}
+      {/* Media Gallery */}
       <div className="relative container mx-auto">
-        {images && images.length > 0 && (
-          <div className="relative h-screen">
-            <MediaComponent
-              resource={images[0].image as Media}
-              className="w-full h-full object-cover"
-            />
-            {images.length > 1 && (
-              <div className="absolute bottom-4 left-4 flex space-x-2">
-                {images.slice(1, 4).map((img, index) => (
-                  <MediaComponent
-                    key={index}
-                    resource={img.image as Media}
-                    className="w-16 h-16 object-cover rounded-lg border border-white"
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        {images && images.length > 0 && <MediaGallery images={images as any} />}
 
         {/* Status Badge */}
         {/* <div className="absolute top-4 left-4">
@@ -296,6 +285,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 </div>
               )}
             </div>
+            {/* contact form */}
+            <PropertyInterestForm propertyTitle={title} />
           </div>
 
           {/* Sidebar */}

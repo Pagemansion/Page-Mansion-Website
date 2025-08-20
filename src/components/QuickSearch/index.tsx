@@ -164,7 +164,7 @@ export const QuickSearch = ({
             )}
 
             {!loading && results.length === 0 && query.length >= 2 && (
-              <div className="p-4 text-center text-gray-500">No results found for "{query}"</div>
+              <div className="p-4 text-center text-gray-500">No results found for &quot;{query}&quot;</div>
             )}
 
             {!loading && results.length > 0 && (
@@ -195,7 +195,7 @@ export const QuickSearch = ({
                       variant="outline"
                       className="w-full text-sm"
                     >
-                      View all results for "{query}"
+                      View all results for &quot;{query}&quot;
                     </Button>
                   </div>
                 )}
