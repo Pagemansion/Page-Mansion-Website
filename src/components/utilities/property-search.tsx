@@ -14,6 +14,11 @@ export interface SearchFilters {
   propertyType?: string
   location?: string
   sortBy?: string
+  priceRange?: string
+  bedrooms?: string
+  bathrooms?: string
+  status?: string
+  searchTerm?: string
 }
 
 interface PropertySearchProps {
@@ -51,7 +56,7 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
         <div className="space-y-2">
           <label className="text-sm font-medium text-black">Looking For</label>
           <Select
-            value={filters.propertyType || ''}
+            value={filters.propertyType}
             onValueChange={(value) => handleFilterChange('propertyType', value)}
           >
             <SelectTrigger className="w-full bg-transparent text-black border border-black">
@@ -73,7 +78,7 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
         <div className="space-y-2">
           <label className="text-sm font-medium text-black">Location</label>
           <Select
-            value={filters.location || ''}
+            value={filters.location}
             onValueChange={(value) => handleFilterChange('location', value)}
           >
             <SelectTrigger className="w-full bg-transparent text-black border border-black">
@@ -96,7 +101,7 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
         <div className="space-y-2">
           <label className="text-sm font-medium text-black">Sort</label>
           <Select
-            value={filters.sortBy || ''}
+            value={filters.sortBy}
             onValueChange={(value) => handleFilterChange('sortBy', value)}
           >
             <SelectTrigger className="w-full bg-transparent text-black border border-black">
