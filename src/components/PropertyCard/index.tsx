@@ -171,14 +171,47 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           {bedrooms && (
-            <span>
-              {bedrooms} bed{bedrooms !== 1 ? 's' : ''}
-            </span>
+            <div className="flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="currentColor"
+              >
+                <path d="M22 11V20H20V17H4V20H2V4H4V14H12V7H18C20.2091 7 22 8.79086 22 11ZM20 14V11C20 9.89543 19.1046 9 18 9H14V14H20ZM8 11C8.55228 11 9 10.5523 9 10C9 9.44772 8.55228 9 8 9C7.44772 9 7 9.44772 7 10C7 10.5523 7.44772 11 8 11ZM8 13C6.34315 13 5 11.6569 5 10C5 8.34315 6.34315 7 8 7C9.65685 7 11 8.34315 11 10C11 11.6569 9.65685 13 8 13Z"></path>
+              </svg>{' '}
+              <span>
+                {bedrooms} bed{bedrooms !== 1 ? 's' : ''}
+              </span>
+            </div>
           )}
           {bathrooms && (
-            <span>
-              {bathrooms} bath{bathrooms !== 1 ? 's' : ''}
-            </span>
+            <div className="flex items-center gap-2">
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="lucide lucide-bath-icon lucide-bath"
+                >
+                  <path d="M10 4 8 6" />
+                  <path d="M17 19v2" />
+                  <path d="M2 12h20" />
+                  <path d="M7 19v2" />
+                  <path d="M9 5 7.621 3.621A2.121 2.121 0 0 0 4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" />
+                </svg>{' '}
+              </span>
+              <span>
+                {bathrooms} bath{bathrooms !== 1 ? 's' : ''}
+              </span>
+            </div>
           )}
           {area && <span>{area.toLocaleString()} sq ft</span>}
         </motion.div>

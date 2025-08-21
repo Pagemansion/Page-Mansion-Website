@@ -4,7 +4,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
 import { UniversalSearchPage } from '@/components/UniversalSearchPage'
-import { Post, Property, Page } from '@/payload-types'
+import type { Post, Property, Page } from '@/payload-types'
 
 type Args = {
   searchParams: Promise<{
