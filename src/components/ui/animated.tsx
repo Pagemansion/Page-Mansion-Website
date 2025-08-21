@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useTransform, useScroll, animate } from 'motion/react'
+import { motion, Variants, useTransform, useScroll, animate } from 'motion/react'
 import { ReactNode, useState, useEffect } from 'react'
 
 // Fade in animation variants
@@ -68,7 +68,7 @@ export const staggerContainerVariants = {
 }
 
 // Hover animation variants
-export const hoverVariants = {
+export const hoverVariants: Variants = {
   hover: {
     scale: 1.05,
     transition: {
