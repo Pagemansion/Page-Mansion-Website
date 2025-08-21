@@ -49,7 +49,7 @@ export function MediaGallery({ images }: { images: ImageItem[] }) {
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.5, easing: 'ease-in-out' }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
             <MediaComponent resource={normalized[index]} className="w-full h-full object-cover" />
           </motion.div>
