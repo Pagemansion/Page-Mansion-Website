@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPayload } from 'payload'
+import { getPayload, PaginatedDocs } from 'payload'
 import config from '@payload-config'
+import { Page, Post, Property } from '@/payload-types'
 
 export async function GET(request: NextRequest) {
   try {
@@ -21,10 +22,14 @@ export async function GET(request: NextRequest) {
       })
     }
 
-    const results = {
-      posts: { docs: [], totalDocs: 0 },
-      properties: { docs: [], totalDocs: 0 },
-      pages: { docs: [], totalDocs: 0 },
+    const results: {
+      posts: PaginatedDocs<Post>;
+      properties: PaginatedDocs<Property>;
+      pages: PaginatedDocs<Page>;
+    } = {
+      posts: { docs: [], totalDocs: 0, limit: 0, page: 0, totalPages: 0, pagingCounter: 0, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null },
+      properties: { docs: [], totalDocs: 0, limit: 0, page: 0, totalPages: 0, pagingCounter: 0, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null },
+      pages: { docs: [], totalDocs: 0, limit: 0, page: 0, totalPages: 0, pagingCounter: 0, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null },
     }
 
     // Search Posts (if not filtered to specific type or if type is posts)
