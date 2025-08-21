@@ -9,9 +9,9 @@ import { FadeIn, SlideInLeft, SlideInRight, Floating, Pulse } from '../ui/animat
 import { useMediaQuery } from '@/hooks/use-media-query'
 
 export default function HeroSection() {
-     const isMobile = useMediaQuery('(max-width: 640px)')
-      const isTablet = useMediaQuery('(min-width: 641px) and (max-width: 1024px)')
-      const isDesktop = useMediaQuery('(min-width: 1025px)')
+  const isMobile = useMediaQuery('(max-width: 640px)')
+  const isTablet = useMediaQuery('(min-width: 641px) and (max-width: 1024px)')
+  const isDesktop = useMediaQuery('(min-width: 1025px)')
   return (
     <>
       <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
@@ -120,7 +120,7 @@ export default function HeroSection() {
                 className="text-5xl font-bold leading-tight mb-6 font-urbanist"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+                transition={{ duration: 1, delay: 0.8, ease: 'easeInOut' }}
               >
                 Leading the infrastructural pathway to exceptional quality
               </motion.h1>
@@ -131,7 +131,7 @@ export default function HeroSection() {
                 className="text-xl  mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+                transition={{ duration: 1, delay: 1.2, ease: 'easeInOut' }}
               >
                 To serve in the capacity of leading infrastructural developments in Nigeria through
                 our innovative and quality services deliveries.
@@ -181,7 +181,7 @@ export default function HeroSection() {
                 className="text-5xl font-bold leading-tight mb-6 font-urbanist"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+                transition={{ duration: 1, delay: 0.8, ease: 'easeInOut' }}
               >
                 Leading the infrastructural pathway to exceptional quality
               </motion.h1>
@@ -192,7 +192,7 @@ export default function HeroSection() {
                 className="text-xl  mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
+                transition={{ duration: 1, delay: 1.2, ease: 'easeInOut' }}
               >
                 To serve in the capacity of leading infrastructural developments in Nigeria through
                 our innovative and quality services deliveries.

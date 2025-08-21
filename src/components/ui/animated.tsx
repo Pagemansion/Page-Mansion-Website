@@ -68,7 +68,7 @@ export const staggerContainerVariants = {
 }
 
 // Hover animation variants
-export const hoverVariants : Variants = {
+export const hoverVariants: Variants = {
   hover: {
     scale: 1.05,
     transition: {
@@ -130,15 +130,15 @@ export const SlideInLeft = ({
   delay?: number
   className?: string
 }) => (
-    <motion.div
-      initial={{ opacity: 0, x: -50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.8, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: '-100px' }}
+    transition={{ duration: 0.8, delay, ease: 'easeOut' }}
+    className={className}
+  >
+    {children}
+  </motion.div>
 )
 
 // Slide in from right
@@ -151,15 +151,15 @@ export const SlideInRight = ({
   delay?: number
   className?: string
 }) => (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.8, delay, ease: 'easeOut' }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+  <motion.div
+    initial={{ opacity: 0, x: 50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true, margin: '-100px' }}
+    transition={{ duration: 0.8, delay, ease: 'easeOut' }}
+    className={className}
+  >
+    {children}
+  </motion.div>
 )
 
 // Scale up animation
@@ -227,12 +227,9 @@ export const ParallaxScroll = ({
 }) => {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], [0, -100 * speed])
-  
+
   return (
-    <motion.div
-      style={{ y }}
-      className={className}
-    >
+    <motion.div style={{ y }} className={className}>
       {children}
     </motion.div>
   )

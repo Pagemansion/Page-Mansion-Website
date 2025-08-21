@@ -1,11 +1,14 @@
+'use'
 import React from 'react'
 import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Property, Media } from '@/payload-types'
 import { Media as MediaComponent } from '@/components/Media'
+import { MediaGallery } from '@/components/Property/MediaGallery'
 import RichText from '@/components/RichText'
 import { generateMeta } from '@/utilities/generateMeta'
+import PropertyInterestForm from '@/components/Property/PropertyInterestForm'
 
 export const dynamic = 'force-dynamic'
 
@@ -14,6 +17,8 @@ interface PropertyPageProps {
     slug: string
   }>
 }
+
+// form is handled client-side in PropertyInterestForm
 
 async function getProperty(slug: string): Promise<Property | null> {
   const payload = await getPayload({ config })
@@ -99,6 +104,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
     }
   }
 
+  // Note: client-side form rendered below
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Page */}
@@ -129,27 +136,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           </p>
         </div>
       </section>
-      {/* Hero Section with Image Gallery */}
+      {/* Media Gallery */}
       <div className="relative container mx-auto">
-        {images && images.length > 0 && (
-          <div className="relative h-screen">
-            <MediaComponent
-              resource={images[0].image as Media}
-              className="w-full h-full object-cover"
-            />
-            {images.length > 1 && (
-              <div className="absolute bottom-4 left-4 flex space-x-2">
-                {images.slice(1, 4).map((img, index) => (
-                  <MediaComponent
-                    key={index}
-                    resource={img.image as Media}
-                    className="w-16 h-16 object-cover rounded-lg border border-white"
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+        {images && images.length > 0 && <MediaGallery images={images as any} />}
 
         {/* Status Badge */}
         {/* <div className="absolute top-4 left-4">
@@ -197,28 +186,41 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
               {/* Property Stats */}
               <div className="flex items-center space-x-6 py-4 border-t border-b border-gray-200">
                 {bedrooms && (
-                  <div className="flex items-center">
+                  <div className="flex gap-2 items-center">
                     <svg
-                      className="w-5 h-5 mr-2 text-gray-400"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
                       fill="currentColor"
-                      viewBox="0 0 20 20"
                     >
-                      <path d="M10 2L3 7v11a2 2 0 002 2h10a2 2 0 002-2V7l-7-5z" />
-                    </svg>
+                      <path d="M22 11V20H20V17H4V20H2V4H4V14H12V7H18C20.2091 7 22 8.79086 22 11ZM20 14V11C20 9.89543 19.1046 9 18 9H14V14H20ZM8 11C8.55228 11 9 10.5523 9 10C9 9.44772 8.55228 9 8 9C7.44772 9 7 9.44772 7 10C7 10.5523 7.44772 11 8 11ZM8 13C6.34315 13 5 11.6569 5 10C5 8.34315 6.34315 7 8 7C9.65685 7 11 8.34315 11 10C11 11.6569 9.65685 13 8 13Z"></path>
+                    </svg>{' '}
                     <span className="text-gray-700">
                       {bedrooms} Bedroom{bedrooms !== 1 ? 's' : ''}
                     </span>
                   </div>
                 )}
                 {bathrooms && (
-                  <div className="flex items-center">
+                  <div className="flex gap-2 items-center">
                     <svg
-                      className="w-5 h-5 mr-2 text-gray-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-bath-icon lucide-bath"
                     >
-                      <path d="M8 5a1 1 0 100 2h4a1 1 0 100-2H8zM6 7a1 1 0 011-1h6a1 1 0 011 1v6a3 3 0 01-3 3H9a3 3 0 01-3-3V7z" />
-                    </svg>
+                      <path d="M10 4 8 6" />
+                      <path d="M17 19v2" />
+                      <path d="M2 12h20" />
+                      <path d="M7 19v2" />
+                      <path d="M9 5 7.621 3.621A2.121 2.121 0 0 0 4 5v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" />
+                    </svg>{' '}
                     <span className="text-gray-700">
                       {bathrooms} Bathroom{bathrooms !== 1 ? 's' : ''}
                     </span>
@@ -227,7 +229,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 {area && (
                   <div className="flex items-center">
                     <svg
-                      className="w-5 h-5 mr-2 text-gray-400"
+                      className="w-5 h-5 mr-2 text-black"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -296,6 +298,8 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 </div>
               )}
             </div>
+            {/* contact form */}
+            <PropertyInterestForm propertyTitle={title} />
           </div>
 
           {/* Sidebar */}

@@ -1,63 +1,111 @@
 import type { Metadata } from 'next/types'
-
-import { CollectionArchive } from '@/components/CollectionArchive'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
-import { Search } from '@/search/Component'
 import PageClient from './page.client'
-import { CardPostData } from '@/components/Card'
+import { UniversalSearchPage } from '@/components/UniversalSearchPage'
+import type { Post, Property, Page } from '@/payload-types'
 
 type Args = {
   searchParams: Promise<{
-    q: string
+    q?: string
+    type?: string
+    category?: string
+    location?: string
+    sort?: string
   }>
 }
+
 export default async function Page({ searchParams: searchParamsPromise }: Args) {
-  const { q: query } = await searchParamsPromise
+  const searchParams = await searchParamsPromise
+  const { q: query, type, category, location, sort } = searchParams
+
   const payload = await getPayload({ config: configPromise })
 
-  const posts = await payload.find({
-    collection: 'search',
-    depth: 1,
-    limit: 12,
-    select: {
-      title: true,
-      slug: true,
-      categories: true,
-      meta: true,
-    },
-    // pagination: false reduces overhead if you don't need totalDocs
-    pagination: false,
-    ...(query
-      ? {
-          where: {
-            or: [
-              {
-                title: {
-                  like: query,
-                },
-              },
-              {
-                'meta.description': {
-                  like: query,
-                },
-              },
-              {
-                'meta.title': {
-                  like: query,
-                },
-              },
-              {
-                slug: {
-                  like: query,
-                },
-              },
-            ],
-          },
-        }
-      : {}),
-  })
+  // Initialize empty results with proper typing
+  let searchResults: {
+    posts: { docs: Post[]; totalDocs: number }
+    properties: { docs: Property[]; totalDocs: number }
+    pages: { docs: Page[]; totalDocs: number }
+  } = {
+    posts: { docs: [], totalDocs: 0 },
+    properties: { docs: [], totalDocs: 0 },
+    pages: { docs: [], totalDocs: 0 },
+  }
+
+  if (query) {
+    try {
+      // Search Posts
+      const posts = await payload.find({
+        collection: 'posts',
+        depth: 1,
+        limit: 20,
+        where: {
+          and: [
+            { _status: { equals: 'published' } },
+            {
+              or: [
+                { title: { contains: query } },
+                { 'meta.description': { contains: query } },
+                { 'meta.title': { contains: query } },
+                { slug: { contains: query } },
+              ],
+            },
+            ...(category ? [{ 'categories.title': { contains: category } }] : []),
+          ],
+        },
+        sort: sort || '-createdAt',
+      })
+
+      // Search Properties
+      const properties = await payload.find({
+        collection: 'properties',
+        depth: 1,
+        limit: 20,
+        where: {
+          and: [
+            { _status: { equals: 'published' } },
+            {
+              or: [
+                { title: { contains: query } },
+                { description: { contains: query } },
+                { 'location.address': { contains: query } },
+                { 'location.city': { contains: query } },
+                { 'location.state': { contains: query } },
+              ],
+            },
+            ...(location ? [{ 'location.city': { contains: location } }] : []),
+          ],
+        },
+        sort: sort || '-createdAt',
+      })
+
+      // Search Pages
+      const pages = await payload.find({
+        collection: 'pages',
+        depth: 1,
+        limit: 20,
+        where: {
+          and: [
+            { _status: { equals: 'published' } },
+            {
+              or: [
+                { title: { contains: query } },
+                { 'meta.description': { contains: query } },
+                { 'meta.title': { contains: query } },
+                { slug: { contains: query } },
+              ],
+            },
+          ],
+        },
+        sort: sort || '-createdAt',
+      })
+
+      searchResults = { posts, properties, pages }
+    } catch (error) {
+      console.error('Search error:', error)
+    }
+  }
 
   return (
     <>
@@ -69,34 +117,31 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
           backgroundPosition: 'center',
         }}
       >
-        {/* Overlay for readability */}
         <div className="absolute inset-0 bg-black opacity-50 z-10" />
-        {/* <h1 className="relative z-20 text-white text-5xl font-bold mt-20">Our Properties</h1> */}
+        <h1 className="relative z-20 text-white text-5xl font-bold">Search Everything</h1>
       </section>
-      <div className="pt-24 pb-24">
+
+      <div className="pt-12 pb-24">
         <PageClient />
-        <div className="container mb-16">
-          <div className="prose dark:prose-invert max-w-none text-center">
-            <h1 className="mb-8 lg:mb-16">Search</h1>
-
-            <div className="max-w-[50rem] mx-auto">
-              <Search />
-            </div>
-          </div>
-        </div>
-
-        {posts.totalDocs > 0 ? (
-          <CollectionArchive posts={posts.docs as CardPostData[]} />
-        ) : (
-          <div className="container">No results found.</div>
-        )}
+        <UniversalSearchPage
+          initialQuery={query || ''}
+          initialResults={searchResults}
+          searchParams={searchParams}
+        />
       </div>
     </>
   )
 }
 
-export function generateMetadata(): Metadata {
-  return {
-    title: `Payload Website Template Search`,
-  }
+export function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>
+}): Promise<Metadata> {
+  return searchParams.then(({ q }) => ({
+    title: q ? `Search results for "${q}" | Your Site` : 'Search | Your Site',
+    description: q
+      ? `Search results for "${q}"`
+      : 'Search across all content including posts, properties, and pages.',
+  }))
 }
