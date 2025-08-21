@@ -11,7 +11,7 @@ export const fadeInVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      easing: 'ease-out',
+      ease: 'easeOut',
     },
   },
 }
@@ -24,7 +24,7 @@ export const slideInLeftVariants = {
     x: 0,
     transition: {
       duration: 0.8,
-      easing: 'ease-out',
+      ease: 'easeOut',
     },
   },
 }
@@ -37,7 +37,7 @@ export const slideInRightVariants = {
     x: 0,
     transition: {
       duration: 0.8,
-      easing: 'ease-out',
+      ease: 'easeOut',
     },
   },
 }
@@ -50,7 +50,7 @@ export const scaleUpVariants = {
     scale: 1,
     transition: {
       duration: 0.6,
-      easing: 'ease-out',
+      ease: 'easeOut',
     },
   },
 }
@@ -73,7 +73,7 @@ export const hoverVariants = {
     scale: 1.05,
     transition: {
       duration: 0.3,
-      easing: 'ease-in-out',
+      ease: 'easeInOut',
     },
   },
   tap: {
@@ -92,7 +92,7 @@ export const parallaxVariants = {
     y: 0,
     transition: {
       duration: 1,
-      easing: 'ease-out',
+      ease: 'easeOut',
     },
   },
 }
@@ -113,7 +113,7 @@ export const FadeIn = ({
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-100px' }}
-    transition={{ duration, delay, easing: 'ease-out' }}
+    transition={{ duration, delay, ease: 'easeOut' }}
     className={className}
   >
     {children}
@@ -134,7 +134,7 @@ export const SlideInLeft = ({
     initial={{ opacity: 0, x: -50 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true, margin: '-100px' }}
-    transition={{ duration: 0.8, delay, easing: 'ease-out' }}
+    transition={{ duration: 0.8, delay, ease: 'easeOut' }}
     className={className}
   >
     {children}
@@ -155,7 +155,7 @@ export const SlideInRight = ({
     initial={{ opacity: 0, x: 50 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true, margin: '-100px' }}
-    transition={{ duration: 0.8, delay, easing: 'ease-out' }}
+    transition={{ duration: 0.8, delay, ease: 'easeOut' }}
     className={className}
   >
     {children}
@@ -176,7 +176,7 @@ export const ScaleUp = ({
     initial={{ opacity: 0, scale: 0.8 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true, margin: '-100px' }}
-    transition={{ duration: 0.6, delay, easing: 'ease-out' }}
+    transition={{ duration: 0.6, delay, ease: 'easeOut' }}
     className={className}
   >
     {children}
@@ -269,7 +269,7 @@ export const Floating = ({
 }) => (
   <motion.div
     animate={{ y: [-10, 10, -10] }}
-    transition={{ duration: 3, repeat: Infinity, easing: 'ease-in-out' }}
+    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
     className={className}
   >
     {children}
@@ -286,7 +286,7 @@ export const Pulse = ({
 }) => (
   <motion.div
     animate={{ scale: [1, 1.05, 1] }}
-    transition={{ duration: 2, repeat: Infinity, easing: 'ease-in-out' }}
+    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
     className={className}
   >
     {children}
@@ -303,7 +303,7 @@ export const Bounce = ({
 }) => (
   <motion.div
     animate={{ y: [0, -10, 0] }}
-    transition={{ duration: 1, repeat: Infinity, easing: 'ease-in-out' }}
+    transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
     className={className}
   >
     {children}
@@ -320,7 +320,7 @@ export const Rotate = ({
 }) => (
   <motion.div
     animate={{ rotate: [0, 360] }}
-    transition={{ duration: 20, repeat: Infinity, easing: 'linear' }}
+    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
     className={className}
   >
     {children}
