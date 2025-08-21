@@ -16,7 +16,7 @@ export const PageTransition = ({ children, className = '' }: PageTransitionProps
       exit={{ opacity: 0, y: -20 }}
       transition={{
         duration: 0.6,
-        easing: 'ease-in-out',
+        ease: 'easeInOut',
       }}
       className={className}
     >
@@ -50,7 +50,7 @@ export const SlidePageTransition = ({ children, className = '' }: PageTransition
       exit={{ opacity: 0, x: -100 }}
       transition={{
         duration: 0.5,
-        easing: 'ease-in-out',
+        ease: 'easeInOut',
       }}
       className={className}
     >
@@ -67,7 +67,7 @@ export const ScalePageTransition = ({ children, className = '' }: PageTransition
       exit={{ opacity: 0, scale: 1.1 }}
       transition={{
         duration: 0.4,
-        easing: 'ease-in-out',
+        ease: 'easeInOut',
       }}
       className={className}
     >
