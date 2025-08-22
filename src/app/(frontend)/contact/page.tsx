@@ -36,10 +36,10 @@ export default function ContactPage() {
               <div>
                 <ContactForm />
               </div>
-                <div>
+              <div>
                 <iframe
-                  title="Gwarimpa Abuja Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.734564497057!2d7.426378314791091!3d9.08570379348959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0a5b5b5b5b5b%3A0x5b5b5b5b5b5b5b5b!2sGwarimpa%2C%20Abuja%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1697041234567!5m2!1sen!2sng"
+                  title="Page Mansions Abuja Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.996532205349!2d7.4223376000000005!3d9.064079200000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e7575bb572177%3A0xd72ce2d378573b4!2sCubeHub%20-%20Coworking%2C%20Virtual%20and%20Serviced%20Offices%20-%20Jabi%20Centre%2C%20Abuja!5e0!3m2!1sen!2sng!4v1755831224415!5m2!1sen!2sng"
                   width="100%"
                   height="620"
                   style={{ border: 0 }}
@@ -47,7 +47,7 @@ export default function ContactPage() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
-                </div>
+              </div>
             </div>
 
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                   </svg>
                 </span>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">+1 (555) 123-4567</p>
+                <p className="text-gray-600">+234 706 827 3081</p>
               </div>
               <div>
                 <span className="bg-[#E7C873] p-3 rounded-full inline-block mb-4">
@@ -95,7 +95,7 @@ export default function ContactPage() {
                 </span>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Office</h3>
                 <p className="text-gray-600">
-                  Gwarimpa Estate
+                  Plot 104, Cube Hub, Emmanuel Adiele, Off Mike Akhigbe Way, Jabi
                   <br />
                   Abuja, Nigeria
                 </p>

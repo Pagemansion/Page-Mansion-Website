@@ -63,6 +63,11 @@ export default async function Post({ params: paramsPromise }: Args) {
         <div className="absolute inset-0 bg-black opacity-50 z-10" />
         <h1 className="relative z-20 text-white text-5xl font-bold mt-20">Blog</h1>
       </section>
+      <div className="py-11 container mx-auto">
+        <span className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold">
+          Blog
+        </span>
+      </div>
       <article className="pt-16 pb-16">
         <PageClient />
 
