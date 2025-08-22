@@ -27,7 +27,6 @@ export async function Footer() {
                   width={100}
                   height={45}
                   priority
-                 
                 />
               </Link>
 
@@ -58,7 +57,7 @@ export async function Footer() {
             </div>
 
             {/* Navigation Links */}
-            <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
               {/* Explore Section */}
               <div className="space-y-3">
                 <h3 className="font-bold text-base md:text-lg text-white">Explore</h3>
@@ -87,43 +86,31 @@ export async function Footer() {
                   >
                     New Projects
                   </Link>
-                  <Link
+                  {/* <Link
                     href="/list-property"
                     className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
                   >
                     List Your Property
-                  </Link>
+                  </Link> */}
                 </nav>
               </div>
 
               {/* Service Section */}
-              <div className="space-y-3">
+              <div className="space-y-3 col-span-2">
                 <h3 className="font-bold text-base md:text-lg text-white">Service</h3>
                 <nav className="space-y-2">
-                  <Link
-                    href="/property-management"
-                    className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
-                  >
-                    Property Management
-                  </Link>
-                  <Link
-                    href="/property-valuation"
-                    className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
-                  >
-                    Property Valuation
-                  </Link>
-                  <Link
-                    href="/property-exchange"
-                    className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
-                  >
-                    Property Exchange
-                  </Link>
-                  <Link
-                    href="/legal-agreements"
-                    className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
-                  >
-                    Legal Agreements
-                  </Link>
+                  <p className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200">
+                    Real Estate Development
+                  </p>
+                  <p className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200">
+                    Real Estate Investment & Advisory
+                  </p>
+                  <p className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200">
+                    Land Acquisition & Development
+                  </p>
+                  <p className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200">
+                    Property Marketing & Sales Strategy
+                  </p>
                 </nav>
               </div>
 

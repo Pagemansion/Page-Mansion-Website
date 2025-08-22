@@ -148,11 +148,11 @@ export default function AboutPage() {
               <SlideInLeft>
                 <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                   <Image
-                    src="/assets/about-banner.png"
-                    alt=""
+                    src="/assets/page-mansion-md.jpg"
+                    alt="md"
                     width={500}
-                    height={300}
-                    className=""
+                    height={500}
+                    className="rounded-xl"
                   />
                 </motion.div>
               </SlideInLeft>
