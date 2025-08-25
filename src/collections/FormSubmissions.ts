@@ -98,7 +98,7 @@ export const FormSubmissions: CollectionConfig = {
       ({ data, req }) => {
         // Capture IP address and user agent if available
         if (req) {
-          const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') 
+          const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip')
           const userAgent = req.headers.get('user-agent')
 
           if (ip) {

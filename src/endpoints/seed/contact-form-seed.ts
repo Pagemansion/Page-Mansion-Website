@@ -1,34 +1,28 @@
-import { RequiredDataFromCollectionSlug } from 'payload'
-
-export const contactFormSeed: RequiredDataFromCollectionSlug<'forms'> = {
+export const contactFormSeed = {
   title: 'Contact Form',
   fields: [
     {
       name: 'full-name',
-      blockName: 'full-name',
-      blockType: 'text',
       label: 'Full Name',
+      type: 'text',
       required: true,
     },
     {
       name: 'email',
-      blockName: 'email',
-      blockType: 'email',
       label: 'Email',
+      type: 'email',
       required: true,
     },
     {
       name: 'phone',
-      blockName: 'phone',
-      blockType: 'text',
       label: 'Phone',
+      type: 'text',
       required: false,
     },
     {
       name: 'message',
-      blockName: 'message',
-      blockType: 'textarea',
       label: 'Message',
+      type: 'textarea',
       required: true,
     },
   ],

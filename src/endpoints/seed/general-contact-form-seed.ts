@@ -1,34 +1,28 @@
-import { RequiredDataFromCollectionSlug } from 'payload'
-
-export const generalContactFormSeed: RequiredDataFromCollectionSlug<'forms'> = {
+export const generalContactFormSeed = {
   title: 'General Contact',
   fields: [
     {
       name: 'name',
-      blockName: 'name',
-      blockType: 'text',
       label: 'Name',
+      type: 'text',
       required: true,
     },
     {
       name: 'email',
-      blockName: 'email',
-      blockType: 'email',
       label: 'Email',
+      type: 'email',
       required: true,
     },
     {
       name: 'phone',
-      blockName: 'phone',
-      blockType: 'text',
       label: 'Phone',
+      type: 'text',
       required: false,
     },
     {
       name: 'propertyInterest',
-      blockName: 'propertyInterest',
-      blockType: 'select',
       label: 'Property Interest',
+      type: 'select',
       required: false,
       options: [
         { label: 'House', value: 'house' },
@@ -43,9 +37,8 @@ export const generalContactFormSeed: RequiredDataFromCollectionSlug<'forms'> = {
     },
     {
       name: 'message',
-      blockName: 'message',
-      blockType: 'textarea',
       label: 'Message',
+      type: 'textarea',
       required: true,
     },
   ],

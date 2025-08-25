@@ -73,9 +73,11 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
-    redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
+    redirects: Redirect;
+    'form-builder-forms': FormBuilderForm;
+    'form-builder-submissions': FormBuilderSubmission;
     search: Search;
     'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
@@ -90,9 +92,11 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
-    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    'form-builder-forms': FormBuilderFormsSelect<false> | FormBuilderFormsSelect<true>;
+    'form-builder-submissions': FormBuilderSubmissionsSelect<false> | FormBuilderSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -570,6 +574,275 @@ export interface Form {
   id: string;
   title: string;
   fields?:
+    | {
+        name: string;
+        label: string;
+        type: 'text' | 'email' | 'textarea' | 'select' | 'checkbox' | 'phone';
+        required?: boolean | null;
+        options?:
+          | {
+              label: string;
+              value: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Message shown after successful form submission
+   */
+  confirmationMessage?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  confirmationType?: ('message' | 'redirect') | null;
+  redirect?: {
+    url: string;
+  };
+  emails?:
+    | {
+        /**
+         * Email address to send notifications to. Use {{fieldName}} for dynamic values.
+         */
+        emailTo: string;
+        /**
+         * From email address
+         */
+        emailFrom?: string | null;
+        subject: string;
+        /**
+         * Email message. Use {{fieldName}} for dynamic values.
+         */
+        message: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties".
+ */
+export interface Property {
+  id: string;
+  /**
+   * Property title/name
+   */
+  title: string;
+  /**
+   * Property price
+   */
+  price: number;
+  currency?: ('USD' | 'EUR' | 'GBP' | 'NGN') | null;
+  propertyType: 'house' | 'apartment' | 'condo' | 'townhouse' | 'villa' | 'land' | 'commercial';
+  status: 'available' | 'sold' | 'pending' | 'off-market';
+  /**
+   * Number of bedrooms
+   */
+  bedrooms?: number | null;
+  /**
+   * Number of bathrooms
+   */
+  bathrooms?: number | null;
+  /**
+   * Property area in sq ft
+   */
+  area?: number | null;
+  location: {
+    address: string;
+    city: string;
+    state: string;
+    zipCode?: string | null;
+    /**
+     * GPS Latitude
+     */
+    latitude?: number | null;
+    /**
+     * GPS Longitude
+     */
+    longitude?: number | null;
+  };
+  /**
+   * Property images - first image will be used as the main image
+   */
+  images: {
+    image: string | Media;
+    /**
+     * Optional image caption
+     */
+    caption?: string | null;
+    id?: string | null;
+  }[];
+  /**
+   * Detailed property description
+   */
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Property features (e.g., Swimming Pool, Garage, Garden)
+   */
+  features?:
+    | {
+        feature: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Neighborhood amenities (e.g., Schools, Shopping Centers)
+   */
+  amenities?:
+    | {
+        amenity: string;
+        id?: string | null;
+      }[]
+    | null;
+  agent: {
+    name: string;
+    email: string;
+    phone?: string | null;
+    photo?: (string | null) | Media;
+  };
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (string | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  /**
+   * Feature this property on homepage
+   */
+  featured?: boolean | null;
+  slug?: string | null;
+  slugLock?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: string;
+  /**
+   * The form this submission belongs to
+   */
+  form: string | Form;
+  /**
+   * The actual form data submitted by the user
+   */
+  submissionData?:
+    | {
+        /**
+         * Field name from the form
+         */
+        field: string;
+        /**
+         * Value submitted by the user
+         */
+        value: string;
+        /**
+         * Optional field ID
+         */
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Status of this submission
+   */
+  status?: ('new' | 'in-progress' | 'completed' | 'spam') | null;
+  /**
+   * Internal notes about this submission
+   */
+  notes?: string | null;
+  /**
+   * IP address of the submitter
+   */
+  ipAddress?: string | null;
+  /**
+   * User agent of the submitter
+   */
+  userAgent?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: string;
+  /**
+   * You will need to rebuild the website when changing this field.
+   */
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: string | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: string | Post;
+        } | null);
+    url?: string | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-builder-forms".
+ */
+export interface FormBuilderForm {
+  id: string;
+  title: string;
+  fields?:
     | (
         | {
             name: string;
@@ -738,152 +1011,11 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "properties".
+ * via the `definition` "form-builder-submissions".
  */
-export interface Property {
+export interface FormBuilderSubmission {
   id: string;
-  /**
-   * Property title/name
-   */
-  title: string;
-  /**
-   * Property price
-   */
-  price: number;
-  currency?: ('USD' | 'EUR' | 'GBP' | 'NGN') | null;
-  propertyType: 'house' | 'apartment' | 'condo' | 'townhouse' | 'villa' | 'land' | 'commercial';
-  status: 'available' | 'sold' | 'pending' | 'off-market';
-  /**
-   * Number of bedrooms
-   */
-  bedrooms?: number | null;
-  /**
-   * Number of bathrooms
-   */
-  bathrooms?: number | null;
-  /**
-   * Property area in sq ft
-   */
-  area?: number | null;
-  location: {
-    address: string;
-    city: string;
-    state: string;
-    zipCode?: string | null;
-    /**
-     * GPS Latitude
-     */
-    latitude?: number | null;
-    /**
-     * GPS Longitude
-     */
-    longitude?: number | null;
-  };
-  /**
-   * Property images - first image will be used as the main image
-   */
-  images: {
-    image: string | Media;
-    /**
-     * Optional image caption
-     */
-    caption?: string | null;
-    id?: string | null;
-  }[];
-  /**
-   * Detailed property description
-   */
-  description: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * Property features (e.g., Swimming Pool, Garage, Garden)
-   */
-  features?:
-    | {
-        feature: string;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Neighborhood amenities (e.g., Schools, Shopping Centers)
-   */
-  amenities?:
-    | {
-        amenity: string;
-        id?: string | null;
-      }[]
-    | null;
-  agent: {
-    name: string;
-    email: string;
-    phone?: string | null;
-    photo?: (string | null) | Media;
-  };
-  meta?: {
-    title?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (string | null) | Media;
-    description?: string | null;
-  };
-  publishedAt?: string | null;
-  /**
-   * Feature this property on homepage
-   */
-  featured?: boolean | null;
-  slug?: string | null;
-  slugLock?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: string;
-  /**
-   * You will need to rebuild the website when changing this field.
-   */
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: string | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: string | Post;
-        } | null);
-    url?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-submissions".
- */
-export interface FormSubmission {
-  id: string;
-  form: string | Form;
+  form: string | FormBuilderForm;
   submissionData?:
     | {
         field: string;
@@ -1049,16 +1181,24 @@ export interface PayloadLockedDocument {
         value: string | User;
       } | null)
     | ({
-        relationTo: 'redirects';
-        value: string | Redirect;
-      } | null)
-    | ({
         relationTo: 'forms';
         value: string | Form;
       } | null)
     | ({
         relationTo: 'form-submissions';
         value: string | FormSubmission;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: string | Redirect;
+      } | null)
+    | ({
+        relationTo: 'form-builder-forms';
+        value: string | FormBuilderForm;
+      } | null)
+    | ({
+        relationTo: 'form-builder-submissions';
+        value: string | FormBuilderSubmission;
       } | null)
     | ({
         relationTo: 'search';
@@ -1480,6 +1620,67 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+  title?: T;
+  fields?:
+    | T
+    | {
+        name?: T;
+        label?: T;
+        type?: T;
+        required?: T;
+        options?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  confirmationMessage?: T;
+  confirmationType?: T;
+  redirect?:
+    | T
+    | {
+        url?: T;
+      };
+  emails?:
+    | T
+    | {
+        emailTo?: T;
+        emailFrom?: T;
+        subject?: T;
+        message?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  form?: T;
+  submissionData?:
+    | T
+    | {
+        field?: T;
+        value?: T;
+        id?: T;
+      };
+  status?: T;
+  notes?: T;
+  ipAddress?: T;
+  userAgent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1496,9 +1697,9 @@ export interface RedirectsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "forms_select".
+ * via the `definition` "form-builder-forms_select".
  */
-export interface FormsSelect<T extends boolean = true> {
+export interface FormBuilderFormsSelect<T extends boolean = true> {
   title?: T;
   fields?:
     | T
@@ -1629,9 +1830,9 @@ export interface FormsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-submissions_select".
+ * via the `definition` "form-builder-submissions_select".
  */
-export interface FormSubmissionsSelect<T extends boolean = true> {
+export interface FormBuilderSubmissionsSelect<T extends boolean = true> {
   form?: T;
   submissionData?:
     | T
