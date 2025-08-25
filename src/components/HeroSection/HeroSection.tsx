@@ -78,7 +78,7 @@ export default function HeroSection() {
             </Link>
 
             {/* Floating decorative elements */}
-            <Floating>
+            {/* <Floating>
               <motion.div
                 className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
                 animate={{
@@ -87,9 +87,9 @@ export default function HeroSection() {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               />
-            </Floating>
+            </Floating> */}
 
-            <Floating>
+            {/* <Floating>
               <motion.div
                 className="absolute top-40 right-20 w-6 h-6 bg-[#E7C873] rounded-full opacity-30"
                 animate={{
@@ -98,9 +98,9 @@ export default function HeroSection() {
                 }}
                 transition={{ duration: 4, repeat: Infinity, delay: 1 }}
               />
-            </Floating>
+            </Floating> */}
 
-            <Floating>
+            {/* <Floating>
               <motion.div
                 className="absolute bottom-40 left-20 w-3 h-3 bg-white rounded-full opacity-40"
                 animate={{
@@ -109,7 +109,7 @@ export default function HeroSection() {
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
               />
-            </Floating>
+            </Floating> */}
           </div>
         )}
         {/* Tablet view */}
@@ -139,7 +139,7 @@ export default function HeroSection() {
             </FadeIn>
 
             {/* Floating decorative elements */}
-            <Floating>
+            {/* <Floating>
               <motion.div
                 className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
                 animate={{
@@ -170,7 +170,7 @@ export default function HeroSection() {
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
               />
-            </Floating>
+            </Floating> */}
           </div>
         )}
         {/* mobile view */}
@@ -200,7 +200,7 @@ export default function HeroSection() {
             </FadeIn>
 
             {/* Floating decorative elements */}
-            <Floating>
+            {/* <Floating>
               <motion.div
                 className="absolute top-20 left-10 w-4 h-4 bg-white rounded-full opacity-20"
                 animate={{
@@ -231,7 +231,7 @@ export default function HeroSection() {
                 }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
               />
-            </Floating>
+            </Floating> */}
           </div>
         )}
       </section>
