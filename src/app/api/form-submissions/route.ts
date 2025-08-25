@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     // Create the form submission
     const submission = await payload.create({
-      collection: 'form-submissions',
+      collection: 'custom-form-submissions',
       data: {
         form: formDoc.id,
         submissionData,

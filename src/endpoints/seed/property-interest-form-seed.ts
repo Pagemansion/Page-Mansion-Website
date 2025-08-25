@@ -1,41 +1,34 @@
-import { RequiredDataFromCollectionSlug } from 'payload'
-
-export const propertyInterestFormSeed: RequiredDataFromCollectionSlug<'forms'> = {
+export const propertyInterestFormSeed = {
   title: 'Property Interest Form',
   fields: [
     {
       name: 'full-name',
-      blockName: 'full-name',
-      blockType: 'text',
       label: 'Full Name',
+      type: 'text' as const,
       required: true,
     },
     {
       name: 'email',
-      blockName: 'email',
-      blockType: 'email',
       label: 'Email',
+      type: 'email' as const,
       required: true,
     },
     {
       name: 'phone',
-      blockName: 'phone',
-      blockType: 'text',
       label: 'Phone',
+      type: 'text' as const,
       required: false,
     },
     {
       name: 'message',
-      blockName: 'message',
-      blockType: 'textarea',
       label: 'Message',
+      type: 'textarea' as const,
       required: true,
     },
     {
       name: 'propertyTitle',
-      blockName: 'propertyTitle',
-      blockType: 'text',
       label: 'Property Title',
+      type: 'text' as const,
       required: true,
     },
   ],
@@ -88,7 +81,7 @@ export const propertyInterestFormSeed: RequiredDataFromCollectionSlug<'forms'> =
       version: 1,
     },
   },
-  confirmationType: 'message',
+  confirmationType: 'message' as const,
   emails: [
     {
       emailFrom: '"Page Mansions" <noreply@pagemansions.com>',

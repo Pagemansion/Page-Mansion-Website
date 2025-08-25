@@ -1,37 +1,35 @@
-import { RequiredDataFromCollectionSlug } from 'payload'
-
-export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
+export const contactForm = {
   confirmationMessage: {
     root: {
-      type: 'root',
+      type: 'root' as const,
       children: [
         {
-          type: 'heading',
+          type: 'heading' as const,
           children: [
             {
-              type: 'text',
+              type: 'text' as const,
               detail: 0,
               format: 0,
-              mode: 'normal',
+              mode: 'normal' as const,
               style: '',
               text: 'The contact form has been submitted successfully.',
               version: 1,
             },
           ],
-          direction: 'ltr',
+          direction: 'ltr' as const,
           format: '',
           indent: 0,
-          tag: 'h2',
+          tag: 'h2' as const,
           version: 1,
         },
       ],
-      direction: 'ltr',
+      direction: 'ltr' as const,
       format: '',
       indent: 0,
       version: 1,
     },
   },
-  confirmationType: 'message',
+  confirmationType: 'message' as const,
   createdAt: '2023-01-12T21:47:41.374Z',
   emails: [
     {
@@ -39,29 +37,29 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
       emailTo: '{{email}}',
       message: {
         root: {
-          type: 'root',
+          type: 'root' as const,
           children: [
             {
-              type: 'paragraph',
+              type: 'paragraph' as const,
               children: [
                 {
-                  type: 'text',
+                  type: 'text' as const,
                   detail: 0,
                   format: 0,
-                  mode: 'normal',
+                  mode: 'normal' as const,
                   style: '',
                   text: 'Your contact form submission was successfully received.',
                   version: 1,
                 },
               ],
-              direction: 'ltr',
+              direction: 'ltr' as const,
               format: '',
               indent: 0,
               textFormat: 0,
               version: 1,
             },
           ],
-          direction: 'ltr',
+          direction: 'ltr' as const,
           format: '',
           indent: 0,
           version: 1,
@@ -73,35 +71,27 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
   fields: [
     {
       name: 'full-name',
-      blockName: 'full-name',
-      blockType: 'text',
+      type: 'text' as const,
       label: 'Full Name',
       required: true,
-      width: 100,
     },
     {
       name: 'email',
-      blockName: 'email',
-      blockType: 'email',
+      type: 'email' as const,
       label: 'Email',
       required: true,
-      width: 100,
     },
     {
       name: 'phone',
-      blockName: 'phone',
-      blockType: 'number',
+      type: 'phone' as const,
       label: 'Phone',
       required: false,
-      width: 100,
     },
     {
       name: 'message',
-      blockName: 'message',
-      blockType: 'textarea',
+      type: 'textarea' as const,
       label: 'Message',
       required: true,
-      width: 100,
     },
   ],
   redirect: undefined,

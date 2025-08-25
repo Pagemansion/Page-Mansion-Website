@@ -1,87 +1,81 @@
-import { RequiredDataFromCollectionSlug } from 'payload'
-
-export const contactFormSeed: RequiredDataFromCollectionSlug<'forms'> = {
+export const contactFormSeed = {
   title: 'Contact Form',
   fields: [
     {
       name: 'full-name',
-      blockName: 'full-name',
-      blockType: 'text',
       label: 'Full Name',
+      type: 'text' as const,
       required: true,
     },
     {
       name: 'email',
-      blockName: 'email',
-      blockType: 'email',
       label: 'Email',
+      type: 'email' as const,
       required: true,
     },
     {
       name: 'phone',
-      blockName: 'phone',
-      blockType: 'text',
       label: 'Phone',
+      type: 'text' as const,
       required: false,
     },
     {
       name: 'message',
-      blockName: 'message',
-      blockType: 'textarea',
       label: 'Message',
+      type: 'textarea' as const,
       required: true,
     },
   ],
   confirmationMessage: {
     root: {
-      type: 'root',
+      type: 'root' as const,
       children: [
         {
-          type: 'heading',
+          type: 'heading' as const,
           children: [
             {
-              type: 'text',
+              type: 'text' as const,
               detail: 0,
               format: 0,
-              mode: 'normal',
+              mode: 'normal' as const,
               style: '',
               text: 'Thank you for your message!',
               version: 1,
             },
           ],
-          direction: 'ltr',
+          direction: 'ltr' as const,
           format: '',
           indent: 0,
-          tag: 'h2',
+          tag: 'h2' as const,
           version: 1,
         },
         {
-          type: 'paragraph',
+          type: 'paragraph' as const,
           children: [
             {
-              type: 'text',
+              type: 'text' as const,
               detail: 0,
               format: 0,
-              mode: 'normal',
+              mode: 'normal' as const,
               style: '',
               text: 'We have received your contact form submission and will get back to you soon.',
               version: 1,
             },
           ],
-          direction: 'ltr',
+          direction: 'ltr' as const,
           format: '',
           indent: 0,
           textFormat: 0,
           version: 1,
         },
       ],
-      direction: 'ltr',
+      direction: 'ltr' as const,
       format: '',
       indent: 0,
       version: 1,
     },
   },
-  confirmationType: 'message',
+  confirmationType: 'message' as const,
   emails: [
     {
       emailFrom: '"Page Mansions" <noreply@pagemansions.com>',
