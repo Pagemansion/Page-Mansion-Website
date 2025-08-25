@@ -666,9 +666,10 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
       },
     ],
     meta: {
-      description: 'An open-source website built with Payload and Next.js.',
+      description:
+        'Discover the most exclusive properties on the market and find your dream home today.',
       image: heroImage.id,
-      title: 'Payload Website Template',
+      title: 'Page Mansions Real Estate',
     },
     title: 'Home',
   }
