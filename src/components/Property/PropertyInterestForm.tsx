@@ -36,7 +36,7 @@ export default function PropertyInterestForm({ propertyTitle }: { propertyTitle:
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          form: 'contact-form',
+          form: 'Property Interest Form', // This should match your form's title in Payload admin
           submissionData: data,
         }),
       })

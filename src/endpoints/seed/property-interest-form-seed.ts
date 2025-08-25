@@ -1,0 +1,186 @@
+import { RequiredDataFromCollectionSlug } from 'payload'
+
+export const propertyInterestFormSeed: RequiredDataFromCollectionSlug<'forms'> = {
+  title: 'Property Interest Form',
+  fields: [
+    {
+      name: 'full-name',
+      blockName: 'full-name',
+      blockType: 'text',
+      label: 'Full Name',
+      required: true,
+    },
+    {
+      name: 'email',
+      blockName: 'email',
+      blockType: 'email',
+      label: 'Email',
+      required: true,
+    },
+    {
+      name: 'phone',
+      blockName: 'phone',
+      blockType: 'text',
+      label: 'Phone',
+      required: false,
+    },
+    {
+      name: 'message',
+      blockName: 'message',
+      blockType: 'textarea',
+      label: 'Message',
+      required: true,
+    },
+    {
+      name: 'propertyTitle',
+      blockName: 'propertyTitle',
+      blockType: 'text',
+      label: 'Property Title',
+      required: true,
+    },
+  ],
+  confirmationMessage: {
+    root: {
+      type: 'root',
+      children: [
+        {
+          type: 'heading',
+          children: [
+            {
+              type: 'text',
+              detail: 0,
+              format: 0,
+              mode: 'normal',
+              style: '',
+              text: 'Thank you for your interest!',
+              version: 1,
+            },
+          ],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          tag: 'h2',
+          version: 1,
+        },
+        {
+          type: 'paragraph',
+          children: [
+            {
+              type: 'text',
+              detail: 0,
+              format: 0,
+              mode: 'normal',
+              style: '',
+              text: 'We have received your inquiry about this property and will contact you soon with more details.',
+              version: 1,
+            },
+          ],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          textFormat: 0,
+          version: 1,
+        },
+      ],
+      direction: 'ltr',
+      format: '',
+      indent: 0,
+      version: 1,
+    },
+  },
+  confirmationType: 'message',
+  emails: [
+    {
+      emailFrom: '"Page Mansions" <noreply@pagemansions.com>',
+      emailTo: '{{email}}',
+      subject: 'Property Interest Inquiry - {{propertyTitle}}',
+      message: {
+        root: {
+          type: 'root',
+          children: [
+            {
+              type: 'paragraph',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'Dear {{full-name}},',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              textFormat: 0,
+              version: 1,
+            },
+            {
+              type: 'paragraph',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'Thank you for your interest in {{propertyTitle}}. We have received your inquiry and will contact you soon with more details about this property.',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              textFormat: 0,
+              version: 1,
+            },
+            {
+              type: 'paragraph',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'Best regards,',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              textFormat: 0,
+              version: 1,
+            },
+            {
+              type: 'paragraph',
+              children: [
+                {
+                  type: 'text',
+                  detail: 0,
+                  format: 0,
+                  mode: 'normal',
+                  style: '',
+                  text: 'The Page Mansions Team',
+                  version: 1,
+                },
+              ],
+              direction: 'ltr',
+              format: '',
+              indent: 0,
+              textFormat: 0,
+              version: 1,
+            },
+          ],
+          direction: 'ltr',
+          format: '',
+          indent: 0,
+          version: 1,
+        },
+      },
+    },
+  ],
+}

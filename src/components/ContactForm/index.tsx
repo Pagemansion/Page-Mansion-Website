@@ -36,7 +36,7 @@ export const ContactForm: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          form: 'contact-form', // This should match your form's ID or slug
+          form: 'Contact Form', // This should match your form's title in Payload admin
           submissionData: data,
         }),
       })

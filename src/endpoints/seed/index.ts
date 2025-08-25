@@ -9,6 +9,9 @@ import { imageHero1 } from './image-hero-1'
 import { post1 } from './post-1'
 import { post2 } from './post-2'
 import { post3 } from './post-3'
+import { contactFormSeed } from './contact-form-seed'
+import { generalContactFormSeed } from './general-contact-form-seed'
+import { propertyInterestFormSeed } from './property-interest-form-seed'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -263,6 +266,18 @@ export const seed = async ({
     collection: 'forms',
     depth: 0,
     data: contactFormData,
+  })
+
+  const generalContactForm = await payload.create({
+    collection: 'forms',
+    depth: 0,
+    data: generalContactFormSeed,
+  })
+
+  const propertyInterestForm = await payload.create({
+    collection: 'forms',
+    depth: 0,
+    data: propertyInterestFormSeed,
   })
 
   payload.logger.info(`— Seeding pages...`)
