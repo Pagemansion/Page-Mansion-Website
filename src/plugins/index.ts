@@ -60,6 +60,7 @@ export const plugins: Plugin[] = [
       payment: false,
     },
     formOverrides: {
+      slug: 'form-builder-forms', // Use a different slug to avoid conflict
       fields: ({ defaultFields }) => {
         return defaultFields.map((field) => {
           if ('name' in field && field.name === 'confirmationMessage') {
