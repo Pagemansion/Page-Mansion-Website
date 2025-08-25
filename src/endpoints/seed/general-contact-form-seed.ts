@@ -4,25 +4,25 @@ export const generalContactFormSeed = {
     {
       name: 'name',
       label: 'Name',
-      type: 'text',
+      type: 'text' as const,
       required: true,
     },
     {
       name: 'email',
       label: 'Email',
-      type: 'email',
+      type: 'email' as const,
       required: true,
     },
     {
       name: 'phone',
       label: 'Phone',
-      type: 'text',
+      type: 'text' as const,
       required: false,
     },
     {
       name: 'propertyInterest',
       label: 'Property Interest',
-      type: 'select',
+      type: 'select' as const,
       required: false,
       options: [
         { label: 'House', value: 'house' },
@@ -38,7 +38,7 @@ export const generalContactFormSeed = {
     {
       name: 'message',
       label: 'Message',
-      type: 'textarea',
+      type: 'textarea' as const,
       required: true,
     },
   ],
@@ -91,7 +91,7 @@ export const generalContactFormSeed = {
       version: 1,
     },
   },
-  confirmationType: 'message',
+  confirmationType: 'message' as const,
   emails: [
     {
       emailFrom: '"Page Mansions" <noreply@pagemansions.com>',

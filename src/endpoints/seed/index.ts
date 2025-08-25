@@ -265,19 +265,19 @@ export const seed = async ({
   const contactForm = await payload.create({
     collection: 'forms',
     depth: 0,
-    data: contactFormData,
+    data: contactFormData as any,
   })
 
   const generalContactForm = await payload.create({
     collection: 'forms',
     depth: 0,
-    data: generalContactFormSeed,
+    data: generalContactFormSeed as any,
   })
 
   const propertyInterestForm = await payload.create({
     collection: 'forms',
     depth: 0,
-    data: propertyInterestFormSeed,
+    data: propertyInterestFormSeed as any,
   })
 
   payload.logger.info(`— Seeding pages...`)

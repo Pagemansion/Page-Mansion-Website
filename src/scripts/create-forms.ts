@@ -20,7 +20,7 @@ export async function createForms() {
     if (!existingTitles.includes('Contact Form')) {
       await payload.create({
         collection: 'forms',
-        data: contactFormSeed,
+        data: contactFormSeed as any,
       })
       console.log('✅ Created Contact Form')
     } else {
@@ -31,7 +31,7 @@ export async function createForms() {
     if (!existingTitles.includes('General Contact')) {
       await payload.create({
         collection: 'forms',
-        data: generalContactFormSeed,
+        data: generalContactFormSeed as any,
       })
       console.log('✅ Created General Contact form')
     } else {
@@ -42,7 +42,7 @@ export async function createForms() {
     if (!existingTitles.includes('Property Interest')) {
       await payload.create({
         collection: 'forms',
-        data: propertyInterestFormSeed,
+        data: propertyInterestFormSeed as any,
       })
       console.log('✅ Created Property Interest form')
     } else {

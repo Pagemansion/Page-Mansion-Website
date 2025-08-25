@@ -4,31 +4,31 @@ export const propertyInterestFormSeed = {
     {
       name: 'full-name',
       label: 'Full Name',
-      type: 'text',
+      type: 'text' as const,
       required: true,
     },
     {
       name: 'email',
       label: 'Email',
-      type: 'email',
+      type: 'email' as const,
       required: true,
     },
     {
       name: 'phone',
       label: 'Phone',
-      type: 'text',
+      type: 'text' as const,
       required: false,
     },
     {
       name: 'message',
       label: 'Message',
-      type: 'textarea',
+      type: 'textarea' as const,
       required: true,
     },
     {
       name: 'propertyTitle',
       label: 'Property Title',
-      type: 'text',
+      type: 'text' as const,
       required: true,
     },
   ],
@@ -81,7 +81,7 @@ export const propertyInterestFormSeed = {
       version: 1,
     },
   },
-  confirmationType: 'message',
+  confirmationType: 'message' as const,
   emails: [
     {
       emailFrom: '"Page Mansions" <noreply@pagemansions.com>',
