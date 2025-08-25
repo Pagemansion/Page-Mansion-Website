@@ -81,6 +81,9 @@ export const plugins: Plugin[] = [
         })
       },
     },
+    formSubmissionOverrides: {
+      slug: 'form-builder-submissions', // Use a different slug to avoid conflict
+    },
   }),
   searchPlugin({
     collections: ['posts'],
