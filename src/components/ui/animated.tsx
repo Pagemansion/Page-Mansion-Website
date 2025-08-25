@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, Variants, useTransform, useScroll, animate } from 'motion/react'
+import { motion, Variants, useTransform, useScroll, animate } from 'framer-motion'
 import { ReactNode, useState, useEffect } from 'react'
 
 // Fade in animation variants
