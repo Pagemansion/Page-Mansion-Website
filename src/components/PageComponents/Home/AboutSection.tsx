@@ -155,7 +155,7 @@ export const AboutSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Page Mansion Limited is a premium-based developmental infrastructure company
+                  Page Mansions Limited is a premium-based developmental infrastructure company
                   offering bespoke 21st-century services in Property Development Management &
                   Maintenance, Real Estate Investment Advisory, Land Acquisition & Development, and
                   Property Marketing & Sales Strategy. With years of practice, we are known to
@@ -170,7 +170,7 @@ export const AboutSection = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Page Mansion is among the lead performing infrastructure investment company
+                  Page Mansions is among the lead performing infrastructure investment company
                   championing ultra-modern structural facilities in Nigeria. We are best managed by
                   experienced and talented engineering professionals to create lasting memories and
                   legacies for our clients in excellence services.

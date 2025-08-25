@@ -54,7 +54,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Page Mansion Limited is a premium infrastructure and real estate development company
+                Page Mansions Limited is a premium infrastructure and real estate development company
                 offering bespoke services in property management, investment advisory, land
                 development, and sales strategy. Backed by years of experience, Best delivers
                 world-class design and construction projects across Nigeria and beyond. Driven by a
@@ -73,7 +73,7 @@ export default function AboutPage() {
           <div className="my-6">
             <h3 className="font-bold text-xl my-4">Our Vision</h3>
             <p className="my-2">
-              Page Mansion envisions to be the first-choice leading infrastructural company in
+              Page Mansions envisions to be the first-choice leading infrastructural company in
               Nigeria by 2030
             </p>
           </div>
@@ -183,7 +183,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    At the helm of Page Mansion Limited is Hon. Excel Wealth David Onuche, a
+                    At the helm of Page Mansions Limited is Hon. Excel Wealth David Onuche, a
                     visionary entrepreneur and real estate strategist with a deep passion for
                     community-focused development. With a dynamic background spanning property
                     development, infrastructure investment & advisory, and civic engagement, he
