@@ -22,7 +22,8 @@ export async function POST(request: NextRequest) {
       where: {
         or: [
           { id: { equals: form } },
-          { title: { equals: 'Contact Form' } }, // Fallback to title
+          { title: { equals: form } }, // Try to match by title if ID doesn't match
+          { title: { equals: 'Contact Form' } }, // Fallback to default title
         ],
       },
       limit: 1,

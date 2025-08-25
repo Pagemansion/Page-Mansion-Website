@@ -50,7 +50,7 @@ export const ContactSection = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          form: 'general-contact',
+          form: 'General Contact', // This should match your form's title in Payload admin
           submissionData: data,
         }),
       })
@@ -200,7 +200,11 @@ export const ContactSection = () => {
                     transition={{ duration: 0.6, delay: 0.7 }}
                   >
                     <motion.div whileFocus={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
-                      <Select onValueChange={(value: string | undefined) => setValue('propertyInterest', value)}>
+                      <Select
+                        onValueChange={(value: string | undefined) =>
+                          setValue('propertyInterest', value)
+                        }
+                      >
                         <SelectTrigger>
                           <SelectValue placeholder="Property interest" />
                         </SelectTrigger>
