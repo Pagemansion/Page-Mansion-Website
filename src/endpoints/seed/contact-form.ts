@@ -1,6 +1,4 @@
-import { RequiredDataFromCollectionSlug } from 'payload'
-
-export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
+export const contactForm = {
   confirmationMessage: {
     root: {
       type: 'root',
@@ -73,35 +71,27 @@ export const contactForm: RequiredDataFromCollectionSlug<'forms'> = {
   fields: [
     {
       name: 'full-name',
-      blockName: 'full-name',
-      blockType: 'text',
+      type: 'text',
       label: 'Full Name',
       required: true,
-      width: 100,
     },
     {
       name: 'email',
-      blockName: 'email',
-      blockType: 'email',
+      type: 'email',
       label: 'Email',
       required: true,
-      width: 100,
     },
     {
       name: 'phone',
-      blockName: 'phone',
-      blockType: 'number',
+      type: 'phone',
       label: 'Phone',
       required: false,
-      width: 100,
     },
     {
       name: 'message',
-      blockName: 'message',
-      blockType: 'textarea',
+      type: 'textarea',
       label: 'Message',
       required: true,
-      width: 100,
     },
   ],
   redirect: undefined,
