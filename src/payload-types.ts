@@ -74,7 +74,7 @@ export interface Config {
     categories: Category;
     users: User;
     forms: Form;
-    'form-submissions': FormSubmission;
+    'custom-form-submissions': CustomFormSubmission;
     redirects: Redirect;
     'form-builder-forms': FormBuilderForm;
     'form-builder-submissions': FormBuilderSubmission;
@@ -93,7 +93,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
-    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    'custom-form-submissions': CustomFormSubmissionsSelect<false> | CustomFormSubmissionsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'form-builder-forms': FormBuilderFormsSelect<false> | FormBuilderFormsSelect<true>;
     'form-builder-submissions': FormBuilderSubmissionsSelect<false> | FormBuilderSubmissionsSelect<true>;
@@ -763,9 +763,9 @@ export interface Property {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-submissions".
+ * via the `definition` "custom-form-submissions".
  */
-export interface FormSubmission {
+export interface CustomFormSubmission {
   id: string;
   /**
    * The form this submission belongs to
@@ -1185,8 +1185,8 @@ export interface PayloadLockedDocument {
         value: string | Form;
       } | null)
     | ({
-        relationTo: 'form-submissions';
-        value: string | FormSubmission;
+        relationTo: 'custom-form-submissions';
+        value: string | CustomFormSubmission;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1661,9 +1661,9 @@ export interface FormsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "form-submissions_select".
+ * via the `definition` "custom-form-submissions_select".
  */
-export interface FormSubmissionsSelect<T extends boolean = true> {
+export interface CustomFormSubmissionsSelect<T extends boolean = true> {
   form?: T;
   submissionData?:
     | T

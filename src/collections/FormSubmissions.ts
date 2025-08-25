@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 export const FormSubmissions: CollectionConfig = {
-  slug: 'form-submissions',
+  slug: 'custom-form-submissions',
   admin: {
     useAsTitle: 'id',
     defaultColumns: ['form', 'createdAt', 'updatedAt'],
