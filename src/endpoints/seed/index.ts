@@ -12,6 +12,7 @@ import { post3 } from './post-3'
 import { contactFormSeed } from './contact-form-seed'
 import { generalContactFormSeed } from './general-contact-form-seed'
 import { propertyInterestFormSeed } from './property-interest-form-seed'
+import { seedBookVisitForm } from './book-visit-form-seed'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -277,8 +278,11 @@ export const seed = async ({
   const propertyInterestForm = await payload.create({
     collection: 'forms',
     depth: 0,
-    data: propertyInterestFormSeed as any,
+    data: propertyInterestFormSeed as unknown,
   })
+
+  payload.logger.info(`— Seeding book visit form...`)
+  await seedBookVisitForm(payload)
 
   payload.logger.info(`— Seeding pages...`)
 
