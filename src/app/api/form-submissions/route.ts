@@ -2,7 +2,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { NextRequest, NextResponse } from 'next/server'
-import { sendEmail } from '@/lib/sendEmail' // Import your helper function
+import { sendEmail } from '@/lib/sendEmail' 
 
 export async function POST(request: NextRequest) {
   try {
@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
 
         // Use default from email if not configured
         const fromEmail =
-          emailConfig.emailFrom || process.env.RESEND_FROM_EMAIL || 'noreply@example.com'
+          emailConfig.emailFrom || process.env.RESEND_FROM_EMAIL || 'pagemansionsltd@gmail.com'
 
         // **Send the email using your helper function**
         await sendEmail({
