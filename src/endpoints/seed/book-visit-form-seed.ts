@@ -44,26 +44,8 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
           {
             name: 'project-location',
             label: 'Select Project Location',
-            type: 'select',
+            type: 'text', // Changed to text since options are now dynamic
             required: true,
-            options: [
-              {
-                label: 'Page Mansion',
-                value: 'page-mansion',
-              },
-              {
-                label: 'Downtown Tower',
-                value: 'downtown-tower',
-              },
-              {
-                label: 'Riverside Villa',
-                value: 'riverside-villa',
-              },
-              {
-                label: 'Garden Estate',
-                value: 'garden-estate',
-              },
-            ],
           },
           {
             name: 'message',
@@ -83,8 +65,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                   {
                     type: 'text',
                     text: 'Thank you for your visit booking request! A member of our team will be in touch shortly to confirm your visit.',
+                    version: 1,
                   },
                 ],
+                version: 1,
               },
             ],
             direction: 'ltr',
@@ -95,8 +79,8 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
         },
         emails: [
           {
-            emailTo: process.env.ADMIN_EMAIL || 'admin@example.com',
-            emailFrom: process.env.RESEND_FROM_EMAIL || 'noreply@example.com',
+            emailTo: process.env.ADMIN_EMAIL || 'pagemansionsltd@gmail.com',
+            emailFrom: process.env.RESEND_FROM_EMAIL || 'pagemansionsltd@gmail.com',
             subject: 'New Visit Booking Request - {{project-location}}',
             message: {
               root: {
@@ -108,9 +92,11 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'New Visit Booking Request',
+                        version: 1,
                       },
                     ],
                     tag: 'h2',
+                    version: 1,
                   },
                   {
                     type: 'paragraph',
@@ -118,8 +104,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'A new visit booking request has been submitted:',
+                        version: 1,
                       },
                     ],
+                    version: 1,
                   },
                   {
                     type: 'paragraph',
@@ -127,8 +115,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'Name: {{full-name}}',
+                        version: 1,
                       },
                     ],
+                    version: 1,
                   },
                   {
                     type: 'paragraph',
@@ -136,8 +126,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'Email: {{email}}',
+                        version: 1,
                       },
                     ],
+                    version: 1,
                   },
                   {
                     type: 'paragraph',
@@ -145,8 +137,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'Phone: {{phone}}',
+                        version: 1,
                       },
                     ],
+                    version: 1,
                   },
                   {
                     type: 'paragraph',
@@ -154,8 +148,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'Project Location: {{project-location}}',
+                        version: 1,
                       },
                     ],
+                    version: 1,
                   },
                   {
                     type: 'paragraph',
@@ -163,8 +159,10 @@ export const seedBookVisitForm = async (payload: Payload): Promise<void> => {
                       {
                         type: 'text',
                         text: 'Message: {{message}}',
+                        version: 1,
                       },
                     ],
+                    version: 1,
                   },
                 ],
                 direction: 'ltr',
