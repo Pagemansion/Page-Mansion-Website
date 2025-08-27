@@ -41,15 +41,10 @@ export async function createForms() {
 
     //Create Book a Visit Form if it doesn't exist
     if (!existingTitles.includes('Book a Visit Form')) {
-      await payload.create({
-        collection: 'forms',
-        data: seedBookVisitForm as any,
-      })
+      await seedBookVisitForm(payload)
       console.log('✅ Created Book a Visit form')
-
-    } else{
-            console.log('ℹ️ Book a Visit form already exists')
-
+    } else {
+      console.log('ℹ️ Book a Visit form already exists')
     }
 
     // Create Property Interest form if it doesn't exist
