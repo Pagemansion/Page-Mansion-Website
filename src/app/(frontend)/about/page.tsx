@@ -45,7 +45,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Page Mansion
+                Page Mansions
               </motion.h3>
               <motion.p
                 className="my-2"
@@ -54,12 +54,12 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Page Mansions Limited is a premium infrastructure and real estate development company
-                offering bespoke services in property management, investment advisory, land
-                development, and sales strategy. Backed by years of experience, Best delivers
-                world-class design and construction projects across Nigeria and beyond. Driven by a
-                team of seasoned professionals, we create modern, lasting structures that inspire
-                excellence and legacy.
+                Page Mansions Limited is a premium infrastructure and real estate development
+                company offering bespoke services in property management, investment advisory, land
+                development, and sales strategy. Backed by years of experience, we are the best in
+                delivering world-class design and construction projects across Nigeria and beyond
+                Driven by a team of seasoned professionals, we create modern, lasting structures
+                that inspire excellence and legacy.
               </motion.p>
             </div>
           </SlideInLeft>
@@ -280,9 +280,9 @@ export default function AboutPage() {
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
                     We conduct all business in a safe and environmentally friendly manner.
-                    Protecting our employees, clients, customers involved in our operations, as well
-                    as the public and environment where we provide our services is a mandate we hold
-                    in high esteem.
+                    Protecting our employees, clients, and customers involved in our operations, as
+                    well as the public and the environment. Where we provide our services is a
+                    mandate we hold in high esteem.
                   </p>
                 </div>
               </li>
@@ -307,11 +307,11 @@ export default function AboutPage() {
                     Risk and Hazard Assessment
                   </h4>
                   <p className="text-gray-700 leading-relaxed">
-                    Provide an atmosphere of employment where hazards are identified and the
+                    We provide an atmosphere of employment where hazards are identified and the
                     appropriate actions are taken to reduce the risk of injury, actively promote the
                     highest standards of safety and security behavior, environmental awareness,
-                    clients/customer assets protection, as well as safeguarding the corporate
-                    reputation of our company culture.
+                    clients/customer asset protection, as well as safeguard the corporate reputation
+                    of our company culture.
                   </p>
                 </div>
               </li>
@@ -375,7 +375,7 @@ export default function AboutPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    At Page Mansion Limited, we understand that property ownership in Nigeria can be
+                    At Page Mansions Limited, we understand that property ownership in Nigeria can be
                     challenging without the right support. To meet these needs, our Property
                     Development and Management service is designed to simplify the process from
                     start to finish and beyond.
@@ -387,7 +387,7 @@ export default function AboutPage() {
                     network of contractors.
                   </p>
                   <p className="font-semibold text-[#194754]">
-                    Our mission is clear: build with precision, manage with intelligence.
+                    Our mission is clear: Build with precision, manage with intelligence.
                   </p>
                 </div>
               </motion.div>
@@ -418,7 +418,7 @@ export default function AboutPage() {
                 </div>
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
-                    Page Mansion goes beyond property sales to help you build lasting wealth through
+                    Page Mansions goes beyond property sales to help you build lasting wealth through
                     strategic real estate investments. Our advisory service leverages market data,
                     trend analysis, and local expertise.
                   </p>
@@ -524,7 +524,7 @@ export default function AboutPage() {
                     database.
                   </p>
                   <p className="font-semibold text-[#194754]">
-                    With Page Mansion, your property doesn&apos;t just get listed, it gets sold.
+                    With Page Mansions, your property doesn&apos;t just get listed, it gets sold.
                   </p>
                 </div>
               </motion.div>
