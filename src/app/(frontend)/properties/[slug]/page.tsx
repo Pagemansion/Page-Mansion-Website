@@ -132,7 +132,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Welcome to Your Dream Property</h2>
           <p className="text-gray-600">
             Explore the details of this stunning property, featuring modern amenities, a prime
-            location, and everything you need to call it home.
+            location, and everything you need to call it <span className="font-bold">&quot;home&quot;</span>.
           </p>
         </div>
       </section>

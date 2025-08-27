@@ -57,7 +57,7 @@ export default function AboutPage() {
                 Page Mansions Limited is a premium infrastructure and real estate development
                 company offering bespoke services in property management, investment advisory, land
                 development, and sales strategy. Backed by years of experience, we are the best in
-                delivering world-class design and construction projects across Nigeria and beyond
+                delivering world-class design and construction projects across Nigeria and beyond.
                 Driven by a team of seasoned professionals, we create modern, lasting structures
                 that inspire excellence and legacy.
               </motion.p>
