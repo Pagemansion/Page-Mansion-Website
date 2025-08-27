@@ -2,7 +2,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { NextRequest, NextResponse } from 'next/server'
-import { sendEmail } from '@/lib/sendEmail' 
+import { sendEmail } from '@/lib/sendEmail'
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,11 +21,7 @@ export async function POST(request: NextRequest) {
     const { docs: forms } = await payload.find({
       collection: 'forms',
       where: {
-        or: [
-          { id: { equals: form } },
-          { title: { equals: form } },
-          { title: { equals: 'Contact Form' } },
-        ],
+        or: [{ id: { equals: form } }, { title: { equals: form } }],
       },
       limit: 1,
     })
