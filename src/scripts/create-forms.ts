@@ -3,6 +3,7 @@ import config from '@/payload.config'
 import { contactFormSeed } from '@/endpoints/seed/contact-form-seed'
 import { generalContactFormSeed } from '@/endpoints/seed/general-contact-form-seed'
 import { propertyInterestFormSeed } from '@/endpoints/seed/property-interest-form-seed'
+import { seedBookVisitForm } from '@/endpoints/seed/book-visit-form-seed'
 
 export async function createForms() {
   const payload = await getPayload({ config })
@@ -27,7 +28,7 @@ export async function createForms() {
       console.log('ℹ️ Contact Form already exists')
     }
 
-    // Create General Contact form if it doesn't exist
+    // Create General Contact form if it doesn't exist Book a Visit Form
     if (!existingTitles.includes('General Contact')) {
       await payload.create({
         collection: 'forms',
@@ -36,6 +37,19 @@ export async function createForms() {
       console.log('✅ Created General Contact form')
     } else {
       console.log('ℹ️ General Contact form already exists')
+    }
+
+    //Create Book a Visit Form if it doesn't exist
+    if (!existingTitles.includes('Book a Visit Form')) {
+      await payload.create({
+        collection: 'forms',
+        data: seedBookVisitForm as any,
+      })
+      console.log('✅ Created Book a Visit form')
+
+    } else{
+            console.log('ℹ️ Book a Visit form already exists')
+
     }
 
     // Create Property Interest form if it doesn't exist
