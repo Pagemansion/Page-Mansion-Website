@@ -62,13 +62,13 @@ export default function DisclaimerModal({ isOpen, onClose }: DisclaimerModalProp
             {/* Disclaimer message */}
             <div className="text-gray-700 text-center space-y-3 mb-6">
               <p className="leading-relaxed">
-                <strong>⚠️ DISCLAIMER:</strong> All payments for Page Mansions Limited services must
+                <strong>⚠️ DISCLAIMER:</strong> All payments for Page Mansions Real Estate Limited services must
                 be made to accounts bearing the company name <strong>&quot;Page Mansions&quot;</strong> only.
               </p>
               <p className="text-sm text-gray-600">
                 For your security, please verify all payment details and never transfer funds to
                 personal accounts or third-party accounts not officially associated with Page
-                Mansion Limited.
+                Mansions Limited.
               </p>
             </div>
 

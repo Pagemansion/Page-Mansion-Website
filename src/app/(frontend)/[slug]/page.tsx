@@ -8,11 +8,8 @@ import React, { cache } from 'react'
 import { homeStatic } from '@/endpoints/seed/home-static'
 import { Post } from '@/payload-types'
 
-import { RenderBlocks } from '@/blocks/RenderBlocks'
-import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
-import PageClient from './page.client'
-import { LivePreviewListener } from '@/components/LivePreviewListener'
+
 import HeroSection from '@/components/HeroSection/HeroSection'
 import PartnersSection from '@/components/PageComponents/Home/PartnersSection'
 import { PropertiesSection } from '@/components/PageComponents/Home/PropertiesSection'
@@ -25,6 +22,7 @@ import PropertyShowcase from '@/components/utilities/property-showcase'
 import { PageTransition } from '@/components/ui/PageTransition'
 import FloatingActionButton from '@/components/ui/floating-action-button'
 import HomeDisclaimerWrapper from '@/components/HomeDisclaimerWrapper'
+import PropertyDisclaimerWrapper from '@/components/PropertyDisclaimerWrapper'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -60,6 +58,8 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
   const url = '/' + slug
+
+  console.log('Page rendered with slug:', slug)
 
   let page: RequiredDataFromCollectionSlug<'pages'> | null
 
@@ -114,6 +114,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         <BlogSection initialPosts={posts} />
         <FaqSection />
         {slug === 'home' && <HomeDisclaimerWrapper />}
+        {slug === 'properties' && <PropertyDisclaimerWrapper />}
       </>
     </PageTransition>
   )

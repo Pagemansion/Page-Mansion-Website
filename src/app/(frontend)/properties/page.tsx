@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { PropertySearchPage } from '@/components/PropertySearchPage'
+import PropertyDisclaimerWrapper from '@/components/PropertyDisclaimerWrapper'
 
 export const metadata: Metadata = {
   title: 'Properties | Find Your Perfect Home',
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 }
 
 export default function PropertiesPage() {
-  return <PropertySearchPage />
+  return (
+    <>
+      <PropertySearchPage />
+      <PropertyDisclaimerWrapper />
+    </>
+  )
 }
