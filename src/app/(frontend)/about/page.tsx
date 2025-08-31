@@ -229,7 +229,7 @@ export default function AboutPage() {
             CORE ETHICS
           </motion.span>
           <div className="py-6">
-            <h3 className="font-bold text-xl my-4">
+            <h3 className="text-xl my-4">
               We emerge to uncover perfection and professionalism in construction expertise. Our
               values are managed on five economy drivers. They are:
             </h3>
@@ -266,7 +266,7 @@ export default function AboutPage() {
             GOVERNANCE
           </motion.span>
           <div className="py-6">
-            <h3 className="font-bold text-xl my-4">
+            <h3 className="text-xl my-4">
               We are governed by regulations that guide our company-wide performance, and the
               decisions that affect us as a group. Our company&apos;s business policy is provided to
               gratify the following:

@@ -125,7 +125,7 @@ export async function Footer() {
                     Blogs
                   </Link>
                   <Link
-                    href="/faq"
+                    href="/faqs"
                     className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
                   >
                     FAQs
