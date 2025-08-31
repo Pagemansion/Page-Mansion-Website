@@ -95,37 +95,26 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
         />
       </div>
       <div className="flex flex-col h-full space-y-8 mx-auto my-8">
-        <Link 
-          href="/properties" 
+        <Link
+          href="/properties"
           className={getLinkMobile('/properties')}
           onClick={handleMobileLinkClick}
         >
           Our Properties
         </Link>
-        <Link 
-          href="/about" 
-          className={getLinkMobile('/about')}
-          onClick={handleMobileLinkClick}
-        >
+        <Link href="/about" className={getLinkMobile('/about')} onClick={handleMobileLinkClick}>
           About Us
         </Link>
-        <Link 
-          href="/blog" 
-          className={getLinkMobile('/blog')}
-          onClick={handleMobileLinkClick}
-        >
+        <Link href="/blog" className={getLinkMobile('/blog')} onClick={handleMobileLinkClick}>
           Blog
         </Link>
-        <Link 
-          href="/contact" 
-          className={getLinkMobile('/contact')}
-          onClick={handleMobileLinkClick}
-        >
+        <Link href="/contact" className={getLinkMobile('/contact')} onClick={handleMobileLinkClick}>
           Contact
         </Link>
+       
         <button className="py-2 px-4 rounded-3xl bg-[#194754] hover:bg-black text-white text-lg hover:text-gray-200 transition-colors duration-300">
-          <Link 
-            href="/book-visit" 
+          <Link
+            href="/book-visit"
             className="flex items-center gap-2"
             onClick={handleMobileLinkClick}
           >
@@ -245,14 +234,40 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               />
             )}
           </Link>
-          <div>
-            {isScrolled ? (
-              <div className="bg-[#E7C873] p-2 rounded-xl">
-                <AlignJustify size={32} color="#194754" />
-              </div>
-            ) : (
-              <AlignJustify size={32} color="#ffffff" />
-            )}
+          <div className="flex items-center gap-3">
+            <button className="p-2 rounded-full bg-[#194754] hover:bg-black text-white hover:text-gray-200 transition-colors duration-300">
+              <Link href="/search" className="">
+                <span className="sr-only">Search</span>
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </Link>
+            </button>
+            <Drawer direction="right" open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <DrawerTrigger asChild>
+                {isScrolled ? (
+                  <button className="bg-[#E7C873] p-2 rounded-xl">
+                    <AlignJustify size={32} color="#194754" />
+                  </button>
+                ) : (
+                  <button>
+                    <AlignJustify size={32} color="#ffffff" />
+                  </button>
+                )}
+              </DrawerTrigger>
+              <MobileDrawerContent />
+            </Drawer>
           </div>
         </div>
       )}
@@ -278,12 +293,27 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
               />
             )}
           </Link>
-          <div>
-            <Drawer 
-              direction="right" 
-              open={isMobileMenuOpen} 
-              onOpenChange={setIsMobileMenuOpen}
-            >
+          <div className="flex items-center gap-3">
+            <button className="p-2 rounded-full bg-[#194754] hover:bg-black text-white hover:text-gray-200 transition-colors duration-300">
+              <Link href="/search" className="">
+                <span className="sr-only">Search</span>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
+                </svg>
+              </Link>
+            </button>
+            <Drawer direction="right" open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <DrawerTrigger asChild>
                 {isScrolled ? (
                   <button className="bg-[#E7C873] p-2 rounded-xl">

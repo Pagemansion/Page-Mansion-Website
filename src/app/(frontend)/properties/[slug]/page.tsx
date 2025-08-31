@@ -176,9 +176,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-3xl font-bold text-[#194754]">
+                  {/* <p className="text-3xl font-bold text-[#194754]">
                     {formatPrice(price, currency || 'USD')}
-                  </p>
+                  </p> */}
                   <p className="text-sm text-gray-500 capitalize">{propertyType}</p>
                 </div>
               </div>
@@ -303,8 +303,9 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            {/* Agent Contact Card */}
+          {/* Agent Contact Card */}
+          {/* <div className="lg:col-span-1">
+            
             {agent && (
               <div className="bg-white rounded-lg shadow-md p-6 mb-6">
                 <h3 className="text-lg font-semibold mb-4">Contact Agent</h3>
@@ -351,7 +352,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
               </div>
             )}
 
-            {/* Map placeholder */}
+            
             {location?.latitude && location?.longitude && (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h3 className="text-lg font-semibold mb-4">Location</h3>
@@ -363,7 +364,7 @@ export default async function PropertyPage({ params }: PropertyPageProps) {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
