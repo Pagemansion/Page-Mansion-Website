@@ -15,6 +15,7 @@ import { Properties } from './collections/Properties'
 import { Users } from './collections/Users'
 import { Forms } from './collections/Forms'
 import { FormSubmissions } from './collections/FormSubmissions'
+import { Reviews } from './collections/Reviews'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { plugins } from './plugins'
@@ -66,7 +67,17 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI || '',
   }),
-  collections: [Pages, Posts, Properties, Media, Categories, Users, Forms, FormSubmissions],
+  collections: [
+    Pages,
+    Posts,
+    Properties,
+    Media,
+    Categories,
+    Users,
+    Forms,
+    FormSubmissions,
+    Reviews,
+  ],
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer],
   plugins: [

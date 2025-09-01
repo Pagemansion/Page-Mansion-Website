@@ -16,6 +16,7 @@ import { PropertiesSection } from '@/components/PageComponents/Home/PropertiesSe
 import { AboutSection } from '@/components/PageComponents/Home/AboutSection'
 import { ServicesSection } from '@/components/PageComponents/Home/ServicesSection'
 import { ContactSection } from '@/components/PageComponents/Home/ContactSection'
+import ReviewsSection from '@/components/PageComponents/Home/ReviewsSection'
 import BlogSection from '@/components/PageComponents/Home/BlogSection'
 import { FaqSection } from '@/components/PageComponents/Home/FaqSection'
 import PropertyShowcase from '@/components/utilities/property-showcase'
@@ -105,11 +106,12 @@ export default async function Page({ params: paramsPromise }: Args) {
     <PageTransition>
       <>
         <HeroSection />
-        <PartnersSection />
+        {/* <PartnersSection /> */}
         <PropertiesSection />
         <PropertyShowcase />
         <AboutSection />
         <ServicesSection />
+        <ReviewsSection />
         <ContactSection />
         <BlogSection initialPosts={posts} />
         <FaqSection />

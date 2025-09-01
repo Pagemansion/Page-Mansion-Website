@@ -75,6 +75,7 @@ export interface Config {
     users: User;
     forms: Form;
     'custom-form-submissions': CustomFormSubmission;
+    reviews: Review;
     redirects: Redirect;
     'form-builder-forms': FormBuilderForm;
     'form-builder-submissions': FormBuilderSubmission;
@@ -94,6 +95,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'custom-form-submissions': CustomFormSubmissionsSelect<false> | CustomFormSubmissionsSelect<true>;
+    reviews: ReviewsSelect<false> | ReviewsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     'form-builder-forms': FormBuilderFormsSelect<false> | FormBuilderFormsSelect<true>;
     'form-builder-submissions': FormBuilderSubmissionsSelect<false> | FormBuilderSubmissionsSelect<true>;
@@ -811,6 +813,31 @@ export interface CustomFormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews".
+ */
+export interface Review {
+  id: string;
+  name: string;
+  email: string;
+  rating: '5' | '4' | '3' | '2' | '1';
+  review: string;
+  propertyPurchased?: string | null;
+  location?: string | null;
+  /**
+   * Only published reviews will appear on the website
+   */
+  status: 'pending' | 'published' | 'rejected';
+  /**
+   * Featured reviews will be highlighted on the homepage
+   */
+  featured?: boolean | null;
+  adminNotes?: string | null;
+  submittedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1187,6 +1214,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'custom-form-submissions';
         value: string | CustomFormSubmission;
+      } | null)
+    | ({
+        relationTo: 'reviews';
+        value: string | Review;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1676,6 +1707,24 @@ export interface CustomFormSubmissionsSelect<T extends boolean = true> {
   notes?: T;
   ipAddress?: T;
   userAgent?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "reviews_select".
+ */
+export interface ReviewsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  rating?: T;
+  review?: T;
+  propertyPurchased?: T;
+  location?: T;
+  status?: T;
+  featured?: T;
+  adminNotes?: T;
+  submittedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
