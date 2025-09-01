@@ -82,7 +82,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   meta: {
     description:
       'Property Development Management | Real Estate Investment Advisory | Land Acquisition & Development | Property Marketing & Sales Strategy',
-    title: 'Page Mansion Limited',
+    title: 'Page Mansions Limited',
   },
   title: 'Home',
   layout: [],

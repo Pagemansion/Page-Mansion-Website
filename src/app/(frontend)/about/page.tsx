@@ -81,7 +81,7 @@ export default function AboutPage() {
             <div>
               <h3 className="font-bold text-xl my-4">Start with Us</h3>
               <p className="my-2">
-                Have questions? Our team is here to help you take the next step with Page Mansion.
+                Have questions? Our team is here to help you take the next step with Page Mansions.
               </p>
               <button className="py-2 px-4 rounded-3xl bg-[#194754] text-white hover:text-gray-200 transition-colors duration-300">
                 <Link href="" className="flex items-center gap-2">
@@ -464,7 +464,7 @@ export default function AboutPage() {
                 <div className="space-y-4 text-gray-700 leading-relaxed">
                   <p>
                     Purchasing land in Nigeria can be complicated by fraud, unclear ownership, and
-                    documentation issues. Page Mansion offers a reliable service that eliminates
+                    documentation issues. Page Mansions offers a reliable service that eliminates
                     these risks.
                   </p>
                   <p>
