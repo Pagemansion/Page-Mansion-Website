@@ -77,11 +77,14 @@ export default async function Page({ params: paramsPromise }: Args) {
     return <PayloadRedirects url={url} />
   }
 
-  // Fetch posts for the homepage blog section
+  // Fetch posts and reviews for the homepage
   let posts: Post[] = []
+  let reviews: any[] = []
   if (slug === 'home') {
     try {
       const payload = await getPayload({ config: configPromise })
+
+      // Fetch posts
       const postsResult = await payload.find({
         collection: 'posts',
         depth: 2,
@@ -95,8 +98,32 @@ export default async function Page({ params: paramsPromise }: Args) {
         },
       })
       posts = postsResult.docs || []
+
+      // Fetch featured reviews
+      const reviewsResult = await payload.find({
+        collection: 'reviews',
+        depth: 1,
+        limit: 3,
+        overrideAccess: false,
+        sort: '-createdAt',
+        where: {
+          and: [
+            {
+              featured: {
+                equals: true,
+              },
+            },
+            {
+              status: {
+                equals: 'published',
+              },
+            },
+          ],
+        },
+      })
+      reviews = reviewsResult.docs || []
     } catch (error) {
-      console.error('Error fetching posts for homepage:', error)
+      console.error('Error fetching data for homepage:', error)
     }
   }
 
@@ -111,7 +138,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         <PropertyShowcase />
         <AboutSection />
         <ServicesSection />
-        <ReviewsSection />
+        <ReviewsSection initialReviews={reviews} />
         <ContactSection />
         <BlogSection initialPosts={posts} />
         <FaqSection />

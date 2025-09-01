@@ -40,7 +40,7 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-md p-6 ${featured ? 'border-2 border-yellow-400' : 'border border-gray-200'}`}
+      className={`bg-white rounded-lg shadow-md p-6 ${featured ? 'border-2 border-yellow-400' : 'border-2 border-yellow-400'}`}
     >
       {featured && (
         <div className="flex items-center mb-3">

@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { FadeIn } from '@/components/ui/animated'
 import { motion } from 'motion/react'
 
-
 interface Review {
   id: string
   name: string
@@ -18,28 +17,46 @@ interface Review {
   featured?: boolean
 }
 
-export default function ReviewsSection() {
-  const [reviews, setReviews] = useState<Review[]>([])
-  const [loading, setLoading] = useState(true)
+interface ReviewsSectionProps {
+  initialReviews?: Review[]
+}
+
+export default function ReviewsSection({ initialReviews = [] }: ReviewsSectionProps) {
+  const [reviews, setReviews] = useState<Review[]>(initialReviews)
+  const [loading, setLoading] = useState(false)
+  const [hasFetched, setHasFetched] = useState(false)
 
   useEffect(() => {
-    const fetchFeaturedReviews = async () => {
-      try {
-        const response = await fetch('/api/reviews?featured=true&limit=3')
-        const data = await response.json()
+    // Only fetch if we don't have initial reviews AND haven't fetched before
+    if (initialReviews.length === 0 && !hasFetched) {
+      const fetchFeaturedReviews = async () => {
+        setLoading(true)
+        setHasFetched(true) // Prevent multiple fetches
+        try {
+          const response = await fetch('/api/reviews?featured=true&limit=3')
+          const data = await response.json()
 
-        if (data.success) {
-          setReviews(data.reviews)
+          if (data.success) {
+            setReviews(data.reviews)
+          }
+        } catch (error) {
+          console.error('Error fetching featured reviews:', error)
+        } finally {
+          setLoading(false)
         }
-      } catch (error) {
-        console.error('Error fetching featured reviews:', error)
-      } finally {
-        setLoading(false)
       }
-    }
 
-    fetchFeaturedReviews()
-  }, [])
+      fetchFeaturedReviews()
+    }
+  }, [initialReviews, hasFetched])
+
+  // Update reviews when initialReviews change
+  useEffect(() => {
+    if (initialReviews.length > 0) {
+      setReviews(initialReviews)
+      setHasFetched(true) // Mark as fetched to prevent client-side fetch
+    }
+  }, [initialReviews])
 
   if (loading) {
     return (

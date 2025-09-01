@@ -34,6 +34,8 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
     setSubmitMessage('')
 
     try {
+      console.log('Submitting review data:', data)
+
       const response = await fetch('/api/reviews', {
         method: 'POST',
         headers: {
@@ -42,16 +44,22 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
         body: JSON.stringify(data),
       })
 
+      console.log('Response status:', response.status)
       const result = await response.json()
+      console.log('Response data:', result)
 
       if (response.ok) {
-        setSubmitMessage(result.message)
+        setSubmitMessage(result.message || 'Review submitted successfully!')
         reset()
-        onSuccess?.()
+        // Don't call onSuccess immediately to let user see the message
+        setTimeout(() => {
+          onSuccess?.()
+        }, 7000) // Hide form after 3 seconds
       } else {
         setSubmitError(result.error || 'Failed to submit review')
       }
     } catch (error) {
+      console.error('Network error:', error)
       setSubmitError('Network error. Please try again.')
     } finally {
       setIsSubmitting(false)
@@ -76,14 +84,57 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Share Your Experience</h2>
 
       {submitMessage && (
-        <div className="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-          {submitMessage}
+        <div className="mb-6 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 rounded-r-lg">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="font-medium">{submitMessage}</span>
+            </div>
+            <button
+              onClick={() => setSubmitMessage('')}
+              className="text-green-500 hover:text-green-700"
+            >
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 
       {submitError && (
-        <div className="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-          {submitError}
+        <div className="mb-6 p-4 bg-red-100 border-l-4 border-red-500 text-red-700 rounded-r-lg">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="font-medium">{submitError}</span>
+            </div>
+            <button onClick={() => setSubmitError('')} className="text-red-500 hover:text-red-700">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fillRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
 
@@ -197,7 +248,7 @@ export default function ReviewForm({ onSuccess }: ReviewFormProps) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-[#194754] text-white py-3 px-4 rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isSubmitting ? 'Submitting...' : 'Submit Review'}
         </button>

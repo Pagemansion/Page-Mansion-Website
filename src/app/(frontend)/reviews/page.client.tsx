@@ -189,7 +189,7 @@ export default function ReviewsPageClient() {
                       onClick={() => fetchReviews(page)}
                       className={`px-4 py-2 rounded-md ${
                         page === currentPage
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-[#194754] text-white'
                           : 'bg-white border border-gray-300 hover:bg-gray-50'
                       }`}
                     >
