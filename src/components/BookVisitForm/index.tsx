@@ -138,7 +138,7 @@ export const BookVisitForm: React.FC = () => {
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Book A Visit</h2>
             <p className="text-gray-600">
-              Explore the Page Mansion property and experience luxury in every detail. Simply fill
+              Explore the Page Mansions property and experience luxury in every detail. Simply fill
               out the form below, and a member of our team will be in touch.
             </p>
           </div>

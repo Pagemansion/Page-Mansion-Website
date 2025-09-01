@@ -5,18 +5,18 @@ import { FadeIn, StaggerContainer } from '../../ui/animated'
 
  const questions = [
    {
-     title: 'Where is Page Mansion located?',
-     content: 'Page Mansion properties are located in Abuja',
+     title: 'Where is Page Mansions located?',
+     content: 'Page Mansions properties are located in Abuja',
    },
    {
-     title: ' How can I contact Page Mansion?',
+     title: ' How can I contact Page Mansions?',
      content:
        'You can reach us via WhatsApp, email, or our contact form on the website. We typically respond within 24 hours.',
    },
    {
      title: 'What is the authorized payment structure?',
-     content: `All payments should be made directly to the official Page Mansion company account. The details are provided upon inquiry. Kindly send your payment confirmation to our WhatsApp or email.
-Note: Page Mansion Ltd shall not accept any responsibility for any liability that may arise as a result of deviation from the above instructions.`,
+     content: `All payments should be made directly to the official Page Mansion's company account. The details are provided upon inquiry. Kindly send your payment confirmation to our WhatsApp or email.
+Note: Page Mansions Ltd shall not accept any responsibility for any liability that may arise as a result of deviation from the above instructions.`,
    },
    {
      title: 'What other payments are required aside from land or house cost?',
@@ -24,7 +24,7 @@ Note: Page Mansion Ltd shall not accept any responsibility for any liability tha
    },
    {
      title: 'Can I make payments to an agent?',
-     content: `No. Page Mansion does not authorize payments through third-party agents. For security reasons, payments should never be made to agents. Always pay into the company's official account.`,
+     content: `No. Page Mansions does not authorize payments through third-party agents. For security reasons, payments should never be made to agents. Always pay into the company's official account.`,
    },
    {
      title: 'When should I pay for the Survey and Title Deeds?',
@@ -50,7 +50,7 @@ Note: Page Mansion Ltd shall not accept any responsibility for any liability tha
    },
    {
      title: 'Do I need approval before building?',
-     content: `Yes. All architectural drawings must first be approved by Page Mansion Management and then submitted to the Abuja State Government. A soil test is also required before construction.`,
+     content: `Yes. All architectural drawings must first be approved by Page Mansion's Management and then submitted to the Abuja State Government. A soil test is also required before construction.`,
    },
    {
      title: ` What is the refund policy if I can't continue payment?`,

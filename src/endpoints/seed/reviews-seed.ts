@@ -7,7 +7,7 @@ export const seedReviews = async (payload: Payload): Promise<void> => {
       email: 'david.bradford@example.com',
       rating: '5' as const,
       review:
-        "Working with Page Mansion was a game changer! Their expertise and personalized approach made buying my first home a breeze. They took the time to understand my needs and guided me through every step, making the process feel seamless. I felt confident and well-informed and I couldn't have asked for a better experience.",
+        "Working with Page Mansions was a game changer! Their expertise and personalized approach made buying my first home a breeze. They took the time to understand my needs and guided me through every step, making the process feel seamless. I felt confident and well-informed and I couldn't have asked for a better experience.",
       propertyPurchased: '3-bedroom apartment',
       location: 'Maitama, Abuja',
       status: 'published' as const,

@@ -88,7 +88,7 @@ export const PropertySearchPage = () => {
               <div>
                 <h3 className="font-extrabold text-3xl my-4">Real Estate Development</h3>
                 <p className="my-2">
-                  At Page Mansion Limited, we understand that property ownership in Nigeria can be
+                  At Page Mansions Limited, we understand that property ownership in Nigeria can be
                   challenging without the right support. To meet these needs, our Property
                   Development and Management service is designed to simplify the process from start
                   to finish and beyond. Whether you&apos;re a first-time buyer, diaspora investor,

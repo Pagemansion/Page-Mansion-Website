@@ -22,7 +22,7 @@ export const AboutSection = () => {
       ),
       title: 'Trusted Real Estate Developers',
       description:
-        'With a proven track record in delivering high-quality, secure, and affordable properties, Page Mansion is a name clients rely on.',
+        'With a proven track record in delivering high-quality, secure, and affordable properties, Page Mansions is a name clients rely on.',
     },
     {
       icon: (

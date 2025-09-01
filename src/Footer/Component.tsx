@@ -182,7 +182,7 @@ export async function Footer() {
           {/* Copyright Section */}
           <div className="mt-8 pt-6 border-t border-white/20">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-white/60">
-              <p>© 2025 Page Mansion Real Estate. All rights reserved.</p>
+              <p>© 2025 Page Mansions Real Estate. All rights reserved.</p>
               <div className="flex gap-4">
                 <Link
                   href="/privacy"
