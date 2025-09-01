@@ -279,7 +279,7 @@ export const seed = async ({
   const propertyInterestForm = await payload.create({
     collection: 'forms',
     depth: 0,
-    data: propertyInterestFormSeed as unknown,
+    data: propertyInterestFormSeed as any,
   })
 
   payload.logger.info(`— Seeding book visit form...`)
