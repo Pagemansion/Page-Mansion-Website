@@ -13,6 +13,7 @@ import { contactFormSeed } from './contact-form-seed'
 import { generalContactFormSeed } from './general-contact-form-seed'
 import { propertyInterestFormSeed } from './property-interest-form-seed'
 import { seedBookVisitForm } from './book-visit-form-seed'
+import { seedReviews } from './reviews-seed'
 
 const collections: CollectionSlug[] = [
   'categories',
@@ -21,6 +22,7 @@ const collections: CollectionSlug[] = [
   'posts',
   'forms',
   'custom-form-submissions',
+  'reviews',
   'search',
 ]
 const globals: GlobalSlug[] = ['header', 'footer']
@@ -283,6 +285,9 @@ export const seed = async ({
 
   payload.logger.info(`— Seeding book visit form...`)
   await seedBookVisitForm(payload)
+
+  payload.logger.info(`— Seeding reviews...`)
+  await seedReviews(payload)
 
   payload.logger.info(`— Seeding pages...`)
 
