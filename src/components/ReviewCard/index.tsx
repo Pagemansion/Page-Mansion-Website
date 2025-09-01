@@ -58,7 +58,7 @@ export default function ReviewCard({ review, featured = false }: ReviewCardProps
         <div className="flex items-center space-x-1">{renderStars(review.rating)}</div>
       </div>
 
-      <blockquote className="text-gray-700 mb-4 italic">"{review.review}"</blockquote>
+      <blockquote className="text-gray-700 mb-4 italic">&quot;{review.review}&quot;</blockquote>
 
       <div className="flex items-center justify-between text-sm text-gray-500">
         <div>
