@@ -76,13 +76,13 @@ export default function DisclaimerModal({ isOpen, onClose }: DisclaimerModalProp
             <div className="flex flex-col space-y-3">
               <button
                 onClick={onClose}
-                className="w-full bg-[#194754] text-white py-3 px-6 rounded-xl font-semibold hover:bg-[#194754]/90 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#194754]/50"
+                className="w-full bg-[#194754] text-white py-3 px-6 rounded-xl font-semibold hover:bg-[#194754]/90 transition-colors duration-200 cursor-pointer"
               >
                 I Understand
               </button>
               <button
                 onClick={onClose}
-                className="w-full bg-gray-100 text-gray-700 py-2 px-6 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                className="w-full bg-gray-100 text-gray-700 py-2 px-6 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200 cursor-pointer"
               >
                 Remind Me Later
               </button>
