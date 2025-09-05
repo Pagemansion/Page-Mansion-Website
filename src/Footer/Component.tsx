@@ -63,7 +63,7 @@ export async function Footer() {
                 <h3 className="font-bold text-base md:text-lg text-white">Explore</h3>
                 <nav className="space-y-2">
                   <Link
-                    href="/buy"
+                    href="/properties"
                     className="block text-sm md:text-base text-white/80 hover:text-white transition-colors duration-200"
                   >
                     Buy
