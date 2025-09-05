@@ -61,7 +61,7 @@ export default function FloatingActionButton() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
+    <div className="fixed bottom-6 right-6 z-10 pointer-events-none">
       {/* Contact Options */}
       <div className="flex flex-col items-end space-y-3 mb-4">
         {contactOptions.map((option, index) => (
@@ -134,14 +134,6 @@ export default function FloatingActionButton() {
           {isExpanded ? <X className="w-6 h-6" /> : <Phone className="w-6 h-6" />}
         </button>
       </div>
-
-      {/* Backdrop */}
-      {/* {isExpanded && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-20 -z-10"
-          onClick={() => setIsExpanded(false)}
-        />
-      )} */}
     </div>
   )
 }
