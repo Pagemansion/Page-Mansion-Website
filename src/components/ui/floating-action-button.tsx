@@ -61,7 +61,7 @@ export default function FloatingActionButton() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
       {/* Contact Options */}
       <div className="flex flex-col items-end space-y-3 mb-4">
         {contactOptions.map((option, index) => (
@@ -80,7 +80,7 @@ export default function FloatingActionButton() {
           >
             <div className="flex items-center space-x-3">
               {/* Label */}
-              <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 whitespace-nowrap">
+              <div className="bg-white px-3 py-2 rounded-lg shadow-lg border border-gray-200 whitespace-nowrap pointer-events-auto">
                 <span className="text-sm font-medium text-gray-800">{option.label}</span>
               </div>
 
@@ -93,6 +93,7 @@ export default function FloatingActionButton() {
                   flex items-center justify-center
                   text-white transition-all duration-200
                   hover:scale-110 active:scale-95
+                  pointer-events-auto
                 `}
               >
                 {option.icon}
@@ -112,7 +113,7 @@ export default function FloatingActionButton() {
               : 'translate-x-4 opacity-0 scale-95 pointer-events-none'
           }`}
         >
-          <div className="bg-gray-800 text-white px-3 py-2 rounded-lg shadow-lg whitespace-nowrap text-sm">
+          <div className="bg-gray-800 text-white px-3 py-2 rounded-lg shadow-lg whitespace-nowrap text-sm pointer-events-auto">
             Got any questions?
           </div>
         </div>
@@ -125,6 +126,7 @@ export default function FloatingActionButton() {
             flex items-center justify-center
             text-white transition-all duration-300
             hover:scale-110 active:scale-95
+            pointer-events-auto
             ${isExpanded ? 'bg-gray-600 hover:bg-gray-700 rotate-45' : 'bg-green-500 hover:bg-green-600'}
             ${isShaking && !isExpanded ? 'animate-shake' : ''}
           `}
