@@ -5,7 +5,7 @@ export default function NewProjectsPage() {
     <ComingSoon
       title="New Projects"
       description="Exciting new development projects are on the horizon. Be the first to discover upcoming residential and commercial developments in prime locations."
-      expectedLaunch="Q1 2026"
+      expectedLaunch="Soon"
     />
   )
 }

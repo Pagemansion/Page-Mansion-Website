@@ -5,7 +5,7 @@ export default function ShortTermPage() {
     <ComingSoon
       title="Short-Term Rentals"
       description="We're building an amazing platform for short-term rental properties. Perfect for vacation stays, business trips, and temporary accommodations."
-      expectedLaunch="Q1 2026"
+      expectedLaunch="Soon"
     />
   )
 }

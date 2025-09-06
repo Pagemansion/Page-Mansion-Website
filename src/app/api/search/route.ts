@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get('type')
     const category = searchParams.get('category')
     const location = searchParams.get('location')
+    const propertyType = searchParams.get('propertyType')
     const sort = searchParams.get('sort') || '-createdAt'
 
     if (!query) {
@@ -23,13 +24,46 @@ export async function GET(request: NextRequest) {
     }
 
     const results: {
-      posts: PaginatedDocs<Post>;
-      properties: PaginatedDocs<Property>;
-      pages: PaginatedDocs<Page>;
+      posts: PaginatedDocs<Post>
+      properties: PaginatedDocs<Property>
+      pages: PaginatedDocs<Page>
     } = {
-      posts: { docs: [], totalDocs: 0, limit: 0, page: 0, totalPages: 0, pagingCounter: 0, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null },
-      properties: { docs: [], totalDocs: 0, limit: 0, page: 0, totalPages: 0, pagingCounter: 0, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null },
-      pages: { docs: [], totalDocs: 0, limit: 0, page: 0, totalPages: 0, pagingCounter: 0, hasPrevPage: false, hasNextPage: false, prevPage: null, nextPage: null },
+      posts: {
+        docs: [],
+        totalDocs: 0,
+        limit: 0,
+        page: 0,
+        totalPages: 0,
+        pagingCounter: 0,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null,
+      },
+      properties: {
+        docs: [],
+        totalDocs: 0,
+        limit: 0,
+        page: 0,
+        totalPages: 0,
+        pagingCounter: 0,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null,
+      },
+      pages: {
+        docs: [],
+        totalDocs: 0,
+        limit: 0,
+        page: 0,
+        totalPages: 0,
+        pagingCounter: 0,
+        hasPrevPage: false,
+        hasNextPage: false,
+        prevPage: null,
+        nextPage: null,
+      },
     }
 
     // Search Posts (if not filtered to specific type or if type is posts)
@@ -88,6 +122,10 @@ export async function GET(request: NextRequest) {
             { 'location.state': { contains: location } },
           ],
         })
+      }
+
+      if (propertyType) {
+        propertiesWhere.and.push({ propertyType: { contains: propertyType } })
       }
 
       try {
