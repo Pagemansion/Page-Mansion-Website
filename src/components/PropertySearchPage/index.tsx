@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import { motion } from 'framer-motion'
 import PropertySearch, { SearchFilters } from '@/components/utilities/property-search'
 import { PropertyCard } from '@/components/PropertyCard'
@@ -14,12 +14,23 @@ export const PropertySearchPage = () => {
     usePropertySearch()
 
   useEffect(() => {
-    loadInitialProperties()
+    // Check if there are URL parameters for search
+    const urlParams = new URLSearchParams(window.location.search)
+    const hasSearchParams =
+      urlParams.has('propertyType') || urlParams.has('location') || urlParams.has('sortBy')
+
+    if (!hasSearchParams) {
+      loadInitialProperties()
+    }
+    // If there are search params, the PropertySearch component will handle the search via its useEffect
   }, [loadInitialProperties])
 
-  const handleSearch = (filters: SearchFilters) => {
-    searchProperties(filters)
-  }
+  const handleSearch = useCallback(
+    (filters: SearchFilters) => {
+      searchProperties(filters)
+    },
+    [searchProperties],
+  )
 
   return (
     <>

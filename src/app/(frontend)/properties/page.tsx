@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import { PropertySearchPage } from '@/components/PropertySearchPage'
 import PropertyDisclaimerWrapper from '@/components/PropertyDisclaimerWrapper'
 
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
 export default function PropertiesPage() {
   return (
     <>
-      <PropertySearchPage />
+      <Suspense fallback={<div>Loading properties...</div>}>
+        <PropertySearchPage />
+      </Suspense>
+
       <PropertyDisclaimerWrapper />
     </>
   )

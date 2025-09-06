@@ -2,10 +2,9 @@
 
 // src/components/HeroSection/HeroSection.tsx
 import React from 'react'
-import Link from 'next/link'
 import PropertySearch from '../utilities/property-search'
 import { motion } from 'motion/react'
-import { FadeIn, SlideInLeft, SlideInRight, Floating, Pulse } from '../ui/animated'
+import { FadeIn } from '../ui/animated'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
 export default function HeroSection() {
@@ -64,18 +63,16 @@ export default function HeroSection() {
               </motion.p>
             </FadeIn>
 
-            <Link href="/properties">
-              <FadeIn delay={0.6}>
-                <motion.div
-                  className="mt-20"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <PropertySearch />
-                </motion.div>
-              </FadeIn>
-            </Link>
+            <FadeIn delay={0.6}>
+              <motion.div
+                className="mt-20"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+              >
+                <PropertySearch redirectOnSearch={true} />
+              </motion.div>
+            </FadeIn>
 
             {/* Floating decorative elements */}
             {/* <Floating>
