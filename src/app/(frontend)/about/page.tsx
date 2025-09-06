@@ -218,7 +218,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        <div className="py-11 container mx-auto">
+        <div className="py-11 my-14 container mx-auto">
           <motion.span
             className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -256,8 +256,9 @@ export default function AboutPage() {
               </li>
             </ul>
           </div>
+          <div className="py-11">
           <motion.span
-            className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
+            className="p-3 mt-12 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -332,10 +333,11 @@ export default function AboutPage() {
             </ul>
             <p className="my-4 font-semibold">...Enabling access to quality infrastructure</p>
           </div>
+          </div>
         </div>
         <div className="py-11 container mx-auto">
           <motion.span
-            className="p-3 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
+            className="p-3 my-8 border border-[#194754] text-[#194754] rounded-3xl font-semibold"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -343,7 +345,7 @@ export default function AboutPage() {
           >
             OUR SERVICES
           </motion.span>
-          <div className="py-6">
+          <div className="py-6 my-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Real Estate Development */}
               <motion.div

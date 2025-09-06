@@ -124,7 +124,7 @@ export const AboutSection = () => {
         </FadeIn>
 
         <div className="py-11 container mx-auto bg-[#FAFAFA] rounded-xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <SlideInLeft>
               <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.3 }}>
                 <Image
@@ -149,7 +149,7 @@ export const AboutSection = () => {
                   We ensure excellence in building structure around realities
                 </motion.h3>
                 <motion.p
-                  className="my-2"
+                  className="my-2 leading-8 text-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -164,7 +164,7 @@ export const AboutSection = () => {
                   beyond.
                 </motion.p>
                 <motion.p
-                  className="my-2"
+                  className="my-2 leading-8 text-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

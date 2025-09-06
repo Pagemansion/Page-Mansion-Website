@@ -102,7 +102,7 @@ export default function ReviewsSection({ initialReviews = [] }: ReviewsSectionPr
         </FadeIn>
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-          <p className="text-gray-600 mb-8">
+          <p className="text-gray-600 mb-8 text-md">
             Be the first to share your experience with Page Mansions!
           </p>
           <Link
@@ -134,7 +134,7 @@ export default function ReviewsSection({ initialReviews = [] }: ReviewsSectionPr
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto text-md">
             Don&apos;t just take our word for it. Here&apos;s what our satisfied clients have to say
             about their experience with Page Mansions.
           </p>
