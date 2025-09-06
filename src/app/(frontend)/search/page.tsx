@@ -12,13 +12,14 @@ type Args = {
     type?: string
     category?: string
     location?: string
+    propertyType?: string
     sort?: string
   }>
 }
 
 export default async function Page({ searchParams: searchParamsPromise }: Args) {
   const searchParams = await searchParamsPromise
-  const { q: query, type, category, location, sort } = searchParams
+  const { q: query, type, category, location, propertyType, sort } = searchParams
 
   const payload = await getPayload({ config: configPromise })
 
@@ -35,71 +36,82 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
   if (query) {
     try {
-      // Search Posts
-      const posts = await payload.find({
-        collection: 'posts',
-        depth: 1,
-        limit: 20,
-        where: {
-          and: [
-            { _status: { equals: 'published' } },
-            {
-              or: [
-                { title: { contains: query } },
-                { 'meta.description': { contains: query } },
-                { 'meta.title': { contains: query } },
-                { slug: { contains: query } },
-              ],
-            },
-            ...(category ? [{ 'categories.title': { contains: category } }] : []),
-          ],
-        },
-        sort: sort || '-createdAt',
-      })
+      // Search Posts (only if no type filter or type is posts)
+      const posts =
+        !type || type === 'posts'
+          ? await payload.find({
+              collection: 'posts',
+              depth: 1,
+              limit: 20,
+              where: {
+                and: [
+                  { _status: { equals: 'published' } },
+                  {
+                    or: [
+                      { title: { contains: query } },
+                      { 'meta.description': { contains: query } },
+                      { 'meta.title': { contains: query } },
+                      { slug: { contains: query } },
+                    ],
+                  },
+                  ...(category ? [{ 'categories.title': { contains: category } }] : []),
+                ],
+              },
+              sort: sort || '-createdAt',
+            })
+          : { docs: [], totalDocs: 0 }
 
-      // Search Properties
-      const properties = await payload.find({
-        collection: 'properties',
-        depth: 1,
-        limit: 20,
-        where: {
-          and: [
-            { _status: { equals: 'published' } },
-            {
-              or: [
-                { title: { contains: query } },
-                { description: { contains: query } },
-                { 'location.address': { contains: query } },
-                { 'location.city': { contains: query } },
-                { 'location.state': { contains: query } },
-              ],
-            },
-            ...(location ? [{ 'location.city': { contains: location } }] : []),
-          ],
-        },
-        sort: sort || '-createdAt',
-      })
+      // Search Properties (only if no type filter or type is properties)
+      const properties =
+        !type || type === 'properties'
+          ? await payload.find({
+              collection: 'properties',
+              depth: 1,
+              limit: 20,
+              where: {
+                and: [
+                  { _status: { equals: 'published' } },
+                  {
+                    or: [
+                      { title: { contains: query } },
+                      { description: { contains: query } },
+                      { propertyType: { contains: query } },
+                      { 'location.address': { contains: query } },
+                      { 'location.city': { contains: query } },
+                      { 'location.state': { contains: query } },
+                    ],
+                  },
+                  ...(location ? [{ 'location.city': { contains: location } }] : []),
+                  ...(propertyType ? [{ propertyType: { contains: propertyType } }] : []),
+                ],
+              },
+              sort: sort || '-createdAt',
+            })
+          : { docs: [], totalDocs: 0 }
 
-      // Search Pages
-      const pages = await payload.find({
-        collection: 'pages',
-        depth: 1,
-        limit: 20,
-        where: {
-          and: [
-            { _status: { equals: 'published' } },
-            {
-              or: [
-                { title: { contains: query } },
-                { 'meta.description': { contains: query } },
-                { 'meta.title': { contains: query } },
-                { slug: { contains: query } },
-              ],
-            },
-          ],
-        },
-        sort: sort || '-createdAt',
-      })
+      // Search Pages (only if no type filter or type is pages)
+      const pages =
+        !type || type === 'pages'
+          ? await payload.find({
+              collection: 'pages',
+              depth: 1,
+              limit: 20,
+              where: {
+                and: [
+                  { _status: { equals: 'published' } },
+                  {
+                    or: [
+                      { title: { contains: query } },
+                      { 'meta.description': { contains: query } },
+                      { 'meta.title': { contains: query } },
+                      { slug: { contains: query } },
+                    ],
+                  },
+                ],
+              },
+              sort: sort || '-createdAt',
+            })
+          : { docs: [], totalDocs: 0 }
 
       searchResults = { posts, properties, pages }
     } catch (error) {

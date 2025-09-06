@@ -33,6 +33,7 @@ interface UniversalSearchPageProps {
     type?: string
     category?: string
     location?: string
+    propertyType?: string
     sort?: string
   }
 }
@@ -51,6 +52,7 @@ const UniversalSearchPageContent = ({
     type: searchParams.type || undefined,
     category: searchParams.category || undefined,
     location: searchParams.location || undefined,
+    propertyType: searchParams.propertyType || undefined,
     sort: searchParams.sort || 'relevance',
   })
 
@@ -105,7 +107,13 @@ const UniversalSearchPageContent = ({
   }
 
   const clearFilters = () => {
-    setFilters({ type: undefined, category: undefined, location: undefined, sort: 'relevance' })
+    setFilters({
+      type: undefined,
+      category: undefined,
+      location: undefined,
+      propertyType: undefined,
+      sort: 'relevance',
+    })
     setQuery('')
   }
 
@@ -129,7 +137,7 @@ const UniversalSearchPageContent = ({
     <div className="container mx-auto px-4">
       {/* Search Header */}
       <FadeIn>
-        <div className="max-w-4xl mx-auto mb-8">
+        <div className="max-w-5xl mx-auto mb-8">
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex flex-col md:flex-row gap-4 mb-4">
               <div className="flex-1">
@@ -199,6 +207,23 @@ const UniversalSearchPageContent = ({
               </Select>
 
               <Select
+                value={filters.propertyType || 'all'}
+                onValueChange={(value) => handleFilterChange('propertyType', value)}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Property Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Types</SelectItem>
+                  <SelectItem value="apartment">Apartment</SelectItem>
+                  <SelectItem value="house">House</SelectItem>
+                  <SelectItem value="villa">Villa</SelectItem>
+                  <SelectItem value="commercial">Commercial</SelectItem>
+                  <SelectItem value="land">Land</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Select
                 value={filters.sort || 'relevance'}
                 onValueChange={(value) => handleFilterChange('sort', value)}
               >
@@ -217,6 +242,7 @@ const UniversalSearchPageContent = ({
             {(filters.type ||
               filters.category ||
               filters.location ||
+              filters.propertyType ||
               filters.sort !== 'relevance') && (
               <div className="mt-4">
                 <Button variant="outline" onClick={clearFilters} className="text-sm">

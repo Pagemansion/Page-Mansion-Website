@@ -5,7 +5,7 @@ export default function RentPage() {
     <ComingSoon
       title="Rent Properties"
       description="We're creating the ultimate rental property marketplace. Discover long-term rental options that match your lifestyle and budget."
-      expectedLaunch="Q1 2026"
+      expectedLaunch="Soon"
     />
   )
 }
