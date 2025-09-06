@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     // Extract query parameters
     const propertyType = searchParams.get('propertyType')
     const location = searchParams.get('location')
-    const sort = searchParams.get('sort') || '-createdAt'
+    const sort = searchParams.get('sortBy') || '-createdAt'
     const limit = parseInt(searchParams.get('limit') || '12')
     const page = parseInt(searchParams.get('page') || '1')
     const featured = searchParams.get('featured')
@@ -29,9 +29,10 @@ export async function GET(request: NextRequest) {
     }
 
     if (location) {
-      where['location.city'] = {
-        contains: location,
-      }
+      where.or = [
+        { 'location.city': { contains: location } },
+        { 'location.address': { contains: location } },
+      ]
     }
 
     if (featured === 'true') {
@@ -40,7 +41,32 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    // Fetch properties
+    console.log('Properties API - Search params:', {
+      propertyType,
+      location,
+      sort,
+      limit,
+      page,
+      featured,
+    })
+    console.log('Properties API - Where clause:', JSON.stringify(where, null, 2))
+
+    // First, let's check if there are any properties at all
+    const allProperties = await payload.find({
+      collection: 'properties',
+      limit: 5,
+      depth: 1,
+    })
+
+    console.log('Properties API - All properties count:', allProperties.totalDocs)
+    if (allProperties.docs.length > 0) {
+      console.log(
+        'Properties API - Sample property:',
+        JSON.stringify(allProperties.docs[0], null, 2),
+      )
+    }
+
+    // Fetch properties with filters
     const properties = await payload.find({
       collection: 'properties',
       where,
@@ -49,6 +75,9 @@ export async function GET(request: NextRequest) {
       page,
       depth: 2, // Include related data like images
     })
+
+    console.log('Properties API - Found properties:', properties.docs.length)
+    console.log('Properties API - Total docs:', properties.totalDocs)
 
     return NextResponse.json(properties)
   } catch (error) {

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -24,13 +25,52 @@ export interface SearchFilters {
 interface PropertySearchProps {
   onSearch?: (filters: SearchFilters) => void
   loading?: boolean
+  redirectOnSearch?: boolean
 }
 
-export default function PropertySearch({ onSearch, loading = false }: PropertySearchProps) {
+export default function PropertySearch({
+  onSearch,
+  loading = false,
+  redirectOnSearch = false,
+}: PropertySearchProps) {
   const [filters, setFilters] = useState<SearchFilters>({})
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  // Load filters from URL parameters on mount
+  useEffect(() => {
+    const urlFilters: SearchFilters = {}
+
+    const propertyType = searchParams.get('propertyType')
+    const location = searchParams.get('location')
+    const sortBy = searchParams.get('sortBy')
+
+    if (propertyType) urlFilters.propertyType = propertyType
+    if (location) urlFilters.location = location
+    if (sortBy) urlFilters.sortBy = sortBy
+
+    setFilters(urlFilters)
+
+    // If we have URL filters and onSearch callback, trigger search
+    if (Object.keys(urlFilters).length > 0 && onSearch) {
+      onSearch(urlFilters)
+    }
+  }, [searchParams, onSearch])
 
   const handleSearch = () => {
-    if (onSearch) {
+    if (redirectOnSearch) {
+      // Build URL with filters and redirect to properties page
+      const params = new URLSearchParams()
+
+      if (filters.propertyType) params.set('propertyType', filters.propertyType)
+      if (filters.location) params.set('location', filters.location)
+      if (filters.sortBy) params.set('sortBy', filters.sortBy)
+
+      const queryString = params.toString()
+      router.push(`/properties${queryString ? `?${queryString}` : ''}`)
+      console.log('Filters being sent:', filters)
+
+    } else if (onSearch) {
       onSearch(filters)
     }
   }
@@ -44,7 +84,10 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
 
   const clearFilters = () => {
     setFilters({})
-    if (onSearch) {
+
+    if (redirectOnSearch) {
+      router.push('/properties')
+    } else if (onSearch) {
       onSearch({})
     }
   }
@@ -85,14 +128,14 @@ export default function PropertySearch({ onSearch, loading = false }: PropertySe
               <SelectValue placeholder="Cities" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="abuja">Abuja</SelectItem>
-              <SelectItem value="lagos">Lagos</SelectItem>
-              <SelectItem value="port-harcourt">Port Harcourt</SelectItem>
-              <SelectItem value="delta">Delta</SelectItem>
-              <SelectItem value="nassarawa">Nassarawa</SelectItem>
-              <SelectItem value="kaduna">Kaduna</SelectItem>
-              <SelectItem value="kano">Kano</SelectItem>
-              <SelectItem value="ibadan">Ibadan</SelectItem>
+              <SelectItem value="Abuja">Abuja</SelectItem>
+              <SelectItem value="Lagos">Lagos</SelectItem>
+              <SelectItem value="Port Harcourt">Port Harcourt</SelectItem>
+              <SelectItem value="Delta">Delta</SelectItem>
+              <SelectItem value="Nassarawa">Nassarawa</SelectItem>
+              <SelectItem value="Kaduna">Kaduna</SelectItem>
+              <SelectItem value="Kano">Kano</SelectItem>
+              <SelectItem value="Ibadan">Ibadan</SelectItem>
             </SelectContent>
           </Select>
         </div>
