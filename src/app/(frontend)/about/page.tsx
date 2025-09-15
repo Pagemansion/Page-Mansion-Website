@@ -84,7 +84,7 @@ export default function AboutPage() {
                 Have questions? Our team is here to help you take the next step with Page Mansions.
               </p>
               <button className="py-2 px-4 rounded-3xl bg-[#194754] text-white hover:text-gray-200 transition-colors duration-300">
-                <Link href="" className="flex items-center gap-2">
+                <Link href="/contact" className="flex items-center gap-2">
                   <span>Let&apos;s Connect</span>
                   <motion.span
                     animate={{ x: [0, 5, 0] }}
