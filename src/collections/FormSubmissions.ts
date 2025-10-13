@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload'
+import { sendEmail } from '../utilities/sendEmail'
+import { formatFormSubmissionEmail } from '../utilities/emailTemplates'
 
 export const FormSubmissions: CollectionConfig = {
   slug: 'custom-form-submissions',
@@ -109,6 +111,20 @@ export const FormSubmissions: CollectionConfig = {
           }
         }
         return data
+      },
+    ],
+    afterChange: [
+      async ({ doc, operation }) => {
+        // Send email notification for new form submissions
+        if (operation === 'create') {
+          const adminEmail = process.env.ADMIN_EMAIL || 'admin@pagemansion.com'
+          
+          await sendEmail({
+            to: adminEmail,
+            subject: `New Form Submission - ${doc.form?.title || 'Form'}`,
+            html: formatFormSubmissionEmail(doc),
+          })
+        }
       },
     ],
   },

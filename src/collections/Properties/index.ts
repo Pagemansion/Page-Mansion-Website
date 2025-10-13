@@ -16,6 +16,8 @@ import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidateProperty } from './hooks/revalidateProperty'
+import { sendEmail } from '../../utilities/sendEmail'
+import { formatPropertyCreatedEmail } from '../../utilities/emailTemplates'
 
 import {
   MetaDescriptionField,
@@ -437,7 +439,21 @@ export const Properties: CollectionConfig<'properties'> = {
     ...slugField(),
   ],
   hooks: {
-    afterChange: [revalidateProperty],
+    afterChange: [
+      revalidateProperty,
+      async ({ doc, operation }) => {
+        // Send email notification for new properties
+        if (operation === 'create') {
+          const adminEmail = process.env.ADMIN_EMAIL || 'admin@pagemansion.com'
+          
+          await sendEmail({
+            to: adminEmail,
+            subject: `New Property Created - ${doc.title}`,
+            html: formatPropertyCreatedEmail(doc),
+          })
+        }
+      },
+    ],
     afterDelete: [revalidateDelete],
   },
   versions: {
