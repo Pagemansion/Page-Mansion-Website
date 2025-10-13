@@ -14,23 +14,90 @@ export function useDisclaimerModal() {
 
     // Check if disclaimer has been shown before
     const disclaimerShown = localStorage.getItem('pageMansionDisclaimerShown')
+const now = Date.now()
+const eightHoursInMs = 8 * 60 * 60 * 1000 // 8 hours in milliseconds
 
-    if (!disclaimerShown) {
+let shouldShow = true
+
+    if (disclaimerShown) {
+      try {
+        const { lastShown, count, date } = JSON.parse(disclaimerShown)
+        const today = new Date().toDateString()
+        const lastShownDate = new Date(date).toDateString()
+
+        // If it's the same day
+        if (today === lastShownDate) {
+          // If shown 3 times today, don't show
+          if (count >= 3) {
+            shouldShow = false
+          }
+          // If shown before, only show if 8+ hours have passed
+          else if (count > 0 && now - lastShown < eightHoursInMs) {
+            shouldShow = false
+          }
+        }
+        // If it's a new day, reset and show
+
+        console.log('Home disclaimer check:', {
+          today,
+          lastShownDate,
+          count,
+          timeSinceLastShown: now - lastShown,
+          shouldShow,
+        })
+      } catch (error) {
+        console.log('Error parsing disclaimer data, will show modal')
+        shouldShow = true
+      }}
       // Set timer for 5 seconds
-      const timer = setTimeout(() => {
-        setIsOpen(true)
-        setHasShown(true)
-      }, 5000)
+       if (shouldShow) {
+         console.log('Setting timer for property disclaimer...')
+         const timer = setTimeout(() => {
+           console.log('Showing property disclaimer modal')
+           setIsOpen(true)
+           setHasShown(true)
+         }, 5000)
 
-      return () => clearTimeout(timer)
-    }
+         return () => clearTimeout(timer)
+       } else {
+         console.log('Home disclaimer already shown enough times today, skipping')
+       }
   }, [isMounted])
 
   const closeModal = () => {
     setIsOpen(false)
     // Mark as shown in localStorage so it doesn't show again
     if (isMounted) {
-      localStorage.setItem('pageMansionDisclaimerShown', 'true')
+      const now = Date.now()
+      const today = new Date().toDateString()
+      const existingData = localStorage.getItem('pageMansionDisclaimerShown')
+
+      let count = 1
+
+      if (existingData) {
+        try {
+          const { count: existingCount, date } = JSON.parse(existingData)
+          const existingDate = new Date(date).toDateString()
+
+          // If same day, increment count
+          if (today === existingDate) {
+            count = existingCount + 1
+          }
+          // If new day, reset to 1
+        } catch (error) {
+          count = 1
+        }
+      }
+
+      const disclaimerData = {
+        lastShown: now,
+        count: count,
+        date: today,
+      }
+
+      localStorage.setItem('pageMansionDisclaimerShown', JSON.stringify(disclaimerData))
+            console.log('Updated disclaimer data:', disclaimerData)
+
     }
   }
 
