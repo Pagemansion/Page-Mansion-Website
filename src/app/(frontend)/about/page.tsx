@@ -74,7 +74,7 @@ export default function AboutPage() {
             <h3 className="font-bold text-xl my-4">Our Vision</h3>
             <p className="my-2">
               Page Mansions envisions to be the first-choice leading infrastructural company in
-              Nigeria by 2030
+              Nigeria by 2030.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
