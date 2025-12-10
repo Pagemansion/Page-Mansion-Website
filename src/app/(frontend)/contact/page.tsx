@@ -64,7 +64,7 @@ export default function ContactPage() {
                   </svg>
                 </span>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
-                <p className="text-gray-600">+234 706 827 3081</p>
+                <p className="text-gray-600">+234 706 827 308</p>
               </div>
               <div>
                 <span className="bg-[#E7C873] p-3 rounded-full inline-block mb-4">

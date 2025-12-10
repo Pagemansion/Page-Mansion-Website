@@ -24,7 +24,7 @@ export default function FloatingActionButton() {
       icon: <Phone className="w-5 h-5" />,
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600',
-      action: () => window.open('tel:+2347068273081', '_self'),
+      action: () => window.open('tel:+234706827308', '_self'),
     },
     {
       id: 'whatsapp',
@@ -32,7 +32,7 @@ export default function FloatingActionButton() {
       icon: <MessageCircle className="w-5 h-5" />,
       color: 'bg-green-500',
       hoverColor: 'hover:bg-green-600',
-      action: () => window.open('https://wa.me/+2347068273081', '_blank'),
+      action: () => window.open('https://wa.me/+234706827308', '_blank'),
     },
     {
       id: 'email',
